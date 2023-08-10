@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import InsetShadow from 'react-native-inset-shadow';
+import Input from './src/Screens/Input';
+import Signup from './src/Screens/Signup';
+import Navigation from './src/Screens/Navigation';
 
 export default function App() {
+  const {width} = Dimensions.get("window");
+  const PADDING = 32;
+  const size = width-PADDING*2;
+  const x = PADDING;
+  const y = 75;
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Navigation/>
   );
 }
 
