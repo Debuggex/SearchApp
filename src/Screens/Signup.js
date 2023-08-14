@@ -13,7 +13,7 @@ const Signup = ({navigation})=>{
     const nav = function(){
         navigation.navigate('Signin');
     }
-    const {height} = Dimensions.get("screen")
+    const {height} = Dimensions.get("screen");
     return (
         <View style={{ padding:30,backgroundColor:"#F0F0F3",paddingTop:50,paddingBottom:50,display:'flex',alignItems:'center',justifyContent:"space-between",height:height}}>
             <View style={{ display:'flex',alignItems:'center',width:"100%"}}>
