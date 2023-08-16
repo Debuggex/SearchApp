@@ -21,7 +21,7 @@ const Signup = ({navigation})=>{
                 <Input placeholder={emailPH} imagePath={emailPath}/>
                 <Input placeholder={passPH} isPass={true} imagePath={passPath}/>
                 <View style={{marginTop:20,width:"100%"}}>
-                <Button BtText="Sign Up"/>
+                <Button BtText="Sign Up" pressed={nav}/>
                 <View style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:20,marginBottom:20,width:"100%"}}>
                     <View style={{ borderBottomColor: '#DADADA',borderBottomWidth: StyleSheet.hairlineWidth,width:"45%"}}></View>
                     <Text style={{margin:10,color:"#A3ADB2",fontWeight:500,fontSize:13}}>OR</Text>

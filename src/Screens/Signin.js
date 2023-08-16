@@ -11,7 +11,7 @@ const Signup = ({navigation})=>{
     const passPH = 'Password';
     const googlePath = require('../../assets/google.png');
     const nav = ()=>{
-        navigation.navigate('Signup');
+        navigation.navigate('Home');
     }
     const {height} = Dimensions.get("screen")
     return (
@@ -21,7 +21,7 @@ const Signup = ({navigation})=>{
                 <Input placeholder={emailPH} imagePath={emailPath}/>
                 <Input placeholder={passPH} isPass={true} imagePath={passPath}/>
                 <View style={{marginTop:20,width:"100%"}}>
-                <Button BtText="Sign In"/>
+                <Button BtText="Sign In" pressed={nav}/>
                 <View style={{display:'flex',flexDirection:'row',alignItems:'center',marginTop:20,marginBottom:20,width:"100%"}}>
                     <View style={{ borderBottomColor: '#DADADA',borderBottomWidth: StyleSheet.hairlineWidth,width:"45%"}}></View>
                     <Text style={{margin:10,color:"#A3ADB2",fontWeight:500,fontSize:13}}>OR</Text>
