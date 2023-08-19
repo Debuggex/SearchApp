@@ -11,17 +11,20 @@ const EditInputField=({props})=>{
         <InsetShadow containerStyle={{borderRadius:25,height:60,backgroundColor:"#F0F0F3"}}
         bottom={false}
         right={false}
-        shadowColor="grey"
-        
-        elevation={8}
-        shadowRadius={8}
+        shadowColor="black"
+        shadowOpacity={0.1}
+        elevation={25}
+        shadowRadius={25}
         shadowOffset={8}
         >
             <View style={{height:"100%",width:"100%",backgroundColor:"transparent"}}>
-                <InsetShadow containerStyle={{borderRadius:25,height:"100%",width:"100%",backgroundColor:"transparent",borderBottomWidth: 1,borderRightWidth: 1,borderBlockColor:"orange",borderBlockEndColor:"white",borderColor:"white",paddingLeft:20,paddingRight:20}}
+                <InsetShadow containerStyle={{borderRadius:25,height:"100%",width:"100%",backgroundColor:"transparent",paddingLeft:20,paddingRight:20}}
                 top={false}
                 left={false}
                 shadowOffset={10}
+                shadowOpacity={1}
+                shadowRadius={15}
+                elevation={10}
                 shadowColor="white"
                 >
                     <View style={{ display:'flex',flexDirection:'row', justifyContent: 'space-between', alignItems: 'center',height:"100%"}}>

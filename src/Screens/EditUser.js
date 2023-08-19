@@ -21,27 +21,27 @@ const EditUser =({navigation})=>{
     const datas=[
         {   id:1,
             label:"First Name",
-        placeholder:"Johny"
+        placeholder:"-"
         },
         {
             id:2,label:"Last Name",
-            placeholder:"Johny"
+            placeholder:"-"
         },
         {
             id:3,label:"Number",
-            placeholder:"Johny"
+            placeholder:"-"
         },
         {id:4,label:"Birthday",
-            placeholder:"Johny"
+            placeholder:"-"
         },
         {id:5,label:"Height",
-            placeholder:"Johny"
+            placeholder:"-"
         },
         {id:6,label:"Weight",
-            placeholder:"Johny"
+            placeholder:"-"
         },
         {id:7,label:"Blood Type",
-            placeholder:"Johny"
+            placeholder:"-"
         }
     ];
 
@@ -52,8 +52,8 @@ const EditUser =({navigation})=>{
         <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",paddingTop:30,paddingBottom:30,display:'flex',justifyContent:"space-between"}}>
             <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center'}}>
                 <InsetButton props={{pressed:goBack,imgSrc:require('../../assets/Back.png')}}/>
-                <TouchableOpacity onPress={()=>{goUser()}} style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:20,shadowRadius:20,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                    <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.25,elevation:20,shadowRadius:20,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
+                <TouchableOpacity onPress={()=>{goUser()}} style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
+                    <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
                         <Text style={{fontSize:16,fontWeight:400,color:"#2684FF"}}>Save</Text>
                     </View>
                 </TouchableOpacity>

@@ -14,10 +14,10 @@ const InsetButton=({props})=>{
                     <InsetShadow containerStyle={{borderRadius:25,backgroundColor:"#F0F0F3",height:"100%",width:"100%"}}
                     bottom={false}
                     right={false}
-                    shadowRadius={20}
-                    elevation={20}
+                    shadowRadius={15}
+                    elevation={15}
                     shadowColor="black"
-                    shadowOpacity={0.1}
+                    shadowOpacity={0.25}
                     children={
                         <InsetShadow containerStyle={{borderRadius:25,height:"100%",width:"100%",backgroundColor:"transparent",borderBottomWidth: 1,borderRightWidth: 1,borderBlockColor:"orange",borderBlockEndColor:"white",borderColor:"white",padding:3,display:"flex",flexDirection:"row",justifyContent:"center",alignItems:"center"}}
                         top={false}
