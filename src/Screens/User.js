@@ -53,8 +53,8 @@ const User = ({navigation})=>{
             <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',marginBottom:30}}>
                 <InsetButton props={{pressed:goBack,imgSrc:require('../../assets/Back.png')}}/>
                 <Text style={{fontSize:18}}>Health ID</Text>
-                <TouchableOpacity onPress={()=>goEdit()} style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                    <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
+                <TouchableOpacity onPress={()=>goEdit()} style={{shadowColor:"#AEAEC0",shadowOpacity:0.5,elevation:5,shadowRadius:20,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
+                    <View style={{shadowColor:"#FFFFFF",shadowOpacity:1,elevation:5,shadowRadius:20,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
                         <Text style={{fontSize:16,fontWeight:400,color:"#2684FF"}}>Edit</Text>
                     </View>
                 </TouchableOpacity>
@@ -62,7 +62,7 @@ const User = ({navigation})=>{
             <View style={{width:"100%",height:"40%",borderRadius:20,marginBottom:10}}>
             </View>
             
-            <InsetShadow shadowColor="grey" elevation={8} shadowRadius={8} shadowOpacity={0.1} left={false} right={false} containerStyle={{paddingTop:30,height:height,borderRadius:20}}
+            <InsetShadow shadowColor="#AEAEC0" elevation={8} shadowRadius={15} shadowOpacity={0.5} left={false} right={false} containerStyle={{paddingTop:30,height:height}}
             children={datas.map((data)=>(
                             <View style={{width:"100%",padding:30,paddingBottom:5,paddingTop:5,marginBottom:10}}>
                                 <UserLabelHead props={{label:data.label,imageSrc:data.imageSrc,labels:data}}/>

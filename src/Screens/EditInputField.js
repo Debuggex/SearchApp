@@ -11,10 +11,10 @@ const EditInputField=({props})=>{
         <InsetShadow containerStyle={{borderRadius:25,height:60,backgroundColor:"#F0F0F3"}}
         bottom={false}
         right={false}
-        shadowColor="black"
-        shadowOpacity={0.1}
+        shadowColor="#AEAEC0"
+        shadowOpacity={0.5}
         elevation={25}
-        shadowRadius={25}
+        shadowRadius={15}
         shadowOffset={8}
         >
             <View style={{height:"100%",width:"100%",backgroundColor:"transparent"}}>
