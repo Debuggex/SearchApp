@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import HomeCard from './HomeCard';
-import InsetShadow from 'react-native-inset-shadow';
 import InsetButton from './InsetButton';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -15,10 +13,9 @@ const Home=({navigation})=>{
     }
     const handlePress = async()=>{
         try{
-            navigation.navigate('EditUser');
-            setMessageText('How are you feeling today?');
+        navigation.navigate('EditUser');
+        setMessageText('How are you feeling today?');
         setGetStarted(false);
-        await AsyncStorage.setItem('isFirstTime','1');
         
         }catch(err){
             console.log(err);
@@ -30,13 +27,6 @@ const Home=({navigation})=>{
 
     
     useEffect(async()=>{
-        var isFirstTime = await AsyncStorage.getItem("isFirstTime");
-        if(isFirstTime!=null && isFirstTime!=undefined){
-            setGetStarted(false);
-            setMessageText('How are you feeling today?');
-        }else{
-            setGetStarted(true);
-        }
     },[])
     return(
         <ScrollView contentContainerStyle={{ padding:30,height:"135%",backgroundColor:"#F0F0F3",paddingTop:50,paddingBottom:50,display:'flex',justifyContent:"space-between"}}>
