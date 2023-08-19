@@ -5,7 +5,9 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 const HomeCard=({props})=>{
 
     const handlePress=()=>{
-        props.pressed();
+        if (props.pressed!=undefined && props.pressed!=null) {
+            props.pressed();   
+        }
     }
 
     return(

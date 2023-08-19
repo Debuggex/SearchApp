@@ -21,27 +21,27 @@ const EditUser =({navigation})=>{
     const datas=[
         {   id:1,
             label:"First Name",
-        placeholder:"-"
+        placeholder:"Enter First Name"
         },
         {
             id:2,label:"Last Name",
-            placeholder:"-"
+            placeholder:"Enter Last Name"
         },
         {
             id:3,label:"Number",
-            placeholder:"-"
+            placeholder:"Enter Number"
         },
         {id:4,label:"Birthday",
-            placeholder:"-"
+            placeholder:"Enter Birthday"
         },
         {id:5,label:"Height",
-            placeholder:"-"
+            placeholder:"Enter Height"
         },
         {id:6,label:"Weight",
-            placeholder:"-"
+            placeholder:"Enter Weight"
         },
         {id:7,label:"Blood Type",
-            placeholder:"-"
+            placeholder:"Enter Blood Type"
         }
     ];
 
