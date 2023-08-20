@@ -50,15 +50,6 @@ const User = ({navigation})=>{
     ]
     return(
         <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",paddingTop:30,paddingBottom:30,display:'flex',justifyContent:"space-between"}}>
-            <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',marginBottom:30}}>
-                <InsetButton props={{pressed:goBack,imgSrc:require('../../assets/Back.png')}}/>
-                <Text style={{fontSize:18}}>Health ID</Text>
-                <TouchableOpacity onPress={()=>goEdit()} style={{shadowColor:"#AEAEC0",shadowOpacity:0.5,elevation:5,shadowRadius:20,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                    <View style={{shadowColor:"#FFFFFF",shadowOpacity:1,elevation:5,shadowRadius:20,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                        <Text style={{fontSize:16,fontWeight:400,color:"#2684FF"}}>Edit</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
             <View style={{width:"100%",height:"40%",borderRadius:20,marginBottom:10}}>
             </View>
             

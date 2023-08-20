@@ -11,6 +11,10 @@ const Home=({navigation})=>{
     const goUser = () => {
         navigation.navigate('User');
     }
+    const goNotes = () => {
+        navigation.navigate('Notes');
+    }
+    
     const handlePress = async()=>{
         try{
         navigation.navigate('EditUser');
@@ -29,17 +33,9 @@ const Home=({navigation})=>{
     useEffect(async()=>{
     },[])
     return(
-        <ScrollView contentContainerStyle={{ padding:30,height:"125%",backgroundColor:"#F0F0F3",paddingTop:50,paddingBottom:50,display:'flex',justifyContent:"space-between"}}>
-            <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',padding:5}}>
-                <TouchableOpacity style={{shadowColor:"#AEAEC0",shadowOpacity:0.5,elevation:5,shadowRadius:10,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                    <View style={{shadowColor:"#FFFFFF",shadowOpacity:1,elevation:5,shadowRadius:10,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                        <Text style={{fontSize:18,lineHeight:30}}>Health ID</Text>
-                    </View>
-                </TouchableOpacity>
-                <InsetButton props={{imgSrc:require('../../assets/Setting.png')}}/>
-            </View>
-            <View style={{width:"100%",padding:30,paddingTop:0,paddingBottom:0,height:"20%",borderRadius:20,display:'flex',justifyContent:'space-between',alignItems:'center',flexDirection:'column'}}>
-                    <View style={{width:"100%"}}>
+        <ScrollView contentContainerStyle={{ padding:30,height:"110%",backgroundColor:"#F0F0F3",paddingTop:0,paddingBottom:0,display:'flex',justifyContent:"space-between"}}>
+            <View style={{width:"100%",padding:30,paddingTop:0,paddingBottom:0,marginBottom:20,marginTop:20,borderRadius:20,display:'flex',justifyContent:'space-between',alignItems:'center',flexDirection:'column'}}>
+                    <View style={{width:"100%",marginBottom:40}}>
                         <Text style={{fontSize:24,marginBottom:5,width:"80%",fontWeight:600}}>{messageText}</Text>
                         {getStarted && <Text style={{color:"#A3ADB2",fontWeight:500,fontSize:14}}>We need to grab some info from you.</Text>}
                     </View>
@@ -54,7 +50,7 @@ const Home=({navigation})=>{
                     <HomeCard props={{imagePath:require("../../assets/Capsule.png")}}/>
                     <HomeCard props={{imagePath:require("../../assets/User.png"),pressed:goUser}}/>
                     <HomeCard props={{imagePath:require("../../assets/Folder.png")}}/>
-                    <HomeCard props={{imagePath:require("../../assets/Edit.png"),style:{width:50,height:50}}}/>
+                    <HomeCard props={{imagePath:require("../../assets/Edit.png"),pressed:goNotes,style:{width:50,height:50}}}/>
                     <HomeCard props={{imagePath:require("../../assets/Folder2.png")}}/>
                 </View>
             
