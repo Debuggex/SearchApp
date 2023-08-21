@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import InsetShadow from 'react-native-inset-shadow';
+import context from './Context/ContextProvider';
+import { useContext } from 'react';
 
+const SearchInput = ({imagePath,placeholder,isPass,onChange})=>{
 
-const Input = ({imagePath,placeholder,isPass,onChange})=>{
+    const {setSearchText,searchText} = useContext(context);
 
-  const onChangeHandle = ()=>{
-    onChange();
-  }
 
     return(<View style={{backgroundColor:"#F0F0F3",width:"100%",marginBottom:20}}>
     <InsetShadow containerStyle={{borderRadius:25,height:60,backgroundColor:"#F0F0F3"}}
@@ -31,7 +31,7 @@ const Input = ({imagePath,placeholder,isPass,onChange})=>{
       >
         <View style={{ display:'flex',flexDirection:'row', justifyContent: 'flex-start', alignItems: 'center',height:"100%",width:"100%"}}>
         <Image style={{marginRight:10}} source={imagePath}/>
-        <TextInput secureTextEntry={isPass} autoCorrect={false} onChangeText={onChangeHandle} placeholder={placeholder} style={{width:"80%",color:"#A3ADB2"}}/>
+        <TextInput secureTextEntry={isPass} value={searchText} onChangeText={(text)=>setSearchText(text)} placeholder={placeholder} style={{width:"80%",color:"#A3ADB2"}}/>
       </View>
       </InsetShadow>
       
@@ -43,4 +43,4 @@ const Input = ({imagePath,placeholder,isPass,onChange})=>{
   </View>)
 }
 
-export default Input;
+export default SearchInput;

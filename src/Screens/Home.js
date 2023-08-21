@@ -30,7 +30,7 @@ const Home=({navigation})=>{
     const [getStarted,setGetStarted] = useState(true);
 
     
-    useEffect(async()=>{
+    useEffect(()=>{
     },[])
     return(
         <ScrollView contentContainerStyle={{ padding:30,height:"110%",backgroundColor:"#F0F0F3",paddingTop:0,paddingBottom:0,display:'flex',justifyContent:"space-between"}}>

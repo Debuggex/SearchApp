@@ -1,11 +1,14 @@
 import { Dimensions, FlatList, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import SingleNote from "./SingleNote";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import context from './Context/ContextProvider';
 
 
 
 
 const Notes = ({navigation,route}) =>{
+
+    const {notes,setNotes,searctText} = useContext(context);
 
     const goAddNotes=(heading,note,key)=>{
         navigation.navigate('AddNote',{
@@ -14,6 +17,16 @@ const Notes = ({navigation,route}) =>{
             key:key
         });
     }
+
+    const filteredNotes = notes.filter((note)=>{
+        if(searctText == undefined || searctText == null || searctText == ''){
+            return true;
+        }
+        let isHeading = note.heading.indexOf(searctText)!=-1;
+        let isNote = note.note.indexOf(searctText)!=-1;
+        
+        return isNote || isHeading;
+    })
 
     const [isData, setIsData] = useState(false);
 
@@ -31,23 +44,25 @@ const Notes = ({navigation,route}) =>{
                         key:route.params.key
                     }
                     console.log("Hello =>",route.params.key);
-                    const newArray = [...data];
+                    const newArray = [...notes];
                     newArray[route.params.key] = newData;
-                    setData(newArray);
-                    console.log(data);
+                    setNotes(newArray);
+                    console.log(notes);
                     setIsData(true);
+                    route.params.heading = undefined;
             }else{
                 let newData = {
                         heading:route.params.heading,
                         note:route.params.note,
                         key:data.length
                     }
-                    setData([...data,newData]);
+                    setNotes([...notes,newData]);
                     setIsData(true);
                     
-                    console.log("asasd => ",data);
+                    console.log("asasd => ",notes);
             }
         }
+        console.log(filteredNotes);
 
         if(data.length!=0){
             setIsData(true);
@@ -61,7 +76,7 @@ const Notes = ({navigation,route}) =>{
         return(
             <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",padding:30,paddingTop:0,display:'flex',height:height}}>
             
-                {data.map((item,index)=>(
+                {filteredNotes.map((item,index)=>(
                     <SingleNote props={{heading:item.heading,key:index,note:item.note,pressed:()=>{goAddNotes(item.heading,item.note,index)}}}/>
                 ))}
             </ScrollView>

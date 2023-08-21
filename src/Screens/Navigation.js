@@ -11,8 +11,13 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import InsetButton from "./InsetButton";
 import Notes from "./Notes";
 import SingleNote from "./SingleNote";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddNote from "./AddNote";
+import { ContextProvider } from "./Context/ContextProvider";
+import context from './Context/ContextProvider';
+import Input from "./Input";
+import SearchInput from "./SearchInput";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -67,19 +72,28 @@ const Navigation = ({navigation})=>{
                     <Stack.Screen name="Notes" component={Notes} options={{
                         headerStyle:{backgroundColor:"#F0F0F3"},
                         header:({navigation})=>
-                        <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:50,backgroundColor:"#F0F0F3"}}>
-                            <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png')}}/>
-                            <Text style={{fontSize:18,fontWeight:400}}>Notes</Text>
-                            <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"22%",justifyContent:"space-between"}}>
-                                <InsetButton props={{pressed:()=>{navigation.navigate('AddNote')},imgSrc:require('../../assets/Plus.png')}}/>
-                                <InsetButton props={{pressed:()=>{navigation.navigate('User')},imgSrc:require('../../assets/Search.png')}}/>
+                        {
+                            const {Search} = useContext(context);
+                            const [showSearch,setShowSearch] = useState(false);
+                        return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
+                            <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:50,backgroundColor:"#F0F0F3"}}>
+                                <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png')}}/>
+                                <Text style={{fontSize:18,fontWeight:400}}>Notes</Text>
+                                <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"22%",justifyContent:"space-between"}}>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('AddNote')},imgSrc:require('../../assets/Plus.png')}}/>
+                                    <InsetButton props={{pressed:()=>{setShowSearch(!showSearch)},imgSrc:require('../../assets/Search.png')}}/>
+                                </View>
                             </View>
-                        </View>
+                            {showSearch &&<View style={{width:"100%",padding:30,paddingLeft:60,paddingRight:60,backgroundColor:"#F0F0F3"}}>
+                                <SearchInput placeholder="Search"/>
+                            </View>}
+                        </View>)}
                     }}></Stack.Screen> 
                     <Stack.Screen name="AddNote" component={AddNote} options={{
                         headerStyle:{backgroundColor:"#F0F0F3"},
                         header:({navigation,route})=>
                         {
+                            const {note} = useContext(context);
                             const [inputVal, setInputVal] = useState('');
                             const [index,setIndex] = useState(undefined);
                             useEffect(()=>{
@@ -100,7 +114,7 @@ const Navigation = ({navigation})=>{
                                 navigation.navigate('Notes',{
                                     key:index,
                                     heading:inputVal,
-                                    note:global.note
+                                    note:note
                                 });
                                 
                             }}
@@ -115,7 +129,19 @@ const Navigation = ({navigation})=>{
             </Stack.Navigator>
         </NavigationContainer>
     )
+
+
+    
 }
 
-export default Navigation;
+
+    const final = ()=>{
+        return(
+            <ContextProvider>
+                <Navigation/>
+            </ContextProvider>
+        )
+    }
+
+export default final;
 
