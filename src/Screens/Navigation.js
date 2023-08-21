@@ -73,14 +73,14 @@ const Navigation = ({navigation})=>{
                         headerStyle:{backgroundColor:"#F0F0F3"},
                         header:({navigation})=>
                         {
-                            const {Search} = useContext(context);
+                            const {setNote} = useContext(context);
                             const [showSearch,setShowSearch] = useState(false);
                         return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
                             <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:50,backgroundColor:"#F0F0F3"}}>
                                 <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png')}}/>
-                                <Text style={{fontSize:18,fontWeight:400}}>Notes</Text>
+                                <Text style={{fontSize:18,fontWeight:400,marginLeft:40}}>Journal</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"22%",justifyContent:"space-between"}}>
-                                    <InsetButton props={{pressed:()=>{navigation.navigate('AddNote')},imgSrc:require('../../assets/Plus.png')}}/>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('AddNote');setNote('')},imgSrc:require('../../assets/Plus.png')}}/>
                                     <InsetButton props={{pressed:()=>{setShowSearch(!showSearch)},imgSrc:require('../../assets/Search.png')}}/>
                                 </View>
                             </View>
@@ -111,11 +111,16 @@ const Navigation = ({navigation})=>{
                             <InsetButton props={{pressed:()=>{navigation.navigate('Notes')},imgSrc:require('../../assets/Back.png')}}/>
                             <TextInput style={{fontSize:18}} placeholderTextColor="#898A8D" value={inputVal} onChangeText={(text)=>{setInputVal(text)}} placeholder="Title"/>
                             <TouchableOpacity onPress={()=>{
-                                navigation.navigate('Notes',{
+                                if(inputVal.length==0 && note.length==0){
+                                    navigation.navigate('Notes');    
+                                }else{
+                                    navigation.navigate('Notes',{
                                     key:index,
                                     heading:inputVal,
                                     note:note
-                                });
+                                    });
+                                }
+                                
                                 
                             }}
                                  style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>

@@ -18,7 +18,7 @@ const AddNote = ({navigation,route})=>{
 
     return(
         <View style={{padding:30,backgroundColor:"#F0F0F3",height:"100%"}}>
-            <TextInput style={{fontSize:14}} placeholderTextColor="#898A8D" value={inputVal} onChangeText={(text)=>{
+            <TextInput multiline={true} style={{fontSize:14}} placeholderTextColor="#898A8D" value={inputVal} onChangeText={(text)=>{
                 setInputVal(text);
                 setNote(text);
             }} placeholder="Add Note"/>

@@ -8,7 +8,9 @@ import context from './Context/ContextProvider';
 
 const Notes = ({navigation,route}) =>{
 
-    const {notes,setNotes,searctText} = useContext(context);
+    const {notes,setNotes,searctText,isData, setIsData} = useContext(context);
+
+    const [data,setData] = useState([]);
 
     const goAddNotes=(heading,note,key)=>{
         navigation.navigate('AddNote',{
@@ -28,9 +30,6 @@ const Notes = ({navigation,route}) =>{
         return isNote || isHeading;
     })
 
-    const [isData, setIsData] = useState(false);
-
-    const [data,setData] = useState([]);
 
 
     
@@ -56,10 +55,12 @@ const Notes = ({navigation,route}) =>{
                         note:route.params.note,
                         key:data.length
                     }
-                    setNotes([...notes,newData]);
-                    setIsData(true);
+                    if(newData.heading!=null || newData.heading!=undefined || newData.heading!='' || newData.note!=null || newData.note!=undefined || newData.note!=''){
+                        setNotes([...notes,newData]);
+                        setIsData(true);
+                        console.log("asasd => ",notes);
+                    }
                     
-                    console.log("asasd => ",notes);
             }
         }
         console.log(filteredNotes);
@@ -75,10 +76,14 @@ const Notes = ({navigation,route}) =>{
     if(isData){
         return(
             <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",padding:30,paddingTop:0,display:'flex',height:height}}>
-            
-                {filteredNotes.map((item,index)=>(
-                    <SingleNote props={{heading:item.heading,key:index,note:item.note,pressed:()=>{goAddNotes(item.heading,item.note,index)}}}/>
-                ))}
+                
+                <FlatList data={filteredNotes}
+                    renderItem={({item,index})=>{
+                        return(
+                            <SingleNote props={{heading:item.heading,key:index,note:item.note,pressed:()=>{goAddNotes(item.heading,item.note,index)}}}/>
+                        )
+                    }}
+                />
             </ScrollView>
         )
     }else{
