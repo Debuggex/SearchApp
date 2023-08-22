@@ -17,7 +17,7 @@ const Signup = ({navigation})=>{
 
     const {height} = Dimensions.get("screen");
     return (
-        <View style={{ padding:30,backgroundColor:"#F0F0F3",paddingBottom:50,paddingTop:50,display:'flex',alignItems:'center',justifyContent:"space-between",height:height}}>
+        <View style={{ padding:30,backgroundColor:"#F0F0F3",paddingBottom:60,paddingTop:60,display:'flex',alignItems:'center',justifyContent:"space-between",height:height}}>
             <Text style={{fontSize:20,fontWeight:600,marginBottom:40}}>Create Account</Text>
             <View style={{ display:'flex',alignItems:'center',width:"100%"}}>
                 <Input placeholder={emailPH} imagePath={emailPath}/>
