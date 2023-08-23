@@ -14,6 +14,10 @@ const Home=({navigation})=>{
     const goNotes = () => {
         navigation.navigate('Notes');
     }
+
+    const goDocuments = () => {
+        navigation.navigate('Documents');
+    }
     
     const handlePress = async()=>{
         try{
@@ -49,7 +53,7 @@ const Home=({navigation})=>{
                 <View style={{flexDirection:'row',justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
                     <HomeCard props={{imagePath:require("../../assets/Capsule.png")}}/>
                     <HomeCard props={{imagePath:require("../../assets/User.png"),pressed:goUser}}/>
-                    <HomeCard props={{imagePath:require("../../assets/Folder.png")}}/>
+                    <HomeCard props={{imagePath:require("../../assets/Folder.png"),pressed:goDocuments}}/>
                     <HomeCard props={{imagePath:require("../../assets/Edit.png"),pressed:goNotes,style:{width:50,height:50}}}/>
                     <HomeCard props={{imagePath:require("../../assets/Folder2.png")}}/>
                 </View>

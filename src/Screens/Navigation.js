@@ -17,6 +17,7 @@ import { ContextProvider } from "./Context/ContextProvider";
 import context from './Context/ContextProvider';
 import Input from "./Input";
 import SearchInput from "./SearchInput";
+import Documents from "./Documents";
 
 
 
@@ -26,7 +27,7 @@ const Stack = createNativeStackNavigator();
 const Navigation = ({navigation})=>{
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Signup">
+            <Stack.Navigator initialRouteName="Documents">
                 <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name="Signin" component={Signin} options={{headerShown:false}}></Stack.Screen> 
                 <Stack.Screen name="Home" component={Home} options={{
@@ -135,7 +136,29 @@ const Navigation = ({navigation})=>{
                                 </View>
                             </TouchableOpacity>
                         </View>)}
-                    }}></Stack.Screen>  
+                    }}></Stack.Screen> 
+                    <Stack.Screen name="Documents" component={Documents} options={{
+                        headerStyle:{backgroundColor:"#F0F0F3"},
+                        header:({navigation})=>
+                        {
+                            const {showModal} = useContext(context);
+                            const [showSearch,setShowSearch] = useState(false);
+                        return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
+                            <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
+                                <View style={{width:"25%"}}>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png')}}/>
+                                </View>
+                                <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Documents</Text>
+                                <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
+                                    <InsetButton props={{pressed:()=>{showModal()},imgSrc:require('../../assets/Plus.png')}}/>
+                                    <InsetButton props={{pressed:()=>{setShowSearch(!showSearch)},imgSrc:require('../../assets/Search.png')}}/>
+                                </View>
+                            </View>
+                            {showSearch &&<View style={{width:"100%",padding:30,paddingLeft:60,paddingRight:60,backgroundColor:"#F0F0F3"}}>
+                                <SearchInput placeholder="Search"/>
+                            </View>}
+                        </View>)}
+                    }}></Stack.Screen> 
                        
             </Stack.Navigator>
         </NavigationContainer>
