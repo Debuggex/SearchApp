@@ -11,13 +11,14 @@ export const ContextProvider = ({children,navigation})=>{
     const [isModal,setIsModal] = useState(false);
     const [documents,setDocuments] = useState([]);
     const [isDocument,setIsDocuments] = useState(false);
+    const [selectedFolder,setSelectedFolder] = useState(0);
 
      const showModal = ()=>{
         setIsModal(!isModal);
      }
 
     return(
-        <ContextCreator.Provider value={{notes,setNotes,setNote,note,searctText, setSearchText,showModal,isModal,documents,setDocuments,isDocument,setIsDocuments}}>
+        <ContextCreator.Provider value={{notes,setNotes,setNote,note,searctText, setSearchText,showModal,isModal,documents,setDocuments,isDocument,setIsDocuments,selectedFolder,setSelectedFolder}}>
             {children}
         </ContextCreator.Provider>
     )

@@ -18,6 +18,7 @@ import context from './Context/ContextProvider';
 import Input from "./Input";
 import SearchInput from "./SearchInput";
 import Documents from "./Documents";
+import Folder from "./Folder";
 
 
 
@@ -27,7 +28,7 @@ const Stack = createNativeStackNavigator();
 const Navigation = ({navigation})=>{
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Documents">
+            <Stack.Navigator initialRouteName="Signup">
                 <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name="Signin" component={Signin} options={{headerShown:false}}></Stack.Screen> 
                 <Stack.Screen name="Home" component={Home} options={{
@@ -102,13 +103,13 @@ const Navigation = ({navigation})=>{
                             const [inputVal, setInputVal] = useState('');
                             const [index,setIndex] = useState(undefined);
                             useEffect(()=>{
-                                console.log("on Add Note =>",route);
+                                // console.log("on Add Note =>",route);
                                 if(route.params!=undefined){
                                     setInputVal(route.params.heading);
                                 }
                                 if(route.params?.key!=undefined){
                                 setIndex(route.params.key);
-                                console.log("index =>",index+1);
+                                // console.log("index =>",index+1);
                                 }
                             },[route])
 
@@ -149,6 +150,29 @@ const Navigation = ({navigation})=>{
                                     <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png')}}/>
                                 </View>
                                 <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Documents</Text>
+                                <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
+                                    <InsetButton props={{pressed:()=>{showModal()},imgSrc:require('../../assets/Plus.png')}}/>
+                                    <InsetButton props={{pressed:()=>{setShowSearch(!showSearch)},imgSrc:require('../../assets/Search.png')}}/>
+                                </View>
+                            </View>
+                            {showSearch &&<View style={{width:"100%",padding:30,paddingLeft:60,paddingRight:60,backgroundColor:"#F0F0F3"}}>
+                                <SearchInput placeholder="Search"/>
+                            </View>}
+                        </View>)}
+                    }}></Stack.Screen>
+
+                    <Stack.Screen name="Folder" component={Folder} options={{
+                        headerStyle:{backgroundColor:"#F0F0F3"},
+                        header:({navigation})=>
+                        {
+                            const {selectedFolder,setSelectedFolder,documents,showModal} = useContext(context);
+                            const [showSearch,setShowSearch] = useState(false);
+                        return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
+                            <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
+                                <View style={{width:"25%"}}>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('Documents')},imgSrc:require('../../assets/Back.png')}}/>
+                                </View>
+                                <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>{documents[selectedFolder].folderName}</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
                                     <InsetButton props={{pressed:()=>{showModal()},imgSrc:require('../../assets/Plus.png')}}/>
                                     <InsetButton props={{pressed:()=>{setShowSearch(!showSearch)},imgSrc:require('../../assets/Search.png')}}/>

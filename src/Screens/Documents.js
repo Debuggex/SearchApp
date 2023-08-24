@@ -17,6 +17,8 @@ import { Camera, CameraType } from "expo-camera";
 import Input from "./Input";
 import Button from "./Button";
 import InsetButton from "./InsetButton";
+import * as FileSystem from 'expo-file-system';
+import * as DocumentPicker from 'expo-document-picker';
 
 const Documents = ({ navigation, route }) => {
   const {
@@ -27,6 +29,8 @@ const Documents = ({ navigation, route }) => {
     setDocuments,
     isDocument,
     setIsDocuments,
+    selectedFolder,
+    setSelectedFolder
   } = useContext(context);
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
@@ -50,18 +54,27 @@ const Documents = ({ navigation, route }) => {
     }
   },[documents]);
 
-  onPictureSaved = (photo) => {
+  onPictureSaved = async(photo) => {
+    setShowCamera(false);
     let base64 = "data:image/png;base64,"+photo.base64.toString();
-    console.log(base64);
+    // const base64Img = await FileSystem.readAsStringAsync(photo.uri, { encoding: FileSystem?.EncodingType?.Base64 });
+    // console.log("uri-64 => ",base64Img);
     setTempImg(base64);
     setImagePreview(true);
-    setShowCamera(false);
+    
   };
 
   
   showFolder=()=>{
     setImagePreview(false);
+    setModalButtons(false);
     setNewFolder(true);
+  }
+
+  selectFolder = (data)=>{
+    // console.log(data);
+    setSelectedFolder(data);
+    navigation.navigate('Folder');
   }
 
   flipCamera = () => {
@@ -71,6 +84,21 @@ const Documents = ({ navigation, route }) => {
       setType(CameraType.back);
     }
   };
+
+  uploadFile = () =>{
+    DocumentPicker.getDocumentAsync({copyToCacheDirectory:true,type:'image/*',multiple:false}).then(async(response)=>{
+      if(response.canceled==false){
+        
+        let uri = response.assets[0].uri;
+        await FileSystem.readAsStringAsync(uri, { encoding: FileSystem?.EncodingType?.Base64 }).then((response)=>{
+        
+        let base64 = "data:image/png;base64,"+response;
+        setTempImg(base64);
+        showFolder();
+      });
+      }
+    })
+  }
   
   hideModal = ()=>{
     showModal();
@@ -91,7 +119,7 @@ const Documents = ({ navigation, route }) => {
     }
     setDocuments([...documents,obj]);
     
-    console.log("OBJ=>",documents);
+    // console.log("OBJ=>",documents);
     setFolderName("");
     hideModal();
   }
@@ -176,7 +204,7 @@ const Documents = ({ navigation, route }) => {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
-                  goAddNotes();
+                  uploadFile();
                 }}
                 style={{
                   margin: 30,
@@ -223,7 +251,7 @@ const Documents = ({ navigation, route }) => {
                   </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={() => {
                   goAddNotes();
                 }}
@@ -271,7 +299,7 @@ const Documents = ({ navigation, route }) => {
                     iCloud Files
                   </Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <InsetShadow
                 containerStyle={{
                   borderRadius: 25,
@@ -790,7 +818,7 @@ const Documents = ({ navigation, route }) => {
         {isDocument && 
           <View style={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
             {documents.map((data,index)=>(
-              <Text key={index} style={{borderRadius:20,height:155,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%",margin:1,marginBottom:15,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} >{data.folderName}</Text>
+              <TouchableOpacity onPress={()=>{selectFolder(data.id)}} key={index} style={{borderRadius:20,height:155,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%",margin:1,marginBottom:15,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} ><Text style={{fontSize:16}}>{data.folderName}</Text></TouchableOpacity>
             ))}
           </View>
         }
