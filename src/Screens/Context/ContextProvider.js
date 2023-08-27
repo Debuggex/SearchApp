@@ -5,9 +5,14 @@ const ContextCreator = React.createContext();
 export const ContextProvider = ({children,navigation})=>{
 
     const [notes,setNotes] = useState([]);
-    const [note,setNote] = useState('');
+    const [note,setNote] = useState({});
+    const [noteHeading,setNoteHeading] = useState('');
+    const [noteText,setNoteText] = useState('');
+    const [notesAction,setNotesAction] = useState('NEW');
     const [searctText, setSearchText] = useState('');
+    const [searchDocument,setSearchDocument] = useState('');
     const [isData, setIsData] = useState(false);
+    const [noteIndex,setNoteIndex] = useState(0);
     const [isModal,setIsModal] = useState(false);
     const [documents,setDocuments] = useState([]);
     const [isDocument,setIsDocuments] = useState(false);
@@ -18,7 +23,7 @@ export const ContextProvider = ({children,navigation})=>{
      }
 
     return(
-        <ContextCreator.Provider value={{notes,setNotes,setNote,note,searctText, setSearchText,showModal,isModal,documents,setDocuments,isDocument,setIsDocuments,selectedFolder,setSelectedFolder}}>
+        <ContextCreator.Provider value={{notes,setNotes,setNote,note,searctText, setSearchText,showModal,isModal,documents,setDocuments,isDocument,setIsDocuments,selectedFolder,setSelectedFolder,notesAction,setNotesAction,noteHeading,setNoteHeading,noteText,setNoteText,noteIndex,setNoteIndex,isData, setIsData,searchDocument,setSearchDocument}}>
             {children}
         </ContextCreator.Provider>
     )

@@ -28,7 +28,7 @@ const Stack = createNativeStackNavigator();
 const Navigation = ({navigation})=>{
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Signup">
+            <Stack.Navigator initialRouteName="Documents">
                 <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name="Signin" component={Signin} options={{headerShown:false}}></Stack.Screen> 
                 <Stack.Screen name="Home" component={Home} options={{
@@ -77,7 +77,7 @@ const Navigation = ({navigation})=>{
                         headerStyle:{backgroundColor:"#F0F0F3"},
                         header:({navigation})=>
                         {
-                            const {setNote} = useContext(context);
+                            const {notesAction,setNotesAction,searctText, setSearchText} = useContext(context);
                             const [showSearch,setShowSearch] = useState(false);
                         return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
                             <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
@@ -86,12 +86,12 @@ const Navigation = ({navigation})=>{
                                 </View>
                                 <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Journals</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
-                                    <InsetButton props={{pressed:()=>{navigation.navigate('AddNote');setNote('')},imgSrc:require('../../assets/Plus.png')}}/>
-                                    <InsetButton props={{pressed:()=>{setShowSearch(!showSearch)},imgSrc:require('../../assets/Search.png')}}/>
+                                    <InsetButton props={{pressed:()=>{setNotesAction('NEW');navigation.navigate('AddNote');},imgSrc:require('../../assets/Plus.png')}}/>
+                                    <InsetButton props={{pressed:()=>{setShowSearch(!showSearch);setSearchText('')},imgSrc:require('../../assets/Search.png')}}/>
                                 </View>
                             </View>
                             {showSearch &&<View style={{width:"100%",padding:30,paddingLeft:60,paddingRight:60,backgroundColor:"#F0F0F3"}}>
-                                <SearchInput placeholder="Search"/>
+                                <SearchInput value={searctText} setValue={setSearchText} placeholder="Search"/>
                             </View>}
                         </View>)}
                     }}></Stack.Screen> 
@@ -99,34 +99,40 @@ const Navigation = ({navigation})=>{
                         headerStyle:{backgroundColor:"#F0F0F3"},
                         header:({navigation,route})=>
                         {
-                            const {note} = useContext(context);
-                            const [inputVal, setInputVal] = useState('');
-                            const [index,setIndex] = useState(undefined);
+                            const {note,notesAction,notes,setNotes,noteHeading,setNoteHeading,noteText,setNoteText,noteIndex,setNoteIndex} = useContext(context);
                             useEffect(()=>{
-                                // console.log("on Add Note =>",route);
-                                if(route.params!=undefined){
-                                    setInputVal(route.params.heading);
+                                if (notesAction=='NEW') {
+                                    setNoteHeading('');
+                                }else{
+                                    setNoteHeading(notes[noteIndex].heading);
                                 }
-                                if(route.params?.key!=undefined){
-                                setIndex(route.params.key);
-                                // console.log("index =>",index+1);
-                                }
-                            },[route])
+                            },[note])
 
                             return(<View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
                             <View style={{width:"26%"}}>
                                 <InsetButton props={{pressed:()=>{navigation.navigate('Notes')},imgSrc:require('../../assets/Back.png')}}/>
                             </View>
-                            <TextInput style={{fontSize:18,textAlign:"center",width:"45%"}} placeholderTextColor="#898A8D" value={inputVal} onChangeText={(text)=>{setInputVal(text)}} placeholder="Title"/>
+                            <TextInput style={{fontSize:18,textAlign:"center",width:"45%"}} placeholderTextColor="#898A8D" value={noteHeading} onChangeText={(text)=>{setNoteHeading(text)}} placeholder="Title"/>
                             <TouchableOpacity onPress={()=>{
-                                if(inputVal.length==0 && note.length==0){
+                                if(noteHeading.length==0 && noteText.length==0){
                                     navigation.navigate('Notes');    
                                 }else{
-                                    navigation.navigate('Notes',{
-                                    key:index,
-                                    heading:inputVal,
-                                    note:note
-                                    });
+                                    if(notesAction=='NEW'){
+                                        let obj = {
+                                            heading:noteHeading,
+                                            note:noteText
+                                        }
+                                        setNotes([...notes,obj]);
+                                    }else{
+                                        let obj = {
+                                            heading:noteHeading,
+                                            note:noteText
+                                        }
+                                        let tempNotes = [...notes];
+                                        tempNotes[noteIndex] = obj;
+                                        setNotes(tempNotes);
+                                    }
+                                    navigation.navigate('Notes');
                                 }
                                 
                                 
@@ -142,7 +148,7 @@ const Navigation = ({navigation})=>{
                         headerStyle:{backgroundColor:"#F0F0F3"},
                         header:({navigation})=>
                         {
-                            const {showModal} = useContext(context);
+                            const {showModal,searchDocument,setSearchDocument} = useContext(context);
                             const [showSearch,setShowSearch] = useState(false);
                         return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
                             <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
@@ -152,11 +158,11 @@ const Navigation = ({navigation})=>{
                                 <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Documents</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
                                     <InsetButton props={{pressed:()=>{showModal()},imgSrc:require('../../assets/Plus.png')}}/>
-                                    <InsetButton props={{pressed:()=>{setShowSearch(!showSearch)},imgSrc:require('../../assets/Search.png')}}/>
+                                    <InsetButton props={{pressed:()=>{setShowSearch(!showSearch);setSearchDocument('')},imgSrc:require('../../assets/Search.png')}}/>
                                 </View>
                             </View>
                             {showSearch &&<View style={{width:"100%",padding:30,paddingLeft:60,paddingRight:60,backgroundColor:"#F0F0F3"}}>
-                                <SearchInput placeholder="Search"/>
+                                <SearchInput value={searchDocument} setValue={setSearchDocument} placeholder="Search"/>
                             </View>}
                         </View>)}
                     }}></Stack.Screen>

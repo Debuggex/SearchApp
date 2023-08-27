@@ -6,21 +6,19 @@ import context from './Context/ContextProvider';
 
 
 const AddNote = ({navigation,route})=>{
-    const {setNote} = useContext(context);
-    const [inputVal, setInputVal] = useState('');
-
+    const {noteText,setNoteText,noteIndex,notesAction,setNotesAction,notes,note} = useContext(context);
     useEffect(()=>{
-        if(route.params?.note!=undefined){
-            setInputVal(route.params.note);
-            setNote(route.params.note);
+        if (notesAction=='NEW') {
+            setNoteText('');
+            }else{
+            setNoteText(notes[noteIndex].note);
         }
-    },[route])
+    },[note])
 
     return(
         <View style={{padding:30,backgroundColor:"#F0F0F3",height:"100%"}}>
-            <TextInput multiline={true} style={{fontSize:14}} placeholderTextColor="#898A8D" value={inputVal} onChangeText={(text)=>{
-                setInputVal(text);
-                setNote(text);
+            <TextInput multiline={true} style={{fontSize:14}} placeholderTextColor="#898A8D" value={noteText} onChangeText={(text)=>{
+                setNoteText(text);
             }} placeholder="Add Note"/>
         </View>
     )

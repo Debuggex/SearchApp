@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Search_App",
-    "slug": "Search_App",
+    "slug": "healthid",
     "version": "1.8.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -31,22 +31,28 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "searchApp",
-      "usesIcloudStorage":true
+      "usesIcloudStorage": true
     },
     "android": {
-      "permissions":["CAMERA"],
+      "permissions": [
+        "CAMERA",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tatum_sahbaan.healthid"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "a43c422f-078a-412a-9c8f-742d3a0d1974"
+        "projectId": "3c2158bf-eeda-4c75-8489-5b07503a108a"
       }
-    }
+    },
+    "owner": "tatum_sahbaan"
   }
 }

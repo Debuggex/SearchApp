@@ -30,7 +30,7 @@ const Documents = ({ navigation, route }) => {
     isDocument,
     setIsDocuments,
     selectedFolder,
-    setSelectedFolder
+    setSelectedFolder,searchDocument,setSearchDocument
   } = useContext(context);
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
@@ -140,6 +140,15 @@ const Documents = ({ navigation, route }) => {
     setImagePreview(false);
     setTempImg("");
   };
+
+  const filteredDocuments = documents.filter((document)=>{
+        if(searchDocument == undefined || searchDocument == null || searchDocument == ''){
+            return true;
+        }
+        let isDocument = document.folderName.indexOf(searchDocument)!=-1;
+        
+        return isDocument;
+    });
 
     return (
       <View
@@ -816,11 +825,11 @@ const Documents = ({ navigation, route }) => {
           </TouchableOpacity>
         </View>}
         {isDocument && 
-          <View style={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
-            {documents.map((data,index)=>(
+          <ScrollView contentContainerStyle={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
+            {filteredDocuments.map((data,index)=>(
               <TouchableOpacity onPress={()=>{selectFolder(data.id)}} key={index} style={{borderRadius:20,height:155,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%",margin:1,marginBottom:15,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} ><Text style={{fontSize:16}}>{data.folderName}</Text></TouchableOpacity>
             ))}
-          </View>
+          </ScrollView>
         }
       </View>
     );

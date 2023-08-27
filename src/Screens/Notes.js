@@ -8,16 +8,20 @@ import context from './Context/ContextProvider';
 
 const Notes = ({navigation,route}) =>{
 
-    const {notes,setNotes,searctText,isData, setIsData} = useContext(context);
+    const {notes,setNotes,searctText,isData, setIsData,notesAction,setNotesAction,note,setNote,noteIndex,setNoteIndex} = useContext(context);
 
     const [data,setData] = useState([]);
 
-    const goAddNotes=(heading,note,key)=>{
-        navigation.navigate('AddNote',{
-            heading:heading,
-            note:note,
-            key:key
-        });
+    const goAddNotes=()=>{
+        setNotesAction('NEW');
+        setNote({});
+        navigation.navigate('AddNote');
+    }
+
+    const updateNotes=(item)=>{
+        setNoteIndex(item);
+        setNotesAction('UPDATE');
+        navigation.navigate('AddNote');
     }
 
     const filteredNotes = notes.filter((note)=>{
@@ -34,41 +38,11 @@ const Notes = ({navigation,route}) =>{
 
     
     useEffect(()=>{
-        console.log(route.params);
-        if(route.params?.heading!=undefined){
-            if(route.params?.key!=undefined){
-                    let newData = {
-                        heading:route.params.heading,
-                        note:route.params.note,
-                        key:route.params.key
-                    }
-                    console.log("Hello =>",route.params.key);
-                    const newArray = [...notes];
-                    newArray[route.params.key] = newData;
-                    setNotes(newArray);
-                    console.log(notes);
-                    setIsData(true);
-                    route.params.heading = undefined;
-            }else{
-                let newData = {
-                        heading:route.params.heading,
-                        note:route.params.note,
-                        key:data.length
-                    }
-                    if(newData.heading!=null || newData.heading!=undefined || newData.heading!='' || newData.note!=null || newData.note!=undefined || newData.note!=''){
-                        setNotes([...notes,newData]);
-                        setIsData(true);
-                        console.log("asasd => ",notes);
-                    }
-                    
-            }
-        }
-        console.log(filteredNotes);
 
-        if(data.length!=0){
+        if(notes.length!=0){
             setIsData(true);
         }
-    },[route])
+    },[notes])
 
     const {height} = Dimensions.get("window");
     
@@ -80,7 +54,7 @@ const Notes = ({navigation,route}) =>{
                 <FlatList data={filteredNotes}
                     renderItem={({item,index})=>{
                         return(
-                            <SingleNote props={{heading:item.heading,key:index,note:item.note,pressed:()=>{goAddNotes(item.heading,item.note,index)}}}/>
+                            <SingleNote props={{heading:item.heading,key:index,note:item.note,pressed:()=>{updateNotes(index)}}}/>
                         )
                     }}
                 />

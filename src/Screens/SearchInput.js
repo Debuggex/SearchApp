@@ -4,7 +4,7 @@ import InsetShadow from 'react-native-inset-shadow';
 import context from './Context/ContextProvider';
 import { useContext } from 'react';
 
-const SearchInput = ({imagePath,placeholder,isPass,onChange})=>{
+const SearchInput = ({imagePath,placeholder,isPass,onChange,value,setValue})=>{
 
     const {setSearchText,searchText} = useContext(context);
 
@@ -31,7 +31,7 @@ const SearchInput = ({imagePath,placeholder,isPass,onChange})=>{
       >
         <View style={{ display:'flex',flexDirection:'row', justifyContent: 'flex-start', alignItems: 'center',height:"100%",width:"100%"}}>
         <Image style={{marginRight:10}} source={imagePath}/>
-        <TextInput secureTextEntry={isPass} value={searchText} onChangeText={(text)=>setSearchText(text)} placeholder={placeholder} style={{width:"80%",color:"#A3ADB2"}}/>
+        <TextInput secureTextEntry={isPass} value={value} onChangeText={(text)=>setValue(text)} placeholder={placeholder} style={{width:"80%",color:"#A3ADB2"}}/>
       </View>
       </InsetShadow>
       
