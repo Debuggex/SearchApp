@@ -19,6 +19,8 @@ import Button from "./Button";
 import InsetButton from "./InsetButton";
 import * as FileSystem from 'expo-file-system';
 import * as DocumentPicker from 'expo-document-picker';
+import { Menu, MenuOption, MenuOptions, MenuProvider, MenuTrigger } from "react-native-popup-menu";
+import { Entypo } from "@expo/vector-icons";
 
 const Documents = ({ navigation, route }) => {
   const {
@@ -71,7 +73,7 @@ const Documents = ({ navigation, route }) => {
     setNewFolder(true);
   }
 
-  selectFolder = (data)=>{
+  const selectFolder = (data)=>{
     // console.log(data);
     setSelectedFolder(data);
     navigation.navigate('Folder');
@@ -141,6 +143,8 @@ const Documents = ({ navigation, route }) => {
     setTempImg("");
   };
 
+ 
+
   const filteredDocuments = documents.filter((document)=>{
         if(searchDocument == undefined || searchDocument == null || searchDocument == ''){
             return true;
@@ -149,6 +153,17 @@ const Documents = ({ navigation, route }) => {
         
         return isDocument;
     });
+
+  const deleteDocument = (index) =>{
+    let arr = [...documents];
+    for(let i = 0; i<arr.length;i++){
+      if(i==index){
+        arr[i] = null;
+        break;
+      }
+    }
+    setDocuments(arr);
+  }
 
     return (
       <View
@@ -827,7 +842,23 @@ const Documents = ({ navigation, route }) => {
         {isDocument && 
           <ScrollView contentContainerStyle={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
             {filteredDocuments.map((data,index)=>(
-              <TouchableOpacity onPress={()=>{selectFolder(data.id)}} key={index} style={{borderRadius:20,height:155,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%",margin:1,marginBottom:15,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} ><Text style={{fontSize:16}}>{data.folderName}</Text></TouchableOpacity>
+              <TouchableOpacity onPress={()=>{selectFolder(data.id)}} key={index} style={{borderRadius:20,height:155,width:"48%",margin:1,marginBottom:15,padding:20,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} >
+                <View style={{height:"40%",width:"100%",display:"flex",justifyContent:"flex-start",alignItems:"flex-end"}}>
+                  <MenuProvider>
+                    <Menu>
+                      <MenuTrigger>
+                        <Entypo name="dots-three-vertical" size={20} color="black"/>
+                      </MenuTrigger>
+                      <MenuOptions optionsContainerStyle={{marginTop:5,marginLeft:-20}} customStyles={{optionsWrapper:{width:"100%"}}}>
+                        <MenuOption text="Delete" onSelect={()=>{deleteDocument(index)}}/>
+                      </MenuOptions>
+                    </Menu>
+                  </MenuProvider>
+                </View>
+                <View style={{display:"flex",alignItems:"center",justifyContent:"flex-start",height:"60%",width:"100%"}}>
+                  <Text style={{fontSize:16}}>{data.folderName}</Text>
+                </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         }

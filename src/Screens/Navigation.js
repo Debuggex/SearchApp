@@ -19,6 +19,7 @@ import Input from "./Input";
 import SearchInput from "./SearchInput";
 import Documents from "./Documents";
 import Folder from "./Folder";
+import Sharing from "./Sharing";
 
 
 
@@ -32,21 +33,26 @@ const Navigation = ({navigation})=>{
                 <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name="Signin" component={Signin} options={{headerShown:false}}></Stack.Screen> 
                 <Stack.Screen name="Home" component={Home} options={{
-                    header:()=>
-                    <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',padding:30,paddingTop:60,backgroundColor:"#F0F0F3"}}>
-                        <TouchableOpacity style={{shadowColor:"#AEAEC0",shadowOpacity:0.5,elevation:5,shadowRadius:10,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                            <View style={{shadowColor:"#FFFFFF",shadowOpacity:1,elevation:5,shadowRadius:10,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                                <Text style={{fontSize:18,lineHeight:30}}>Health ID</Text>
+                    header:()=>{
+                    const {isHealthModal,setIsHealthModal} = useContext(context);
+                        return(
+                            <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',padding:30,paddingTop:60,backgroundColor:"#F0F0F3"}}>
+                                <TouchableOpacity onPress={()=>{setIsHealthModal(!isHealthModal)}} style={{shadowColor:"#AEAEC0",shadowOpacity:0.5,elevation:5,shadowRadius:10,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
+                                    <View style={{shadowColor:"#FFFFFF",shadowOpacity:1,elevation:5,shadowRadius:10,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
+                                        <Text style={{fontSize:18,lineHeight:30}}>Health ID</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <InsetButton props={{imgSrc:require('../../assets/Setting.png')}}/>
                             </View>
-                        </TouchableOpacity>
-                        <InsetButton props={{imgSrc:require('../../assets/Setting.png')}}/>
-                    </View>
+                        )
+                    }
+                    
                 }}></Stack.Screen> 
                 <Stack.Screen name="User" component={User} options={{
                     header:({navigation})=>
                     <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
                         <View style={{width:"26%"}}>
-                            <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png')}}/>
+                            <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
                         </View>
                         <Text style={{fontSize:18,textAlign:"center"}}>Health ID</Text>
                         <TouchableOpacity onPress={()=>navigation.navigate('EditUser')} style={{shadowColor:"#AEAEC0",shadowOpacity:0.5,elevation:5,shadowRadius:20,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100,width:"26%"}}>
@@ -64,7 +70,7 @@ const Navigation = ({navigation})=>{
                     },
                     header:({navigation})=>
                         <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
-                            <InsetButton props={{pressed:()=>{navigation.navigate('User')},imgSrc:require('../../assets/Back.png')}}/>
+                            <InsetButton props={{pressed:()=>{navigation.navigate('User')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
                             <TouchableOpacity onPress={()=>{navigation.navigate('User')}} style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
                                 <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
                                     <Text style={{fontSize:16,fontWeight:400,color:"#2684FF"}}>Save</Text>
@@ -82,7 +88,7 @@ const Navigation = ({navigation})=>{
                         return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
                             <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
                                 <View style={{width:"25%"}}>
-                                    <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png')}}/>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
                                 </View>
                                 <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Journals</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
@@ -110,7 +116,7 @@ const Navigation = ({navigation})=>{
 
                             return(<View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
                             <View style={{width:"26%"}}>
-                                <InsetButton props={{pressed:()=>{navigation.navigate('Notes')},imgSrc:require('../../assets/Back.png')}}/>
+                                <InsetButton props={{pressed:()=>{navigation.navigate('Notes')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
                             </View>
                             <TextInput style={{fontSize:18,textAlign:"center",width:"45%"}} placeholderTextColor="#898A8D" value={noteHeading} onChangeText={(text)=>{setNoteHeading(text)}} placeholder="Title"/>
                             <TouchableOpacity onPress={()=>{
@@ -153,7 +159,7 @@ const Navigation = ({navigation})=>{
                         return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
                             <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
                                 <View style={{width:"25%"}}>
-                                    <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png')}}/>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
                                 </View>
                                 <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Documents</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
@@ -176,7 +182,7 @@ const Navigation = ({navigation})=>{
                         return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
                             <View style={{display:'flex',padding:30,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
                                 <View style={{width:"25%"}}>
-                                    <InsetButton props={{pressed:()=>{navigation.navigate('Documents')},imgSrc:require('../../assets/Back.png')}}/>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('Documents')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
                                 </View>
                                 <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>{documents[selectedFolder].folderName}</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
@@ -187,6 +193,21 @@ const Navigation = ({navigation})=>{
                             {showSearch &&<View style={{width:"100%",padding:30,paddingLeft:60,paddingRight:60,backgroundColor:"#F0F0F3"}}>
                                 <SearchInput placeholder="Search"/>
                             </View>}
+                        </View>)}
+                    }}></Stack.Screen>
+
+                    <Stack.Screen name="Sharing" component={Sharing} options={{
+                        headerStyle:{backgroundColor:"#F0F0F3"},
+                        header:({navigation})=>
+                        {
+                        return(<View style={{width:"100%",display:'flex',flexDirection:"column",alignItems:"center"}}>
+                            <View style={{display:'flex',padding:30,flexDirection:'row',width:"100%",alignItems:'center',paddingTop:60,backgroundColor:"#F0F0F3"}}>
+                                <View style={{width:"45%"}}>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
+                                </View>
+                                
+                                <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Sharing</Text>
+                            </View>
                         </View>)}
                     }}></Stack.Screen> 
                        

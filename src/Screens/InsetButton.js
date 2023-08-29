@@ -26,7 +26,7 @@ const InsetButton=({props})=>{
                         elevation={20}
                         shadowRadius={20}
                         children={
-                            <Image source={props.imgSrc} style={{width:20,height:20}}/>
+                            <Image source={props.imgSrc} style={{width:props.width!=undefined?props.width:20,height:props.height!=undefined?props.height:20}}/>
                         }/>
                     }/>
         </TouchableOpacity>

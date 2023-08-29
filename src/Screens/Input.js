@@ -3,7 +3,7 @@ import { Dimensions, Image, StyleSheet, Text, TextInput, View } from 'react-nati
 import InsetShadow from 'react-native-inset-shadow';
 
 
-const Input = ({imagePath,placeholder,isPass,onChange})=>{
+const Input = ({imagePath,placeholder,isPass,onChange,value,setValue,textAlign})=>{
 
   const onChangeHandle = ()=>{
     onChange();
@@ -31,7 +31,7 @@ const Input = ({imagePath,placeholder,isPass,onChange})=>{
       >
         <View style={{ display:'flex',flexDirection:'row', justifyContent: 'flex-start', alignItems: 'center',height:"100%",width:"100%"}}>
         <Image style={{marginRight:10}} source={imagePath}/>
-        <TextInput secureTextEntry={isPass} autoCorrect={false} onChangeText={onChangeHandle} placeholder={placeholder} style={{width:"80%",color:"#A3ADB2"}}/>
+        <TextInput secureTextEntry={isPass} textAlign={textAlign} value={value} autoCorrect={false} onChangeText={(text)=>{setValue(text)}} placeholder={placeholder} style={{width:"80%",color:"#A3ADB2"}}/>
       </View>
       </InsetShadow>
       
