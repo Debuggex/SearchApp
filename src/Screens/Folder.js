@@ -85,8 +85,9 @@ const Folder=({navigation})=>{
 
   createFolder = () =>{
     
-    documents[selectedFolder].images.push(tempImg);
+    selectedFolder.images.push(tempImg);
     let doc = documents;
+    doc[selectedFolder.index] = selectedFolder;
     setDocuments(doc);
     // setDocuments([...documents[selectedFolder].images,tempImg]);
     
@@ -136,7 +137,7 @@ const Folder=({navigation})=>{
 
     return(
         <View style={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start',height:"100%",backgroundColor:"#F0F0F3"}}>
-            {documents[selectedFolder].images.map((data,index)=>(
+            {selectedFolder.images.map((data,index)=>(
               <Image key={index} style={{height:200,marginBottom:10,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%"}} source={{ uri: data }}/>
             ))}
 

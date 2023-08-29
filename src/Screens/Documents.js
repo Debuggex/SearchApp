@@ -56,7 +56,7 @@ const Documents = ({ navigation, route }) => {
     }
   },[documents]);
 
-  onPictureSaved = async(photo) => {
+  const onPictureSaved = async(photo) => {
     setShowCamera(false);
     let base64 = "data:image/png;base64,"+photo.base64.toString();
     // const base64Img = await FileSystem.readAsStringAsync(photo.uri, { encoding: FileSystem?.EncodingType?.Base64 });
@@ -67,19 +67,20 @@ const Documents = ({ navigation, route }) => {
   };
 
   
-  showFolder=()=>{
+  const showFolder=()=>{
     setImagePreview(false);
     setModalButtons(false);
     setNewFolder(true);
   }
 
-  const selectFolder = (data)=>{
+  const selectFolder = (data,index)=>{
     // console.log(data);
+    data.index = index;
     setSelectedFolder(data);
     navigation.navigate('Folder');
   }
 
-  flipCamera = () => {
+  const flipCamera = () => {
     if (type == CameraType.back) {
       setType(CameraType.front);
     } else {
@@ -87,7 +88,7 @@ const Documents = ({ navigation, route }) => {
     }
   };
 
-  uploadFile = () =>{
+  const uploadFile = () =>{
     DocumentPicker.getDocumentAsync({copyToCacheDirectory:true,type:'image/*',multiple:false}).then(async(response)=>{
       if(response.canceled==false){
         
@@ -102,13 +103,13 @@ const Documents = ({ navigation, route }) => {
     })
   }
   
-  hideModal = ()=>{
+  const hideModal = ()=>{
     showModal();
     setNewFolder(false);
     setModalButtons(true);
   }
 
-  createFolder = () =>{
+  const createFolder = () =>{
     if(folderName=="" || folderName==null || folderName==undefined){
       return;
     }
@@ -126,18 +127,18 @@ const Documents = ({ navigation, route }) => {
     hideModal();
   }
 
-  showCamera = () => {
+  const showCamera = () => {
     setShowCamera(true);
     setModalButtons(false);
   };
 
 
-  hideCamera = () => {
+  const hideCamera = () => {
     setShowCamera(false);
     setModalButtons(true);
   };
 
-  reCapture = () => {
+  const reCapture = () => {
     setShowCamera(true);
     setImagePreview(false);
     setTempImg("");
@@ -146,6 +147,9 @@ const Documents = ({ navigation, route }) => {
  
 
   const filteredDocuments = documents.filter((document)=>{
+        if(document == null || document == undefined){
+          return false;
+        }
         if(searchDocument == undefined || searchDocument == null || searchDocument == ''){
             return true;
         }
@@ -156,13 +160,16 @@ const Documents = ({ navigation, route }) => {
 
   const deleteDocument = (index) =>{
     let arr = [...documents];
-    for(let i = 0; i<arr.length;i++){
-      if(i==index){
-        arr[i] = null;
-        break;
-      }
-    }
+    // for(let i = 0; i<arr.length;i++){
+    //   if(i==index){
+    //     arr[i] = null;
+    //     break;
+    //   }
+    // }
+    arr.splice(index,1);
     setDocuments(arr);
+    
+
   }
 
     return (
@@ -425,7 +432,7 @@ const Documents = ({ navigation, route }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    this.camera.takePictureAsync(options={base64:true,skipProcessing: true,onPictureSaved: this.onPictureSaved,});
+                    this.camera.takePictureAsync(options={base64:true,skipProcessing: true,onPictureSaved: onPictureSaved,});
                   }}
                   style={{ backgroundColor: "white", borderRadius: 20 }}
                 >
@@ -842,19 +849,19 @@ const Documents = ({ navigation, route }) => {
         {isDocument && 
           <ScrollView contentContainerStyle={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
             {filteredDocuments.map((data,index)=>(
-              <TouchableOpacity onPress={()=>{selectFolder(data.id)}} key={index} style={{borderRadius:20,height:155,width:"48%",margin:1,marginBottom:15,padding:20,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} >
-                <View style={{height:"40%",width:"100%",display:"flex",justifyContent:"flex-start",alignItems:"flex-end"}}>
+              <TouchableOpacity onPress={()=>{selectFolder(data,index)}} key={index} style={{borderRadius:20,height:155,width:"48%",margin:1,marginBottom:15,padding:20,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} >
+                {/* <View style={{height:"40%",width:"100%",display:"flex",justifyContent:"flex-start",alignItems:"flex-end"}}> */}
                   <MenuProvider>
                     <Menu>
-                      <MenuTrigger>
+                      <MenuTrigger customStyles={{triggerWrapper:{top:0,right:-90,margin:"auto",}}}>
                         <Entypo name="dots-three-vertical" size={20} color="black"/>
                       </MenuTrigger>
-                      <MenuOptions optionsContainerStyle={{marginTop:5,marginLeft:-20}} customStyles={{optionsWrapper:{width:"100%"}}}>
+                      <MenuOptions>
                         <MenuOption text="Delete" onSelect={()=>{deleteDocument(index)}}/>
                       </MenuOptions>
                     </Menu>
                   </MenuProvider>
-                </View>
+                {/* </View> */}
                 <View style={{display:"flex",alignItems:"center",justifyContent:"flex-start",height:"60%",width:"100%"}}>
                   <Text style={{fontSize:16}}>{data.folderName}</Text>
                 </View>

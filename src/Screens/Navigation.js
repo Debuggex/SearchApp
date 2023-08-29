@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 const Navigation = ({navigation})=>{
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Documents">
+            <Stack.Navigator initialRouteName="Signup">
                 <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name="Signin" component={Signin} options={{headerShown:false}}></Stack.Screen> 
                 <Stack.Screen name="Home" component={Home} options={{
@@ -184,7 +184,7 @@ const Navigation = ({navigation})=>{
                                 <View style={{width:"25%"}}>
                                     <InsetButton props={{pressed:()=>{navigation.navigate('Documents')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
                                 </View>
-                                <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>{documents[selectedFolder].folderName}</Text>
+                                <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>{selectedFolder.folderName}</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",width:"25%",justifyContent:"space-between"}}>
                                     <InsetButton props={{pressed:()=>{showModal()},imgSrc:require('../../assets/Plus.png')}}/>
                                     <InsetButton props={{pressed:()=>{setShowSearch(!showSearch)},imgSrc:require('../../assets/Search.png')}}/>
