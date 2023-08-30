@@ -27,8 +27,8 @@ const EditInputField=({props})=>{
                 elevation={10}
                 shadowColor="white"
                 >
-                    <View style={{ display:'flex',flexDirection:'row', justifyContent: 'space-between', alignItems: 'center',height:"100%"}}>
-                                <Text style={{fontSize:16,fontWeight:400}}>{props.label}</Text>
+                    <View style={{ display:'flex',flexDirection:'row', alignItems: 'center',height:"100%"}}>
+                                <Text style={{fontSize:16,fontWeight:400,width:"50%"}}>{props.label}</Text>
                                 <EditInput placeholder={props.placeholder}/>
                     </View>
                 </InsetShadow>

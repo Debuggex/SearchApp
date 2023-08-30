@@ -30,6 +30,7 @@ const Home=({navigation})=>{
     }
 
     const goSharing = () =>{
+        setIsHealthModal(!isHealthModal);
         navigation.navigate('Sharing');
     }
 

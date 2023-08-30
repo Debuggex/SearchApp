@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 const Navigation = ({navigation})=>{
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Documents">
+            <Stack.Navigator initialRouteName="Signup">
                 <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name="Signin" component={Signin} options={{headerShown:false}}></Stack.Screen> 
                 <Stack.Screen name="Home" component={Home} options={{
@@ -42,7 +42,7 @@ const Navigation = ({navigation})=>{
                                         <Text style={{fontSize:18,lineHeight:30}}>Health ID</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <InsetButton props={{imgSrc:require('../../assets/Setting.png')}}/>
+                                <InsetButton props={{imgSrc:require('../../assets/Setting.png'),pressed:()=>{console.log("Settings")}}}/>
                             </View>
                         )
                     }
