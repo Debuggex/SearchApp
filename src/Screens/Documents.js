@@ -762,6 +762,8 @@ const Documents = ({ navigation, route }) => {
                     backgroundColor: "#FFF",
                     borderRadius: 100,
                     marginBottom: 20,
+                    height:60,
+                    marginTop:5
                   }}
                 >
                   <View
@@ -850,18 +852,16 @@ const Documents = ({ navigation, route }) => {
           <ScrollView contentContainerStyle={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
             {filteredDocuments.map((data,index)=>(
               <TouchableOpacity onPress={()=>{selectFolder(data,index)}} key={index} style={{borderRadius:20,height:155,width:"48%",margin:1,marginBottom:15,padding:20,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} >
-                {/* <View style={{height:"40%",width:"100%",display:"flex",justifyContent:"flex-start",alignItems:"flex-end"}}> */}
                   <MenuProvider>
                     <Menu>
-                      <MenuTrigger customStyles={{triggerWrapper:{top:0,right:-90,margin:"auto",}}}>
+                      <MenuTrigger customStyles={{triggerWrapper:{display:"flex",alignItems:"flex-end"}}}>
                         <Entypo name="dots-three-vertical" size={20} color="black"/>
                       </MenuTrigger>
-                      <MenuOptions>
+                      <MenuOptions optionsContainerStyle={{marginTop:5}}>
                         <MenuOption text="Delete" onSelect={()=>{deleteDocument(index)}}/>
                       </MenuOptions>
                     </Menu>
                   </MenuProvider>
-                {/* </View> */}
                 <View style={{display:"flex",alignItems:"center",justifyContent:"flex-start",height:"60%",width:"100%"}}>
                   <Text style={{fontSize:16}}>{data.folderName}</Text>
                 </View>

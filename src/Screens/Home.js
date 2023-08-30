@@ -504,7 +504,7 @@ const Home=({navigation})=>{
                         {getStarted && <Text style={{color:"#A3ADB2",fontWeight:500,fontSize:14}}>We need to grab some info from you.</Text>}
                     </View>
                          {getStarted && <TouchableOpacity onPress={()=>{handlePress()}} style={{shadowColor:"#AEAEC0",width:"40%",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                            <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
+                            <View style={{shadowColor:"#FFFFFF",width:"100%",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
                                 <Text style={{fontSize:16,fontWeight:400,color:"#2684FF"}}>Okay</Text>
                             </View>
                         </TouchableOpacity>}

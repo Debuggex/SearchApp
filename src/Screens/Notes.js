@@ -12,6 +12,16 @@ const Notes = ({navigation,route}) =>{
 
     const [data,setData] = useState([]);
 
+
+    
+    useEffect(()=>{
+
+        if(notes.length!=0){
+            setIsData(true);
+        }
+    },[notes])
+
+    const {height} = Dimensions.get("window");
     const goAddNotes=()=>{
         setNotesAction('NEW');
         setNote({});
@@ -35,16 +45,6 @@ const Notes = ({navigation,route}) =>{
     })
 
 
-
-    
-    useEffect(()=>{
-
-        if(notes.length!=0){
-            setIsData(true);
-        }
-    },[notes])
-
-    const {height} = Dimensions.get("window");
     
 
     if(isData){

@@ -52,8 +52,15 @@ const User = ({navigation})=>{
         <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",paddingTop:30,paddingBottom:30,display:'flex',justifyContent:"space-between"}}>
             <View style={{width:"100%",height:"40%",borderRadius:20,marginBottom:10}}>
             </View>
-            
-            <InsetShadow shadowColor="#AEAEC0" elevation={8} shadowRadius={15} shadowOpacity={0.5} left={false} right={false} containerStyle={{paddingTop:30,height:height}}
+            <View style={{paddingTop:30,height:height}}>
+                {datas.map((data)=>(
+                            <View style={{width:"100%",padding:30,paddingBottom:5,paddingTop:5,marginBottom:10}}>
+                                <UserLabelHead props={{label:data.label,imageSrc:data.imageSrc,labels:data}}/>
+                                {data.labels.map((data)=><Label props={{label:data.label,value:data.value}}/> )}
+                            </View> 
+                ))}
+            </View>
+            {/* <InsetShadow shadowColor="#AEAEC0" elevation={8} shadowRadius={15} shadowOpacity={0.5} left={false} right={false} containerStyle={{paddingTop:30,height:height}}
             children={datas.map((data)=>(
                             <View style={{width:"100%",padding:30,paddingBottom:5,paddingTop:5,marginBottom:10}}>
                                 <UserLabelHead props={{label:data.label,imageSrc:data.imageSrc,labels:data}}/>
@@ -61,7 +68,7 @@ const User = ({navigation})=>{
                             </View> 
                 ))}
             >
-                </InsetShadow>
+                </InsetShadow> */}
 
             
             
