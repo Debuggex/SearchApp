@@ -54,7 +54,7 @@ const Navigation = ({navigation})=>{
                         <View style={{width:"26%"}}>
                             <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
                         </View>
-                        <Text style={{fontSize:18,textAlign:"center"}}>Health ID</Text>
+                        <Text style={{fontSize:18,textAlign:"center"}}>My Info</Text>
                         <TouchableOpacity onPress={()=>navigation.navigate('EditUser')} style={{shadowColor:"#AEAEC0",shadowOpacity:0.5,elevation:5,shadowRadius:20,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100,width:"26%"}}>
                             <View style={{shadowColor:"#FFFFFF",shadowOpacity:1,elevation:5,width:"100%",shadowRadius:20,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
                                 <Text style={{fontSize:16,fontWeight:400,color:"#2684FF"}}>Edit</Text>
