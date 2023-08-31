@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Dimensions, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, ScrollView, Text, TouchableOpacity, View,Modal as RNMODAL } from 'react-native';
 import HomeCard from './HomeCard';
 import InsetButton from './InsetButton';
 import context from "./Context/ContextProvider";
@@ -18,8 +18,9 @@ const Home=({navigation})=>{
     const [writeEmail,setWriteEmail] = useState(false);
     const [emailSent,setEmailSent] = useState(false);
     const [email,setEmail] = useState('');
+    
 
-    const {isHealthModal,setIsHealthModal,emailList,setEmailList} = useContext(context);
+    const {isHealthModal,setIsHealthModal,emailList,setEmailList,settings,setSettings} = useContext(context);
 
     const {height} = Dimensions.get("screen");
     const goUser = () => {
@@ -497,6 +498,21 @@ const Home=({navigation})=>{
                     
                 </View>}
 
+            </Modal>
+
+            <Modal animationIn="slideInUp" animationOut="slideOutDown" coverScreen={true}  isVisible={true} style={{margin:0}}>
+                <View style={{width:"100%",height:"90%",padding:30,backgroundColor:"#F0F0F3",borderTopRightRadius:20,borderTopLeftRadius:20,position:'absolute',bottom:0}}>
+                        <View style={{display:'flex',marginBottom:20,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',backgroundColor:"#F0F0F3"}}>
+                                <View>
+                                    <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
+                                </View>
+                                <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Journals</Text>
+                                <View style={{display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-between"}}>
+                                    <InsetButton props={{imgSrc:require('../../assets/Plus.png')}}/>
+                                </View>
+                        </View>
+                        <Text>Hello</Text>
+                        </View>
             </Modal>
 
             <View style={{width:"100%",padding:30,height:"25%",paddingTop:0,paddingBottom:0,marginBottom:20,marginTop:20,borderRadius:20,display:'flex',justifyContent:'space-between',alignItems:'center',flexDirection:'column'}}>

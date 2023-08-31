@@ -29,12 +29,12 @@ const Stack = createNativeStackNavigator();
 const Navigation = ({navigation})=>{
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Signup">
+            <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}></Stack.Screen>
                 <Stack.Screen name="Signin" component={Signin} options={{headerShown:false}}></Stack.Screen> 
                 <Stack.Screen name="Home" component={Home} options={{
                     header:()=>{
-                    const {isHealthModal,setIsHealthModal} = useContext(context);
+                    const {isHealthModal,setIsHealthModal,settings,setSettings} = useContext(context);
                         return(
                             <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',padding:30,paddingTop:80,backgroundColor:"#F0F0F3"}}>
                                 <TouchableOpacity onPress={()=>{setIsHealthModal(!isHealthModal)}} style={{shadowColor:"#AEAEC0",shadowOpacity:0.5,elevation:5,shadowRadius:10,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
@@ -42,7 +42,7 @@ const Navigation = ({navigation})=>{
                                         <Text style={{fontSize:18,lineHeight:30}}>Health ID</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <InsetButton props={{imgSrc:require('../../assets/Setting.png'),pressed:()=>{console.log("Settings")}}}/>
+                                <InsetButton props={{imgSrc:require('../../assets/Setting.png'),pressed:()=>{setSettings(!settings)}}}/>
                             </View>
                         )
                     }
