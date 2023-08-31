@@ -2,6 +2,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
@@ -173,7 +174,7 @@ const Documents = ({ navigation, route }) => {
   }
 
     return (
-      <View
+      <SafeAreaView
         style={{
           backgroundColor: "#F0F0F3",
           paddingTop: 0,
@@ -869,7 +870,7 @@ const Documents = ({ navigation, route }) => {
             ))}
           </ScrollView>
         }
-      </View>
+      </SafeAreaView>
     );
   
 };

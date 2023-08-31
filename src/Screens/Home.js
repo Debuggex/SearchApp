@@ -86,7 +86,7 @@ const Home=({navigation})=>{
     }
 
     return(
-        <ScrollView contentContainerStyle={{ padding:30,height:"110%",backgroundColor:"#F0F0F3",paddingTop:0,paddingBottom:0,display:'flex',justifyContent:"space-between"}}>
+        <ScrollView contentContainerStyle={{ padding:30,height:'auto',backgroundColor:"#F0F0F3",paddingTop:0,paddingBottom:50,display:'flex',justifyContent:"space-between"}}>
             
             <Modal isVisible={isHealthModal} style={{ flex: 1 }} backdropOpacity={0.4}>
                 
@@ -499,7 +499,7 @@ const Home=({navigation})=>{
 
             </Modal>
 
-            <View style={{width:"100%",padding:30,paddingTop:0,paddingBottom:0,marginBottom:20,marginTop:20,borderRadius:20,display:'flex',justifyContent:'space-between',alignItems:'center',flexDirection:'column'}}>
+            <View style={{width:"100%",padding:30,height:"25%",paddingTop:0,paddingBottom:0,marginBottom:20,marginTop:20,borderRadius:20,display:'flex',justifyContent:'space-between',alignItems:'center',flexDirection:'column'}}>
                     <View style={{width:"100%",marginBottom:40}}>
                         <Text style={{fontSize:24,marginBottom:5,width:"80%",fontWeight:600}}>{messageText}</Text>
                         {getStarted && <Text style={{color:"#A3ADB2",fontWeight:500,fontSize:14}}>We need to grab some info from you.</Text>}
