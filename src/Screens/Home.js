@@ -6,6 +6,11 @@ import context from "./Context/ContextProvider";
 import Modal from "react-native-modal";
 import InsetShadow from 'react-native-inset-shadow';
 import Input from './Input';
+import Profile from '../../assets/Profile.svg';
+import SettingsNext from '../../assets/SettingsNext.svg'
+import Notification from '../../assets/Notification.svg'
+import Lock from '../../assets/Lock.svg'
+import { Image } from 'react-native';
 
 
 
@@ -502,16 +507,47 @@ const Home=({navigation})=>{
 
             <Modal animationIn="slideInUp" animationOut="slideOutDown" coverScreen={true}  isVisible={true} style={{margin:0}}>
                 <View style={{width:"100%",height:"90%",padding:30,backgroundColor:"#F0F0F3",borderTopRightRadius:20,borderTopLeftRadius:20,position:'absolute',bottom:0}}>
-                        <View style={{display:'flex',marginBottom:20,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',backgroundColor:"#F0F0F3"}}>
-                                <View>
-                                    <InsetButton props={{pressed:()=>{navigation.navigate('Home')},imgSrc:require('../../assets/Back.png'),width:8,height:8}}/>
-                                </View>
-                                <Text style={{fontSize:18,fontWeight:400,textAlign:"center"}}>Journals</Text>
+                        <View style={{display:'flex',marginBottom:40,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center',backgroundColor:"#F0F0F3"}}>
+                                <Text style={{fontSize:18,fontWeight:600,textAlign:"center"}}>Settings</Text>
                                 <View style={{display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-between"}}>
                                     <InsetButton props={{imgSrc:require('../../assets/Plus.png')}}/>
                                 </View>
                         </View>
-                        <Text>Hello</Text>
+                        <TouchableOpacity style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",width:"100%",backgroundColor:"#FFF",borderRadius:20,marginBottom:20}}>
+                            <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.5,elevation:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",width:"100%",backgroundColor:"#F0F0F3",borderRadius:20,padding:13}}>
+                                    <View style={{display:'flex',flexDirection:'row'}}>
+                                        <View style={{backgroundColor:"#D7D7D7",width:24,height:24,borderRadius:50,padding:6,marginRight:12}}>
+                                            <Image source={Profile} style={{width:12,height:12}}/>
+                                        </View>
+                                        <Text style={{fontWeight:600,fontSize:16}}>Account</Text>
+                                    </View>
+                                    <Image source={SettingsNext} style={{width:24,height:24}}/>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",width:"100%",backgroundColor:"#FFF",borderRadius:20,marginBottom:20}}>
+                            <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.5,elevation:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",width:"100%",backgroundColor:"#F0F0F3",borderRadius:20,padding:13}}>
+                                    <View style={{display:'flex',flexDirection:'row'}}>
+                                        <View style={{backgroundColor:"#FFE2B7",width:24,height:24,borderRadius:50,padding:6,marginRight:12}}>
+                                            <Image source={Notification} style={{width:12,height:12}}/>
+                                        </View>
+                                        <Text style={{fontWeight:600,fontSize:16}}>Notifications</Text>
+                                    </View>
+                                    <Image source={SettingsNext} style={{width:24,height:24}}/>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",width:"100%",backgroundColor:"#FFF",borderRadius:20,marginBottom:20}}>
+                            <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.5,elevation:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center",width:"100%",backgroundColor:"#F0F0F3",borderRadius:20,padding:13}}>
+                                    <View style={{display:'flex',flexDirection:'row'}}>
+                                        <View style={{backgroundColor:"#F2D2C4",width:24,height:24,borderRadius:50,padding:6,marginRight:12}}>
+                                            <Image source={Lock} style={{width:12,height:12}}/>
+                                        </View>
+                                        <Text style={{fontWeight:600,fontSize:16}}>Security & Privacy</Text>
+                                    </View>
+                                    <Image source={SettingsNext} style={{width:24,height:24}}/>
+                            </View>
+                        </TouchableOpacity>
+                        
+                        
                         </View>
             </Modal>
 
