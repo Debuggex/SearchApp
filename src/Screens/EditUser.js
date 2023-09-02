@@ -6,6 +6,7 @@ import EditInput from "./EditInput";
 import InsetButton from "./InsetButton";
 import ConditionInput from "./ConditionInput";
 import { useState } from "react";
+import Plus from './../../Icons/Plus';
 
 
 
@@ -54,7 +55,7 @@ const EditUser =({navigation})=>{
             {datas.map((data)=>(<EditInputField props={{label:data.label,placeholder:data.placeholder,id:data.id,elevation:15-data.id}}/>))}
             <View style={{display:'flex',padding:30,paddingBottom:5,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center'}}>
                 <Text style={{color:"#898A8D",fontSize:16,fontWeight:400,paddingBottom:10}}>Conditions</Text>
-                <InsetButton props={{pressed:addCondition,imgSrc:require('../../assets/Plus.png')}} />
+                <InsetButton props={{pressed:addCondition}} SvgIcon={Plus}/>
             </View>
             {conditions.map((data)=>(
                 <ConditionInput placeholder="Type Here"/>

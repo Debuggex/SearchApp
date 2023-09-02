@@ -6,7 +6,7 @@ import InsetShadow from 'react-native-inset-shadow';
 
 const ConditionInput = ({placeholder,isPass})=>{
     return(<View style={{backgroundColor:"#F0F0F3",width:"100%",marginBottom:20,padding:30,paddingBottom:5,paddingTop:5}}>
-    <InsetShadow containerStyle={{borderRadius:25,height:60,backgroundColor:"#F0F0F3"}}
+    <InsetShadow containerStyle={{borderRadius:20,height:50,backgroundColor:"#F0F0F3"}}
    bottom={false}
         right={false}
         shadowColor="#AEAEC0"
@@ -15,7 +15,7 @@ const ConditionInput = ({placeholder,isPass})=>{
         shadowRadius={15}
         shadowOffset={8}
     children={
-      <InsetShadow containerStyle={{borderRadius:25,height:"100%",width:"100%",backgroundColor:"transparent",paddingLeft:20}}
+      <InsetShadow containerStyle={{ borderRadius: 20,height:"100%",width:"100%",backgroundColor:"transparent",paddingLeft:20}}
       top={false}
                 left={false}
                 shadowOffset={10}

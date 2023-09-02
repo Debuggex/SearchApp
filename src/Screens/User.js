@@ -4,6 +4,8 @@ import UserLabelHead from "./UserLabelHead";
 import Label from './Label';
 import InsetButton from "./InsetButton";
 import InsetShadow from "react-native-inset-shadow";
+import Chart from './../../Icons/Chart';
+import Condition from './../../Icons/Condition';
 
 
 
@@ -19,7 +21,7 @@ const User = ({navigation})=>{
 
     const datas=[
         {label:"About Me",
-        imageSrc: require('../../assets/Chart.png'),
+        Svg: Chart,
         labels:[
             {label:"FirstName",
             value:"John"    
@@ -34,7 +36,7 @@ const User = ({navigation})=>{
     }
     ,
     {label:"Conditions",
-        imageSrc: require('../../assets/Document.png'),
+        Svg: Condition,
          labels:[
             {label:"FirstName",
             value:"John"    
@@ -55,7 +57,7 @@ const User = ({navigation})=>{
             <View style={{paddingTop:30,height:height}}>
                 {datas.map((data)=>(
                             <View style={{width:"100%",padding:30,paddingBottom:5,paddingTop:5,marginBottom:10}}>
-                                <UserLabelHead props={{label:data.label,imageSrc:data.imageSrc,labels:data}}/>
+                                <UserLabelHead props={{label:data.label,labels:data}} SvgIcon={data.Svg}/>
                                 {data.labels.map((data)=><Label props={{label:data.label,value:data.value}}/> )}
                             </View> 
                 ))}
