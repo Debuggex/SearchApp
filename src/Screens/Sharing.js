@@ -38,7 +38,7 @@ const Sharing = ({navigation}) =>{
     return(
         <ScrollView contentContainerStyle={{ backgroundColor:"#F0F0F3",padding:30,paddingTop:0,display:'flex',height:height}}>
                 <Modal isVisible={isDelete} style={{ flex: 1 }} backdropOpacity={0.4}>
-                <View style={{ backgroundColor: "#F0F0F3", borderRadius: 20, top: 150 }}>
+                <View style={{ backgroundColor: "#F0F0F3", borderRadius: 20, position:"absolute",bottom:0,width:"100%" }}>
                     <TouchableOpacity
                         onPress={() => {
                           deleteEmail();

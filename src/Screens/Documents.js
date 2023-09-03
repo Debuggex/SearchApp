@@ -183,10 +183,11 @@ const Documents = ({ navigation, route }) => {
           height: height,
         }}
       >
-        <Modal isVisible={isModal} style={{ flex: 1 }} backdropOpacity={0.4}>
+        <Modal isVisible={isModal} style={{ flex: 1 }} backdropOpacity={0.4} animationIn="slideInUp"
+          animationOut="slideOutDown">
           {modalButton && (
             <View
-              style={{ backgroundColor: "#F0F0F3", borderRadius: 20, top: 100 }}
+              style={{ backgroundColor: "#F0F0F3", borderRadius: 20, position:"absolute",bottom: 0,width:"100%" }}
             >
               <TouchableOpacity
                 onPress={() => {
@@ -455,7 +456,7 @@ const Documents = ({ navigation, route }) => {
             </View>
           )}
           {imagePreview && (
-            <View
+            <SafeAreaView
               style={{
                 width: "100%",
                 height: "100%",
@@ -598,7 +599,7 @@ const Documents = ({ navigation, route }) => {
                   </InsetShadow>
                 }
               ></InsetShadow>
-            </View>
+            </SafeAreaView>
           )}
           {newFolder && (
             <View

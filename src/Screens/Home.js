@@ -138,10 +138,13 @@ const Home=({navigation})=>{
           isVisible={isHealthModal}
           style={{ flex: 1 }}
           backdropOpacity={0.4}
+          animationIn="slideInUp"
+          animationOut="slideOutDown"
+          coverScreen={true}
         >
           {modalButtons && (
             <View
-              style={{ backgroundColor: "#F0F0F3", borderRadius: 20, top: 150 }}
+              style={{ backgroundColor: "#F0F0F3", borderRadius: 20, position:'absolute',bottom:0,width:"100%" }}
             >
               <TouchableOpacity
                 onPress={() => {
@@ -1295,6 +1298,7 @@ const Home=({navigation})=>{
                   width: "100%",
                   shadowOpacity: 0.25,
                   elevation: 5,
+                  height:34,
                   shadowRadius: 5,
                   shadowOffset: { width: -5, height: -5 },
                   display: "flex",
@@ -1326,6 +1330,9 @@ const Home=({navigation})=>{
           }}
         >
           <HomeCard
+            props={{
+              pressed: ()=>{console.log("Capsule")},
+            }}
             SvgIcon={Capsule}
           />
           <HomeCard
@@ -1348,6 +1355,9 @@ const Home=({navigation})=>{
             SvgIcon={Edit}
           />
           <HomeCard
+            props={{
+              pressed: () => { console.log("Wallet") },
+            }}
             SvgIcon={Wallet}
           />
         </View>

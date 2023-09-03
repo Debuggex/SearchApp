@@ -52,8 +52,8 @@ const Navigation = () => {
               const { isHealthModal, setIsHealthModal, settings, setSettings } =
                 useContext(context);
               return (
-                <SafeAreaView
-                  style={{
+                <SafeAreaView>
+                  <View style={{
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -63,8 +63,8 @@ const Navigation = () => {
                     paddingTop: 60,
 
                     backgroundColor: "#F0F0F3",
-                  }}
-                >
+                  }}>
+                    
                   <TouchableOpacity
                     onPress={() => {
                       setIsHealthModal(!isHealthModal);
@@ -87,6 +87,7 @@ const Navigation = () => {
                         shadowColor: "#FFFFFF",
                         shadowOpacity: 1,
                         elevation: 5,
+                        // height:34,
                         shadowRadius: 10,
                         shadowOffset: { width: -5, height: -5 },
                         display: "flex",
@@ -113,6 +114,8 @@ const Navigation = () => {
                       },
                     }}
                   />
+
+                  </View>
                 </SafeAreaView>
               );
             },
@@ -123,20 +126,22 @@ const Navigation = () => {
           component={User}
           options={{
             header: ({ navigation }) => (
-              <SafeAreaView
-                style={{
-                  display: "flex",
-                  padding: 30,
-                  paddingTop: 60,
+              <SafeAreaView>
+                <View
+                  style={{
+                    display: "flex",
+                    padding: 30,
+                    paddingTop: 60,
 
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  alignItems: "center",
-                //   paddingTop: 80,
-                  backgroundColor: "#F0F0F3",
-                }}
-              >
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    alignItems: "center",
+                    //   paddingTop: 80,
+                    backgroundColor: "#F0F0F3",
+                  }}>
+
+                  
                 <View style={{ width: "26%" }}>
                   <InsetButton
                     props={{
@@ -198,6 +203,7 @@ const Navigation = () => {
                     </Text>
                   </View>
                 </TouchableOpacity>
+                </View>
               </SafeAreaView>
             ),
           }}
@@ -216,25 +222,25 @@ const Navigation = () => {
               backgroundColor: "#F0F0F3",
             },
             header: ({ navigation }) => (
-              <SafeAreaView
-                style={{
-                  display: "flex",
-                  padding: 30,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  paddingTop: 60,
-        width: "100%",
-                  alignItems: "center",
-                //   paddingTop: 80,
-                  backgroundColor: "#F0F0F3",
-                }}
-              >
+              <SafeAreaView>
+                <View
+                  style={{
+                    display: "flex",
+                    padding: 30,
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    paddingTop: 60,
+                    width: "100%",
+                    alignItems: "center",
+                    //   paddingTop: 80,
+                    backgroundColor: "#F0F0F3",
+                  }}>
                 <InsetButton
                   props={{
                     pressed: () => {
                       navigation.navigate("User");
                     },
-                    
+
                     width: 8,
                     height: 8,
                   }}
@@ -286,6 +292,7 @@ const Navigation = () => {
                     </Text>
                   </View>
                 </TouchableOpacity>
+                </View>
               </SafeAreaView>
             ),
           }}
@@ -300,7 +307,7 @@ const Navigation = () => {
                 useContext(context);
               const [showSearch, setShowSearch] = useState(false);
               return (
-                  <SafeAreaView
+                <SafeAreaView
                   style={{
                     width: "100%",
                     display: "flex",
@@ -313,11 +320,11 @@ const Navigation = () => {
                       display: "flex",
                       padding: 30,
                       paddingTop: 60,
-        flexDirection: "row",
+                      flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
                       alignItems: "center",
-                    //   paddingTop: 80,
+                      //   paddingTop: 80,
                       backgroundColor: "#F0F0F3",
                     }}
                   >
@@ -327,7 +334,7 @@ const Navigation = () => {
                           pressed: () => {
                             navigation.navigate("Home");
                           },
-                          
+
                           width: 8,
                           height: 8,
                         }}
@@ -358,7 +365,6 @@ const Navigation = () => {
                             setNotesAction("NEW");
                             navigation.navigate("AddNote");
                           },
-                          
                         }}
                         SvgIcon={Plus}
                       />
@@ -368,7 +374,6 @@ const Navigation = () => {
                             setShowSearch(!showSearch);
                             setSearchText("");
                           },
-                          
                         }}
                         SvgIcon={Search}
                       />
@@ -391,7 +396,7 @@ const Navigation = () => {
                       />
                     </View>
                   )}
-                  </SafeAreaView>
+                </SafeAreaView>
               );
             },
           }}
@@ -423,26 +428,28 @@ const Navigation = () => {
               }, [note]);
 
               return (
-                  <SafeAreaView
-                  style={{
-                    display: "flex",
-                    padding: 30,
-                    paddingTop: 60,
-        flexDirection: "row",
-                    justifyContent: "space-between",
-                    width: "100%",
-                    alignItems: "center",
-                    // paddingTop: 80,
-                    backgroundColor: "#F0F0F3",
-                  }}
-                >
+                <SafeAreaView>
+                  <View
+                    style={{
+                      display: "flex",
+                      padding: 30,
+                      paddingTop: 60,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      alignItems: "center",
+                      // paddingTop: 80,
+                      backgroundColor: "#F0F0F3",
+                    }}>
+
+                    
                   <View style={{ width: "26%" }}>
                     <InsetButton
                       props={{
                         pressed: () => {
                           navigation.navigate("Notes");
                         },
-                        
+
                         width: 8,
                         height: 8,
                       }}
@@ -529,7 +536,8 @@ const Navigation = () => {
                       </Text>
                     </View>
                   </TouchableOpacity>
-                  </SafeAreaView>
+                  </View>
+                </SafeAreaView>
               );
             },
           }}
@@ -544,7 +552,7 @@ const Navigation = () => {
                 useContext(context);
               const [showSearch, setShowSearch] = useState(false);
               return (
-                  <SafeAreaView
+                <SafeAreaView
                   style={{
                     width: "100%",
                     display: "flex",
@@ -557,11 +565,11 @@ const Navigation = () => {
                       display: "flex",
                       padding: 30,
                       paddingTop: 60,
-        flexDirection: "row",
+                      flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
                       alignItems: "center",
-                    //   paddingTop: 80,
+                      //   paddingTop: 80,
                       backgroundColor: "#F0F0F3",
                     }}
                   >
@@ -571,7 +579,7 @@ const Navigation = () => {
                           pressed: () => {
                             navigation.navigate("Home");
                           },
-                          
+
                           width: 8,
                           height: 8,
                         }}
@@ -601,7 +609,6 @@ const Navigation = () => {
                           pressed: () => {
                             showModal();
                           },
-                          
                         }}
                         SvgIcon={Plus}
                       />
@@ -611,7 +618,6 @@ const Navigation = () => {
                             setShowSearch(!showSearch);
                             setSearchDocument("");
                           },
-                          
                         }}
                         SvgIcon={Search}
                       />
@@ -634,7 +640,7 @@ const Navigation = () => {
                       />
                     </View>
                   )}
-                  </SafeAreaView>
+                </SafeAreaView>
               );
             },
           }}
@@ -654,7 +660,7 @@ const Navigation = () => {
               } = useContext(context);
               const [showSearch, setShowSearch] = useState(false);
               return (
-                  <SafeAreaView
+                <SafeAreaView
                   style={{
                     width: "100%",
                     display: "flex",
@@ -667,11 +673,11 @@ const Navigation = () => {
                       display: "flex",
                       padding: 30,
                       paddingTop: 60,
-        flexDirection: "row",
+                      flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
                       alignItems: "center",
-                    //   paddingTop: 80,
+                      //   paddingTop: 80,
                       backgroundColor: "#F0F0F3",
                     }}
                   >
@@ -681,7 +687,7 @@ const Navigation = () => {
                           pressed: () => {
                             navigation.navigate("Documents");
                           },
-                          
+
                           width: 8,
                           height: 8,
                         }}
@@ -711,7 +717,6 @@ const Navigation = () => {
                           pressed: () => {
                             showModal();
                           },
-                          
                         }}
                         SvgIcon={Plus}
                       />
@@ -720,7 +725,6 @@ const Navigation = () => {
                           pressed: () => {
                             setShowSearch(!showSearch);
                           },
-                          
                         }}
                         SvgIcon={Search}
                       />
@@ -739,7 +743,7 @@ const Navigation = () => {
                       <SearchInput placeholder="Search" />
                     </View>
                   )}
-                  </SafeAreaView>
+                </SafeAreaView>
               );
             },
           }}
@@ -752,7 +756,7 @@ const Navigation = () => {
             headerStyle: { backgroundColor: "#F0F0F3" },
             header: ({ navigation }) => {
               return (
-                  <SafeAreaView
+                <SafeAreaView
                   style={{
                     width: "100%",
                     display: "flex",
@@ -767,7 +771,7 @@ const Navigation = () => {
                       flexDirection: "row",
                       width: "100%",
                       alignItems: "center",
-                    //   paddingTop: 80,
+                        paddingTop: 60,
                       backgroundColor: "#F0F0F3",
                     }}
                   >
@@ -777,7 +781,7 @@ const Navigation = () => {
                           pressed: () => {
                             navigation.navigate("Home");
                           },
-                          
+
                           width: 8,
                           height: 8,
                         }}
@@ -795,7 +799,7 @@ const Navigation = () => {
                       Sharing
                     </Text>
                   </View>
-                  </SafeAreaView>
+                </SafeAreaView>
               );
             },
           }}
