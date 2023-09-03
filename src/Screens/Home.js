@@ -121,6 +121,7 @@ const Home=({navigation})=>{
     const switchSetting = () =>{
         setSettingEnable(!settingEnable);
     }
+    
 
     return (
       <ScrollView
@@ -1244,9 +1245,9 @@ const Home=({navigation})=>{
           style={{
             width: "100%",
             padding: 30,
-            height: "25%",
+            height: "40%",
             paddingTop: 0,
-            paddingBottom: 0,
+            paddingBottom: 40,
             marginBottom: 20,
             marginTop: 20,
             borderRadius: 20,
@@ -1327,6 +1328,7 @@ const Home=({navigation})=>{
             justifyContent: "space-between",
             flexWrap: "wrap",
             alignItems: "flex-start",
+            height:"60%"
           }}
         >
           <HomeCard

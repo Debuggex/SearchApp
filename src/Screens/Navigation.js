@@ -60,60 +60,60 @@ const Navigation = () => {
                     width: "100%",
                     alignItems: "center",
                     padding: 30,
-                    paddingTop: 60,
+                    paddingTop: 40,
 
                     backgroundColor: "#F0F0F3",
                   }}>
-                    
-                  <TouchableOpacity
-                    onPress={() => {
-                      setIsHealthModal(!isHealthModal);
-                    }}
-                    style={{
-                      shadowColor: "#AEAEC0",
-                      shadowOpacity: 0.5,
-                      elevation: 5,
-                      shadowRadius: 10,
-                      shadowOffset: { width: 5, height: 5 },
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      backgroundColor: "#F0F0F3",
-                      borderRadius: 100,
-                    }}
-                  >
-                    <View
+
+                    <TouchableOpacity
+                      onPress={() => {
+                        setIsHealthModal(!isHealthModal);
+                      }}
                       style={{
-                        shadowColor: "#FFFFFF",
-                        shadowOpacity: 1,
+                        shadowColor: "#AEAEC0",
+                        shadowOpacity: 0.5,
                         elevation: 5,
-                        // height:34,
                         shadowRadius: 10,
-                        shadowOffset: { width: -5, height: -5 },
+                        shadowOffset: { width: 5, height: 5 },
                         display: "flex",
-                        flexDirection: "row",
                         justifyContent: "center",
-                        padding: 5,
-                        paddingRight: 20,
-                        paddingLeft: 20,
                         alignItems: "center",
                         backgroundColor: "#F0F0F3",
                         borderRadius: 100,
                       }}
                     >
-                      <Text style={{ fontSize: 18, lineHeight: 30 }}>
-                        Health ID
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                  <InsetButton
-                    SvgIcon={Setting}
-                    props={{
-                      pressed: () => {
-                        setSettings(!settings);
-                      },
-                    }}
-                  />
+                      <View
+                        style={{
+                          shadowColor: "#FFFFFF",
+                          shadowOpacity: 1,
+                          elevation: 5,
+                          // height:34,
+                          shadowRadius: 10,
+                          shadowOffset: { width: -5, height: -5 },
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          padding: 5,
+                          paddingRight: 20,
+                          paddingLeft: 20,
+                          alignItems: "center",
+                          backgroundColor: "#F0F0F3",
+                          borderRadius: 100,
+                        }}
+                      >
+                        <Text style={{ fontSize: 18, lineHeight: 30 }}>
+                          Health ID
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                    <InsetButton
+                      SvgIcon={Setting}
+                      props={{
+                        pressed: () => {
+                          setSettings(!settings);
+                        },
+                      }}
+                    />
 
                   </View>
                 </SafeAreaView>
@@ -131,7 +131,7 @@ const Navigation = () => {
                   style={{
                     display: "flex",
                     padding: 30,
-                    paddingTop: 60,
+                    paddingTop: 40,
 
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -141,68 +141,68 @@ const Navigation = () => {
                     backgroundColor: "#F0F0F3",
                   }}>
 
-                  
-                <View style={{ width: "26%" }}>
-                  <InsetButton
-                    props={{
-                      pressed: () => {
-                        navigation.navigate("Home");
-                      },
-                      width: 8,
-                      height: 8,
-                    }}
-                    SvgIcon={Back}
-                  />
-                </View>
-                <Text style={{ fontSize: 18, textAlign: "center" }}>
-                  My Info
-                </Text>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("EditUser")}
-                  style={{
-                    shadowColor: "#AEAEC0",
-                    shadowOpacity: 0.5,
-                    elevation: 5,
-                    shadowRadius: 20,
-                    shadowOffset: { width: 5, height: 5 },
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "#F0F0F3",
-                    borderRadius: 100,
-                    width: "26%",
-                  }}
-                >
-                  <View
+
+                  <View style={{ width: "26%" }}>
+                    <InsetButton
+                      props={{
+                        pressed: () => {
+                          navigation.navigate("Home");
+                        },
+                        width: 8,
+                        height: 8,
+                      }}
+                      SvgIcon={Back}
+                    />
+                  </View>
+                  <Text style={{ fontSize: 18, textAlign: "center" }}>
+                    My Info
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("EditUser")}
                     style={{
-                      shadowColor: "#FFFFFF",
-                      shadowOpacity: 1,
+                      shadowColor: "#AEAEC0",
+                      shadowOpacity: 0.5,
                       elevation: 5,
-                      width: "100%",
                       shadowRadius: 20,
-                      shadowOffset: { width: -5, height: -5 },
+                      shadowOffset: { width: 5, height: 5 },
                       display: "flex",
-                      flexDirection: "row",
                       justifyContent: "center",
-                      padding: 5,
-                      paddingRight: 20,
-                      paddingLeft: 20,
                       alignItems: "center",
                       backgroundColor: "#F0F0F3",
                       borderRadius: 100,
+                      width: "26%",
                     }}
                   >
-                    <Text
+                    <View
                       style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        color: "#2684FF",
+                        shadowColor: "#FFFFFF",
+                        shadowOpacity: 1,
+                        elevation: 5,
+                        width: "100%",
+                        shadowRadius: 20,
+                        shadowOffset: { width: -5, height: -5 },
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        padding: 5,
+                        paddingRight: 20,
+                        paddingLeft: 20,
+                        alignItems: "center",
+                        backgroundColor: "#F0F0F3",
+                        borderRadius: 100,
                       }}
                     >
-                      Edit
-                    </Text>
-                  </View>
-                </TouchableOpacity>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          fontWeight: 400,
+                          color: "#2684FF",
+                        }}
+                      >
+                        Edit
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
                 </View>
               </SafeAreaView>
             ),
@@ -229,69 +229,69 @@ const Navigation = () => {
                     padding: 30,
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    paddingTop: 60,
+                    paddingTop: 40,
                     width: "100%",
                     alignItems: "center",
                     //   paddingTop: 80,
                     backgroundColor: "#F0F0F3",
                   }}>
-                <InsetButton
-                  props={{
-                    pressed: () => {
-                      navigation.navigate("User");
-                    },
+                  <InsetButton
+                    props={{
+                      pressed: () => {
+                        navigation.navigate("User");
+                      },
 
-                    width: 8,
-                    height: 8,
-                  }}
-                  SvgIcon={Back}
-                />
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("User");
-                  }}
-                  style={{
-                    shadowColor: "#AEAEC0",
-                    shadowOpacity: 0.25,
-                    elevation: 5,
-                    shadowRadius: 5,
-                    shadowOffset: { width: 5, height: 5 },
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "#F0F0F3",
-                    borderRadius: 100,
-                  }}
-                >
-                  <View
+                      width: 8,
+                      height: 8,
+                    }}
+                    SvgIcon={Back}
+                  />
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("User");
+                    }}
                     style={{
-                      shadowColor: "#FFFFFF",
+                      shadowColor: "#AEAEC0",
                       shadowOpacity: 0.25,
                       elevation: 5,
                       shadowRadius: 5,
-                      shadowOffset: { width: -5, height: -5 },
+                      shadowOffset: { width: 5, height: 5 },
                       display: "flex",
-                      flexDirection: "row",
                       justifyContent: "center",
-                      padding: 5,
-                      paddingRight: 20,
-                      paddingLeft: 20,
                       alignItems: "center",
                       backgroundColor: "#F0F0F3",
                       borderRadius: 100,
                     }}
                   >
-                    <Text
+                    <View
                       style={{
-                        fontSize: 16,
-                        fontWeight: 400,
-                        color: "#2684FF",
+                        shadowColor: "#FFFFFF",
+                        shadowOpacity: 0.25,
+                        elevation: 5,
+                        shadowRadius: 5,
+                        shadowOffset: { width: -5, height: -5 },
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        padding: 5,
+                        paddingRight: 20,
+                        paddingLeft: 20,
+                        alignItems: "center",
+                        backgroundColor: "#F0F0F3",
+                        borderRadius: 100,
                       }}
                     >
-                      Save
-                    </Text>
-                  </View>
-                </TouchableOpacity>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          fontWeight: 400,
+                          color: "#2684FF",
+                        }}
+                      >
+                        Save
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
                 </View>
               </SafeAreaView>
             ),
@@ -319,7 +319,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 60,
+                      paddingTop: 40,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -348,7 +348,7 @@ const Navigation = () => {
                         textAlign: "center",
                       }}
                     >
-                      Journals
+                      Journal
                     </Text>
                     <View
                       style={{
@@ -433,7 +433,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 60,
+                      paddingTop: 40,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -442,100 +442,100 @@ const Navigation = () => {
                       backgroundColor: "#F0F0F3",
                     }}>
 
-                    
-                  <View style={{ width: "26%" }}>
-                    <InsetButton
-                      props={{
-                        pressed: () => {
-                          navigation.navigate("Notes");
-                        },
 
-                        width: 8,
-                        height: 8,
-                      }}
-                      SvgIcon={Back}
-                    />
-                  </View>
-                  <TextInput
-                    style={{
-                      fontSize: 18,
-                      textAlign: "center",
-                      width: "45%",
-                    }}
-                    placeholderTextColor="#898A8D"
-                    value={noteHeading}
-                    onChangeText={(text) => {
-                      setNoteHeading(text);
-                    }}
-                    placeholder="Title"
-                  />
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (noteHeading.length == 0 && noteText.length == 0) {
-                        navigation.navigate("Notes");
-                      } else {
-                        if (notesAction == "NEW") {
-                          let obj = {
-                            heading: noteHeading,
-                            note: noteText,
-                          };
-                          setNotes([...notes, obj]);
-                        } else {
-                          let obj = {
-                            heading: noteHeading,
-                            note: noteText,
-                          };
-                          let tempNotes = [...notes];
-                          tempNotes[noteIndex] = obj;
-                          setNotes(tempNotes);
-                        }
-                        navigation.navigate("Notes");
-                      }
-                    }}
-                    style={{
-                      shadowColor: "#AEAEC0",
-                      shadowOpacity: 0.25,
-                      elevation: 5,
-                      shadowRadius: 5,
-                      shadowOffset: { width: 5, height: 5 },
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      backgroundColor: "#F0F0F3",
-                      borderRadius: 100,
-                      width: "26%",
-                    }}
-                  >
-                    <View
+                    <View style={{ width: "26%" }}>
+                      <InsetButton
+                        props={{
+                          pressed: () => {
+                            navigation.navigate("Notes");
+                          },
+
+                          width: 8,
+                          height: 8,
+                        }}
+                        SvgIcon={Back}
+                      />
+                    </View>
+                    <TextInput
                       style={{
-                        shadowColor: "#FFFFFF",
-                        width: "100%",
+                        fontSize: 18,
+                        textAlign: "center",
+                        width: "45%",
+                      }}
+                      placeholderTextColor="#898A8D"
+                      value={noteHeading}
+                      onChangeText={(text) => {
+                        setNoteHeading(text);
+                      }}
+                      placeholder="Title"
+                    />
+                    <TouchableOpacity
+                      onPress={() => {
+                        if (noteHeading.length == 0 && noteText.length == 0) {
+                          navigation.navigate("Notes");
+                        } else {
+                          if (notesAction == "NEW") {
+                            let obj = {
+                              heading: noteHeading,
+                              note: noteText,
+                            };
+                            setNotes([...notes, obj]);
+                          } else {
+                            let obj = {
+                              heading: noteHeading,
+                              note: noteText,
+                            };
+                            let tempNotes = [...notes];
+                            tempNotes[noteIndex] = obj;
+                            setNotes(tempNotes);
+                          }
+                          navigation.navigate("Notes");
+                        }
+                      }}
+                      style={{
+                        shadowColor: "#AEAEC0",
                         shadowOpacity: 0.25,
                         elevation: 5,
                         shadowRadius: 5,
-                        shadowOffset: { width: -5, height: -5 },
+                        shadowOffset: { width: 5, height: 5 },
                         display: "flex",
-                        flexDirection: "row",
                         justifyContent: "center",
-                        padding: 5,
-                        paddingRight: 20,
-                        paddingLeft: 20,
                         alignItems: "center",
                         backgroundColor: "#F0F0F3",
                         borderRadius: 100,
+                        width: "26%",
                       }}
                     >
-                      <Text
+                      <View
                         style={{
-                          fontSize: 16,
-                          fontWeight: 400,
-                          color: "#2684FF",
+                          shadowColor: "#FFFFFF",
+                          width: "100%",
+                          shadowOpacity: 0.25,
+                          elevation: 5,
+                          shadowRadius: 5,
+                          shadowOffset: { width: -5, height: -5 },
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          padding: 5,
+                          paddingRight: 20,
+                          paddingLeft: 20,
+                          alignItems: "center",
+                          backgroundColor: "#F0F0F3",
+                          borderRadius: 100,
                         }}
                       >
-                        Done
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
+                        <Text
+                          style={{
+                            fontSize: 16,
+                            fontWeight: 400,
+                            color: "#2684FF",
+                          }}
+                        >
+                          Done
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                 </SafeAreaView>
               );
@@ -564,7 +564,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 60,
+                      paddingTop: 40,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -672,7 +672,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 60,
+                      paddingTop: 40,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -771,8 +771,9 @@ const Navigation = () => {
                       flexDirection: "row",
                       width: "100%",
                       alignItems: "center",
-                        paddingTop: 60,
+                      paddingTop: 40,
                       backgroundColor: "#F0F0F3",
+                      
                     }}
                   >
                     <View style={{ width: "45%" }}>

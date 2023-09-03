@@ -62,8 +62,8 @@ const Notes = ({navigation,route}) =>{
         )
     }else{
         return(
-            <View style={{backgroundColor:"#F0F0F3",paddingTop:0,paddingBottom:50,display:'flex',alignItems:'center',justifyContent:"center",height:height}}>
-                <Text style={{fontSize:18,fontWeight:400,marginBottom:20}}>Notes</Text>
+            <View style={{backgroundColor:"#F0F0F3",display:'flex',alignItems:'center',justifyContent:"center",height:"100%"}}>
+                <Text style={{fontSize:18,fontWeight:400,marginBottom:20}}>Journal</Text>
                 <Text style={{color:"#A3ADB2",fontWeight:500,fontSize:14,marginBottom:40}}>Track your physical and mental well-being here.</Text>
                 <TouchableOpacity onPress={()=>{goAddNotes()}} style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
                                 <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.25,elevation:5,margin:10,marginBottom:5,marginTop:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>

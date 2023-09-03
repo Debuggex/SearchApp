@@ -180,7 +180,7 @@ const Documents = ({ navigation, route }) => {
           paddingTop: 0,
           paddingBottom: 50,
           display: "flex",
-          height: height,
+          height: "100%",
         }}
       >
         <Modal isVisible={isModal} style={{ flex: 1 }} backdropOpacity={0.4} animationIn="slideInUp"
@@ -793,7 +793,7 @@ const Documents = ({ navigation, route }) => {
           )}
         </Modal>
 
-        {!isDocument && <View style={{width:"100%",height:"100%",padding:30,display: "flex",alignItems: "center",justifyContent: "center",}}>
+        {!isDocument && <View style={{width:"100%",height:"100%",display: "flex",alignItems: "center",justifyContent: "center",}}>
           <Text style={{ fontSize: 18, fontWeight: 400, marginBottom: 20 }}>
             Documents
           </Text>
