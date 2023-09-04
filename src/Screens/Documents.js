@@ -22,6 +22,7 @@ import * as FileSystem from 'expo-file-system';
 import * as DocumentPicker from 'expo-document-picker';
 import { Menu, MenuOption, MenuOptions, MenuProvider, MenuTrigger } from "react-native-popup-menu";
 import { Entypo } from "@expo/vector-icons";
+import { useHeaderHeight } from "@react-navigation/elements";
 
 const Documents = ({ navigation, route }) => {
   const {
@@ -172,6 +173,8 @@ const Documents = ({ navigation, route }) => {
     
 
   }
+
+  const headerHeight = useHeaderHeight()
 
     return (
       <SafeAreaView
@@ -851,7 +854,7 @@ const Documents = ({ navigation, route }) => {
           </TouchableOpacity>
         </View>}
         {isDocument && 
-          <ScrollView contentContainerStyle={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
+          <ScrollView contentContainerStyle={{ flexDirection:'row',padding:30,paddingTop:headerHeight+60,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start'}}>
             {filteredDocuments.map((data,index)=>(
               <TouchableOpacity onPress={()=>{selectFolder(data,index)}} key={index} style={{borderRadius:20,height:155,width:"48%",margin:1,marginBottom:15,padding:20,backgroundColor:"#F0F0F3",shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5}}} >
                   <MenuProvider>

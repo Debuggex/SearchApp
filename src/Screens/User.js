@@ -6,6 +6,7 @@ import InsetButton from "./InsetButton";
 import InsetShadow from "react-native-inset-shadow";
 import Chart from './../../Icons/Chart';
 import Condition from './../../Icons/Condition';
+import { useHeaderHeight } from "@react-navigation/elements";
 
 
 
@@ -50,8 +51,10 @@ const User = ({navigation})=>{
         ]
     }
     ]
+
+    const headerHeight = useHeaderHeight();
     return(
-        <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",paddingTop:30,paddingBottom:30,display:'flex',justifyContent:"space-between"}}>
+        <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",paddingTop:headerHeight,paddingBottom:30,display:'flex',justifyContent:"space-between"}}>
             <View style={{width:"100%",height:"40%",borderRadius:20,marginBottom:10}}>
             </View>
             <View style={{paddingTop:30,height:height}}>

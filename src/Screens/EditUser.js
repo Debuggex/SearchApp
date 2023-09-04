@@ -7,6 +7,7 @@ import InsetButton from "./InsetButton";
 import ConditionInput from "./ConditionInput";
 import { useState } from "react";
 import Plus from './../../Icons/Plus';
+import { useHeaderHeight } from "@react-navigation/elements";
 
 
 
@@ -49,8 +50,9 @@ const EditUser =({navigation})=>{
     const goUser=()=>{
         navigation.navigate('User');
     }
+    const headerHeight = useHeaderHeight();
     return(
-        <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",paddingTop:30,paddingBottom:30,display:'flex',justifyContent:"space-between"}}>
+        <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",paddingTop:headerHeight,paddingBottom:30,display:'flex',justifyContent:"space-between"}}>
             <Text style={{color:"#898A8D",fontSize:16,fontWeight:400,padding:30,paddingBottom:10,paddingTop:10}}>About Me</Text>
             {datas.map((data)=>(<EditInputField props={{label:data.label,placeholder:data.placeholder,id:data.id,elevation:15-data.id}}/>))}
             <View style={{display:'flex',padding:30,paddingBottom:5,flexDirection:'row',justifyContent:'space-between',width:"100%",alignItems:'center'}}>

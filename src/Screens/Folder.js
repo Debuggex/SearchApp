@@ -19,6 +19,7 @@ import {
   import InsetButton from "./InsetButton";
   import * as FileSystem from 'expo-file-system';
   import * as DocumentPicker from 'expo-document-picker';
+import { useHeaderHeight } from "@react-navigation/elements";
 
 const Folder=({navigation})=>{
     const {isModal,
@@ -136,7 +137,7 @@ const Folder=({navigation})=>{
   };
 
     return(
-        <View style={{ flexDirection:'row',padding:30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start',height:"100%",backgroundColor:"#F0F0F3"}}>
+        <View style={{ flexDirection:'row',padding:30,paddingTop:useHeaderHeight()+30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start',height:"100%",backgroundColor:"#F0F0F3"}}>
             {selectedFolder.images.map((data,index)=>(
               <Image key={index} style={{height:200,marginBottom:10,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%"}} source={{ uri: data }}/>
             ))}

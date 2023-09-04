@@ -19,6 +19,7 @@ import Capsule from '../../Icons/Capsule';
 import UserIcon from '../../Icons/UserIcon';
 import Wallet from '../../Icons/Wallet';
 import Edit from '../../Icons/Edit';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 
 
@@ -121,6 +122,8 @@ const Home=({navigation})=>{
     const switchSetting = () =>{
         setSettingEnable(!settingEnable);
     }
+
+    const headerHeight = useHeaderHeight();
     
 
     return (
@@ -129,7 +132,7 @@ const Home=({navigation})=>{
           padding: 30,
           height: "auto",
           backgroundColor: "#F0F0F3",
-          paddingTop: 0,
+          paddingTop: headerHeight,
           paddingBottom: 50,
           display: "flex",
           justifyContent: "space-between",
@@ -1328,7 +1331,7 @@ const Home=({navigation})=>{
             justifyContent: "space-between",
             flexWrap: "wrap",
             alignItems: "flex-start",
-            height:"60%"
+            marginBottom:40
           }}
         >
           <HomeCard

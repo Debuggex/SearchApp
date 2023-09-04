@@ -9,6 +9,7 @@ import Modal from "react-native-modal";
 import InsetShadow from "react-native-inset-shadow";
 import { TouchableOpacity } from "react-native";
 import { View } from "react-native";
+import { useHeaderHeight } from "@react-navigation/elements";
 
 
 
@@ -35,8 +36,10 @@ const Sharing = ({navigation}) =>{
         setDeleteIndex(index);
     }
 
+    const headerHeight = useHeaderHeight();
+
     return(
-        <ScrollView contentContainerStyle={{ backgroundColor:"#F0F0F3",padding:30,paddingTop:0,display:'flex',height:height}}>
+        <ScrollView contentContainerStyle={{ backgroundColor:"#F0F0F3",padding:30,paddingTop:useHeaderHeight()+30,display:'flex',height:height}}>
                 <Modal isVisible={isDelete} style={{ flex: 1 }} backdropOpacity={0.4}>
                 <View style={{ backgroundColor: "#F0F0F3", borderRadius: 20, position:"absolute",bottom:0,width:"100%" }}>
                     <TouchableOpacity
@@ -153,14 +156,17 @@ const Sharing = ({navigation}) =>{
                     ></InsetShadow>
                 </View>
                 </Modal>
-                <FlatList data={emailList}
+                {emailList.map((item,key)=>(
+                    <SingleNote props={{heading:"Tatum",key:index,note:+"Shared with "+item,pressed:()=>{selectEmail(index)}}}/>
+                ))}
+                {/* <FlatList data={emailList}
                     renderItem={({item,index})=>{
                             let text = "Shared with "+item;
                         return(
                             <SingleNote props={{heading:"Tatum",key:index,note:text,pressed:()=>{selectEmail(index)}}}/>
                         )
                     }}
-                />
+                /> */}
         </ScrollView>
     )
 }

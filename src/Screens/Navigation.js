@@ -27,6 +27,7 @@ import Back from "../../Icons/Back";
 import Plus from "../../Icons/Plus";
 import Search from "./../../Icons/Search";
 import { SafeAreaView } from "react-native";
+import { BlurView } from "expo-blur";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,12 +49,13 @@ const Navigation = () => {
           name="Home"
           component={Home}
           options={{
+            headerTransparent:true,
             header: () => {
               const { isHealthModal, setIsHealthModal, settings, setSettings } =
                 useContext(context);
               return (
                 <SafeAreaView>
-                  <View style={{
+                  <BlurView style={{
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -62,7 +64,7 @@ const Navigation = () => {
                     padding: 30,
                     paddingTop: 40,
 
-                    backgroundColor: "#F0F0F3",
+                    // backgroundColor: "#F0F0F3",
                   }}>
 
                     <TouchableOpacity
@@ -115,7 +117,7 @@ const Navigation = () => {
                       }}
                     />
 
-                  </View>
+                  </BlurView>
                 </SafeAreaView>
               );
             },
@@ -125,9 +127,10 @@ const Navigation = () => {
           name="User"
           component={User}
           options={{
+            headerTransparent:true,
             header: ({ navigation }) => (
               <SafeAreaView>
-                <View
+                <BlurView
                   style={{
                     display: "flex",
                     padding: 30,
@@ -203,7 +206,7 @@ const Navigation = () => {
                       </Text>
                     </View>
                   </TouchableOpacity>
-                </View>
+                </BlurView>
               </SafeAreaView>
             ),
           }}
@@ -218,12 +221,13 @@ const Navigation = () => {
           component={EditUser}
           options={{
             title: "",
+            headerTransparent:true,
             headerStyle: {
               backgroundColor: "#F0F0F3",
             },
             header: ({ navigation }) => (
               <SafeAreaView>
-                <View
+                <BlurView
                   style={{
                     display: "flex",
                     padding: 30,
@@ -292,7 +296,7 @@ const Navigation = () => {
                       </Text>
                     </View>
                   </TouchableOpacity>
-                </View>
+                </BlurView>
               </SafeAreaView>
             ),
           }}
@@ -301,9 +305,9 @@ const Navigation = () => {
           name="Notes"
           component={Notes}
           options={{
-            headerStyle: { backgroundColor: "#F0F0F3" },
+            headerTransparent:true,
             header: ({ navigation }) => {
-              const { notesAction, setNotesAction, searctText, setSearchText } =
+              const {  setNotesAction, searctText, setSearchText } =
                 useContext(context);
               const [showSearch, setShowSearch] = useState(false);
               return (
@@ -315,7 +319,7 @@ const Navigation = () => {
                     alignItems: "center",
                   }}
                 >
-                  <View
+                  <BlurView
                     style={{
                       display: "flex",
                       padding: 30,
@@ -378,7 +382,7 @@ const Navigation = () => {
                         SvgIcon={Search}
                       />
                     </View>
-                  </View>
+                  </BlurView>
                   {showSearch && (
                     <View
                       style={{
@@ -406,7 +410,7 @@ const Navigation = () => {
           component={AddNote}
           options={{
             headerStyle: { backgroundColor: "#F0F0F3" },
-            header: ({ navigation, route }) => {
+            header: ({ navigation }) => {
               const {
                 note,
                 notesAction,
@@ -415,9 +419,7 @@ const Navigation = () => {
                 noteHeading,
                 setNoteHeading,
                 noteText,
-                setNoteText,
                 noteIndex,
-                setNoteIndex,
               } = useContext(context);
               useEffect(() => {
                 if (notesAction == "NEW") {
@@ -546,7 +548,7 @@ const Navigation = () => {
           name="Documents"
           component={Documents}
           options={{
-            headerStyle: { backgroundColor: "#F0F0F3" },
+           headerTransparent:true,
             header: ({ navigation }) => {
               const { showModal, searchDocument, setSearchDocument } =
                 useContext(context);
@@ -560,7 +562,7 @@ const Navigation = () => {
                     alignItems: "center",
                   }}
                 >
-                  <View
+                  <BlurView
                     style={{
                       display: "flex",
                       padding: 30,
@@ -622,7 +624,7 @@ const Navigation = () => {
                         SvgIcon={Search}
                       />
                     </View>
-                  </View>
+                  </BlurView>
                   {showSearch && (
                     <View
                       style={{
@@ -650,12 +652,10 @@ const Navigation = () => {
           name="Folder"
           component={Folder}
           options={{
-            headerStyle: { backgroundColor: "#F0F0F3" },
+            headerTransparent:true,
             header: ({ navigation }) => {
               const {
                 selectedFolder,
-                setSelectedFolder,
-                documents,
                 showModal,
               } = useContext(context);
               const [showSearch, setShowSearch] = useState(false);
@@ -668,7 +668,7 @@ const Navigation = () => {
                     alignItems: "center",
                   }}
                 >
-                  <View
+                  <BlurView
                     style={{
                       display: "flex",
                       padding: 30,
@@ -729,7 +729,7 @@ const Navigation = () => {
                         SvgIcon={Search}
                       />
                     </View>
-                  </View>
+                  </BlurView>
                   {showSearch && (
                     <View
                       style={{
@@ -753,7 +753,7 @@ const Navigation = () => {
           name="Sharing"
           component={Sharing}
           options={{
-            headerStyle: { backgroundColor: "#F0F0F3" },
+            headerTransparent:true,
             header: ({ navigation }) => {
               return (
                 <SafeAreaView
@@ -764,7 +764,7 @@ const Navigation = () => {
                     alignItems: "center",
                   }}
                 >
-                  <View
+                  <BlurView
                     style={{
                       display: "flex",
                       padding: 30,
@@ -799,7 +799,7 @@ const Navigation = () => {
                     >
                       Sharing
                     </Text>
-                  </View>
+                  </BlurView>
                 </SafeAreaView>
               );
             },
