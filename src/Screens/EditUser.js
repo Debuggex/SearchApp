@@ -8,6 +8,7 @@ import ConditionInput from "./ConditionInput";
 import { useState } from "react";
 import Plus from './../../Icons/Plus';
 import { useHeaderHeight } from "@react-navigation/elements";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 
@@ -52,6 +53,7 @@ const EditUser =({navigation})=>{
     }
     const headerHeight = useHeaderHeight();
     return(
+        <SafeAreaView style={{height:"100%"}}>
         <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={{backgroundColor:"#F0F0F3",paddingTop:headerHeight,paddingBottom:30,display:'flex',justifyContent:"space-between"}}>
             <Text style={{color:"#898A8D",fontSize:16,fontWeight:400,padding:30,paddingBottom:10,paddingTop:10}}>About Me</Text>
             {datas.map((data)=>(<EditInputField props={{label:data.label,placeholder:data.placeholder,id:data.id,elevation:15-data.id}}/>))}
@@ -64,6 +66,7 @@ const EditUser =({navigation})=>{
             ))}
             
         </ScrollView>
+        </SafeAreaView>
     )
 
 

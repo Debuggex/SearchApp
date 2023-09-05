@@ -52,8 +52,7 @@ const Notes = ({navigation,route}) =>{
 
     if(isData){
         return(
-            <SafeAreaView>
-                <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30, paddingTop: headerHeight, display: 'flex' }}
+                <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30, display: 'flex',marginTop:headerHeight-(headerHeight*0.5) }}
                  data={filteredNotes}
                     renderItem={({item,index})=>{
                         return(
@@ -61,7 +60,6 @@ const Notes = ({navigation,route}) =>{
                         )
                     }}
                 />
-            </SafeAreaView>
         )
     }else{
         return(
