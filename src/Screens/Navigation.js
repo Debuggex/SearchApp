@@ -62,8 +62,7 @@ const Navigation = () => {
                     width: "100%",
                     alignItems: "center",
                     padding: 30,
-                    paddingTop: 40,
-
+                    paddingTop:25,
                     // backgroundColor: "#F0F0F3",
                   }}>
 
@@ -134,7 +133,7 @@ const Navigation = () => {
                   style={{
                     display: "flex",
                     padding: 30,
-                    paddingTop: 40,
+                    paddingTop: 25,
 
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -233,7 +232,7 @@ const Navigation = () => {
                     padding: 30,
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    paddingTop: 40,
+                    paddingTop: 25,
                     width: "100%",
                     alignItems: "center",
                     //   paddingTop: 80,
@@ -323,7 +322,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 40,
+                      paddingTop: 25,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -435,7 +434,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 40,
+                      paddingTop: 25,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -566,7 +565,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 40,
+                      paddingTop: 25,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -672,7 +671,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 40,
+                      paddingTop: 25,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -771,12 +770,12 @@ const Navigation = () => {
                       flexDirection: "row",
                       width: "100%",
                       alignItems: "center",
-                      paddingTop: 40,
+                      paddingTop: 25,
                       backgroundColor: "#F0F0F3",
-                      
+                      justifyContent:"space-between"
                     }}
                   >
-                    <View style={{ width: "45%" }}>
+                    <View style={{}}>
                       <InsetButton
                         props={{
                           pressed: () => {
@@ -799,6 +798,19 @@ const Navigation = () => {
                     >
                       Sharing
                     </Text>
+                    <View style={{opacity:0}}>
+                      <InsetButton
+                        props={{
+                          pressed: () => {
+                            console.log("Home")
+                          },
+
+                          width: 8,
+                          height: 8,
+                        }}
+                        SvgIcon={Back}
+                      />
+                    </View>
                   </BlurView>
                 </SafeAreaView>
               );

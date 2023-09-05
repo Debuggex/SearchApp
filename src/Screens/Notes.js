@@ -3,6 +3,7 @@ import SingleNote from "./SingleNote";
 import { useContext, useEffect, useState } from "react";
 import context from './Context/ContextProvider';
 import { useHeaderHeight } from "@react-navigation/elements";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 
@@ -51,18 +52,16 @@ const Notes = ({navigation,route}) =>{
 
     if(isData){
         return(
-            <ScrollView contentContainerStyle={{backgroundColor:"#F0F0F3",padding:30,paddingTop:headerHeight,display:'flex',height:height}}>
-                {filteredNotes.map((item,index)=>(
-                    <SingleNote props={{heading:item.heading,key:index,note:item.note,pressed:()=>{updateNotes(index)}}}/>
-                ))}
-                {/* <FlatList data={filteredNotes}
+            <SafeAreaView>
+                <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30, paddingTop: headerHeight, display: 'flex' }}
+                 data={filteredNotes}
                     renderItem={({item,index})=>{
                         return(
                             <SingleNote props={{heading:item.heading,key:index,note:item.note,pressed:()=>{updateNotes(index)}}}/>
                         )
                     }}
-                /> */}
-            </ScrollView>
+                />
+            </SafeAreaView>
         )
     }else{
         return(

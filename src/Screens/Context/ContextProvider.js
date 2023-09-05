@@ -4,7 +4,7 @@ import React, { useState } from "react"
 const ContextCreator = React.createContext(); 
 export const ContextProvider = ({children,navigation})=>{
 
-    const [notes,setNotes] = useState([]);
+    const [notes, setNotes] = useState([{ heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }, { heading: "hello", note: "dassdadsa" }]);
     const [note,setNote] = useState({});
     const [noteHeading,setNoteHeading] = useState('');
     const [noteText,setNoteText] = useState('');
