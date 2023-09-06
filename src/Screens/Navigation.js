@@ -28,6 +28,8 @@ import Plus from "../../Icons/Plus";
 import Search from "./../../Icons/Search";
 import { SafeAreaView } from "react-native";
 import { BlurView } from "expo-blur";
+import Cards from "./Cards";
+import AddCard from "./AddCard";
 
 const Stack = createNativeStackNavigator();
 
@@ -133,7 +135,7 @@ const Navigation = () => {
                   style={{
                     display: "flex",
                     padding: 30,
-                    paddingTop: 25,
+                    // paddingTop: 25,
 
                     flexDirection: "row",
                     justifyContent: "space-between",
@@ -232,7 +234,7 @@ const Navigation = () => {
                     padding: 30,
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    paddingTop: 25,
+                    // paddingTop: 25,
                     width: "100%",
                     alignItems: "center",
                     //   paddingTop: 80,
@@ -322,7 +324,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 25,
+                      // paddingTop: 25,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -434,7 +436,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 25,
+                      // paddingTop: 25,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -565,7 +567,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 25,
+                      // paddingTop: 25,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -671,7 +673,7 @@ const Navigation = () => {
                     style={{
                       display: "flex",
                       padding: 30,
-                      paddingTop: 25,
+                      // paddingTop: 25,
                       flexDirection: "row",
                       justifyContent: "space-between",
                       width: "100%",
@@ -770,7 +772,7 @@ const Navigation = () => {
                       flexDirection: "row",
                       width: "100%",
                       alignItems: "center",
-                      paddingTop: 25,
+                      // paddingTop: 25,
                       backgroundColor: "#F0F0F3",
                       justifyContent:"space-between"
                     }}
@@ -817,6 +819,229 @@ const Navigation = () => {
             },
           }}
         ></Stack.Screen>
+
+        <Stack.Screen
+          name="Cards"
+          component={Cards}
+          options={{
+            headerTransparent: true,
+            header: ({ navigation }) => {
+              const {
+                cards,
+                setCards,
+              } = useContext(context);
+              const [showSearch, setShowSearch] = useState(false);
+              return (
+                <SafeAreaView
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <BlurView
+                    style={{
+                      display: "flex",
+                      padding: 30,
+                      // paddingTop: 25,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      alignItems: "center",
+                      //   paddingTop: 80,
+                      backgroundColor: "#F0F0F3",
+                    }}
+                  >
+                      <InsetButton
+                        props={{
+                          pressed: () => {
+                            navigation.navigate("Home");
+                          },
+
+                          width: 8,
+                          height: 8,
+                        }}
+                        SvgIcon={Back}
+                      />
+                    
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 400,
+                        textAlign: "center",
+                      }}
+                    >
+                      Cards
+                    </Text>
+                    
+                      <InsetButton
+                        props={{
+                          pressed: () => {
+                            navigation.navigate("AddCard");
+                          },
+                        }}
+                        SvgIcon={Plus}
+                      />
+                    
+                  </BlurView>
+                  {showSearch && (
+                    <View
+                      style={{
+                        width: "100%",
+                        padding: 30,
+                        paddingLeft: 60,
+                        paddingRight: 60,
+                        backgroundColor: "#F0F0F3",
+                      }}
+                    >
+                      <SearchInput placeholder="Search" />
+                    </View>
+                  )}
+                </SafeAreaView>
+              );
+            },
+          }}
+        ></Stack.Screen>
+
+
+        <Stack.Screen
+          name="AddCard"
+          component={AddCard}
+          options={{
+            headerTransparent: true,
+            header: ({ navigation }) => {
+              const { editCardIndex, setEditCardIndex,setTitle1,title1, cardColor, setCardColor, title2, setTitle2, title3, setTitle3, title4, setTitle4, input1, setInput1, input2, setInput2, input3, setInput3, input4, setInput4,cards,setCards } = useContext(context);
+              const reset = ()=>{
+                setTitle1("");
+                setTitle2("");
+                setTitle3("");
+                setTitle4("");
+                setInput1("");
+                setInput2("");
+                setInput3("");
+                setInput4("");
+                setCardColor("");
+                setEditCardIndex(null);
+                navigation.navigate("Cards");
+              }
+
+              return (
+                <SafeAreaView
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <BlurView
+                    style={{
+                      display: "flex",
+                      padding: 30,
+                      // paddingTop: 25,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      alignItems: "center",
+                      //   paddingTop: 80,
+                      backgroundColor: "#F0F0F3",
+                    }}
+                  >
+                    <InsetButton
+                      props={{
+                        pressed: () => {
+                          reset();
+                        },
+
+                        width: 8,
+                        height: 8,
+                      }}
+                      SvgIcon={Back}
+                    />
+
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 400,
+                        textAlign: "center",
+                      }}
+                    >
+                      Add Card
+                    </Text>
+
+                    <TouchableOpacity
+                      onPress={() => {
+                        let arr = [...cards];
+                        let obj = {
+                          title1,
+                          title2,
+                          title3,
+                          title4,
+                          input1,
+                          input2,
+                          input3,
+                          input4,
+                          cardColor
+                        };
+                        if(editCardIndex==undefined || editCardIndex == null){
+                          arr.push(obj);
+                        }else{
+                          arr[editCardIndex] = obj;
+                          setEditCardIndex(null);
+                        }
+                        setCards(arr);
+                        reset();
+                      }}
+                      style={{
+                        shadowColor: "#AEAEC0",
+                        shadowOpacity: 0.25,
+                        elevation: 5,
+                        shadowRadius: 5,
+                        shadowOffset: { width: 5, height: 5 },
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "#F0F0F3",
+                        borderRadius: 100,
+                      }}
+                    >
+                      <View
+                        style={{
+                          shadowColor: "#FFFFFF",
+                          shadowOpacity: 0.25,
+                          elevation: 5,
+                          shadowRadius: 5,
+                          shadowOffset: { width: -5, height: -5 },
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          padding: 5,
+                          paddingRight: 20,
+                          paddingLeft: 20,
+                          alignItems: "center",
+                          backgroundColor: "#F0F0F3",
+                          borderRadius: 100,
+                        }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: 16,
+                            fontWeight: 400,
+                            color: "#2684FF",
+                          }}
+                        >
+                          Save
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  </BlurView>
+                </SafeAreaView>
+              );
+            },
+          }}
+        ></Stack.Screen>
+
       </Stack.Navigator>
     </NavigationContainer>
   );
