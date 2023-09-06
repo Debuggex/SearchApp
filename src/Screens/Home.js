@@ -1368,7 +1368,7 @@ const Home=({navigation})=>{
             />
             <HomeCard
               props={{
-                pressed: () => { console.log("Wallet") },
+                pressed: () => { navigation.navigate("Cards") },
               }}
               SvgIcon={Wallet}
             />
