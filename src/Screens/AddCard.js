@@ -91,16 +91,16 @@ const AddCard = ({ navigation }) =>{
 
                 {editCardIndex != undefined && editCardIndex != null && <View style={{ padding: 20, backgroundColor: cardColor, borderRadius: 20, display: "flex", flexDirection: "row" }}>
                     <View style={{ width: "48%" }}>
-                        <TextInput style={{ fontSize: 16, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={title1} onChangeText={(text) => { setTitle1(text) }} placeholder="Title Goes Here" placeholderTextColor="#FFFFFF" />
+                        <TextInput style={{ fontSize: 16, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={title1} onChangeText={(text) => { setTitle1(text) }} placeholder="Title Goes Here" placeholderTextColor={cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF"} />
                         <TextInput style={{ fontSize: 12, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={input1} onChangeText={(text) => { setInput1(text) }} placeholder="Input Goes Here" placeholderTextColor="#A3ADB2" />
-                        <TextInput style={{ fontSize: 16, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={title2} onChangeText={(text) => { setTitle2(text) }} placeholder="Title Goes Here" placeholderTextColor="#FFFFFF" />
+                        <TextInput style={{ fontSize: 16, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={title2} onChangeText={(text) => { setTitle2(text) }} placeholder="Title Goes Here" placeholderTextColor={cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF"} />
                         <TextInput style={{ fontSize: 12, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={input2} onChangeText={(text) => { setInput2(text) }} placeholder="Input Goes Here" placeholderTextColor="#A3ADB2" />
-                        <TextInput style={{ fontSize: 16, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={title3} onChangeText={(text) => { setTitle3(text) }} placeholder="Title Goes Here" placeholderTextColor="#FFFFFF" />
+                        <TextInput style={{ fontSize: 16, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={title3} onChangeText={(text) => { setTitle3(text) }} placeholder="Title Goes Here" placeholderTextColor={cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF"} />
                         <TextInput style={{ fontSize: 12, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={input3} onChangeText={(text) => { setInput3(text) }} placeholder="Input Goes Here" placeholderTextColor="#A3ADB2" />
 
                     </View>
                     <View style={{ display: "flex", justifyContent: "center", width: "48%" }}>
-                        <TextInput style={{ fontSize: 16, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={title4} onChangeText={(text) => { setTitle4(text) }} placeholder="Title Goes Here" placeholderTextColor="#FFFFFF" />
+                        <TextInput style={{ fontSize: 16, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={title4} onChangeText={(text) => { setTitle4(text) }} placeholder="Title Goes Here" placeholderTextColor={cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF"} />
                         <TextInput style={{ fontSize: 12, marginBottom: 10, color: cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }} value={input4} onChangeText={(text) => { setInput4(text) }} placeholder="Input Goes Here" placeholderTextColor="#A3ADB2" />
                     </View>
 

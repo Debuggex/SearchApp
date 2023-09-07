@@ -27,7 +27,7 @@ const Cards = ({navigation}) =>{
         }}>
             {cards.length==0 && <View style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", }}>
                 <TouchableOpacity
-                    onPress={() => showModal()}
+                    onPress={()=>{navigation.navigate("AddCard")}}
                     style={{
                         shadowColor: "#AEAEC0",
                         shadowOpacity: 0.25,
