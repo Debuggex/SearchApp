@@ -879,7 +879,7 @@ const Navigation = () => {
                       <InsetButton
                         props={{
                           pressed: () => {
-                            setModalButtons(!modalButton);
+                            setModalButtons(true);
                           },
                         }}
                         SvgIcon={Plus}
