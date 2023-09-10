@@ -829,6 +829,7 @@ const Navigation = () => {
               const {
                 cards,
                 setCards,
+                modalButton, setModalButtons
               } = useContext(context);
               const [showSearch, setShowSearch] = useState(false);
               return (
@@ -878,7 +879,7 @@ const Navigation = () => {
                       <InsetButton
                         props={{
                           pressed: () => {
-                            navigation.navigate("AddCard");
+                            setModalButtons(!modalButton);
                           },
                         }}
                         SvgIcon={Plus}

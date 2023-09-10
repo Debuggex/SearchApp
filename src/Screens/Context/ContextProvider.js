@@ -20,6 +20,7 @@ export const ContextProvider = ({children,navigation})=>{
     const [selectedFolder,setSelectedFolder] = useState(0);
     const [emailList,setEmailList] = useState([]);
     const [settings,setSettings] = useState(false);
+    const [modalButton, setModalButtons] = useState(false);
     const [cards, setCards] = useState([
     //     {
     //     title1:"1",
@@ -61,7 +62,7 @@ export const ContextProvider = ({children,navigation})=>{
 
     return(
         <ContextCreator.Provider value={{ 
-            notes, setNotes, setNote, note, searctText, setSearchText, showModal, isModal, documents, setDocuments, isDocument, setIsDocuments, selectedFolder, setSelectedFolder, notesAction, setNotesAction, noteHeading, setNoteHeading, noteText, setNoteText, noteIndex, setNoteIndex, isData, setIsData, searchDocument, setSearchDocument, isHealthModal, setIsHealthModal, emailList, setEmailList, settings, setSettings, cards, setCards, title1, setTitle1, title2, setTitle2, title3, setTitle3, title4, setTitle4, input1, setInput1, input2, setInput2, input3, setInput3, input4, setInput4, cardColor, setCardColor, editCardIndex, setEditCardIndex }}>
+            notes, setNotes, setNote, note, searctText, setSearchText, showModal, isModal, documents, setDocuments, isDocument, setIsDocuments, selectedFolder, setSelectedFolder, notesAction, setNotesAction, noteHeading, setNoteHeading, noteText, setNoteText, noteIndex, setNoteIndex, isData, setIsData, searchDocument, setSearchDocument, isHealthModal, setIsHealthModal, emailList, setEmailList, settings, setSettings, cards, setCards, title1, setTitle1, title2, setTitle2, title3, setTitle3, title4, setTitle4, input1, setInput1, input2, setInput2, input3, setInput3, input4, setInput4, cardColor, setCardColor, editCardIndex, setEditCardIndex, modalButton, setModalButtons }}>
             {children}
         </ContextCreator.Provider>
     )
