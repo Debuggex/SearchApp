@@ -41,6 +41,7 @@ const Folder=({navigation})=>{
     const [imagePreview, setImagePreview] = useState(false);
     const [newFolder, setNewFolder] = useState(false);
     const [folderName, setFolderName] = useState("");
+    const [modalMargin, setModalMargin] = useState(19.5);
 
     const { height } = Dimensions.get("window");
 
@@ -95,11 +96,13 @@ const Folder=({navigation})=>{
     hideCamera();
     setImagePreview(false);
     hideModal();
+      setModalMargin(19.5);
   }
   
 
   
   showFolder=()=>{
+      setModalMargin(19.5);
     createFolder();
   }
 
@@ -122,6 +125,7 @@ const Folder=({navigation})=>{
   showCamera = () => {
     setShowCamera(true);
     setModalButtons(false);
+      setModalMargin(0);
   };
 
 
@@ -142,10 +146,10 @@ const Folder=({navigation})=>{
               <Image key={index} style={{height:200,marginBottom:10,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%"}} source={{ uri: data }}/>
             ))}
 
-            <Modal isVisible={isModal} style={{ flex: 1 }} backdropOpacity={0.4}>
+            <Modal isVisible={isModal} style={{ flex: 1, margin: modalMargin }} backdropOpacity={0.4}>
             {modalButton && (
                 <View
-                style={{ backgroundColor: "#F0F0F3", borderRadius: 20, top: 100 }}
+                style={{ backgroundColor: "#F0F0F3", borderRadius: 20, position:"absolute",bottom:0 }}
                 >
                 <TouchableOpacity
                     onPress={() => {
@@ -361,14 +365,145 @@ const Folder=({navigation})=>{
             )}
             {showCameraView && (
                 <View style={{ width: "100%", height: "100%" }}>
-                <Camera
-                    style={{ width: "100%", height: "100%", flex: 1 }}
-                    type={type}
-                    ref={(ref) => {
-                    this.camera = ref;
-                    }}
-                ></Camera>
-                <View
+                        <View style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "56%" }}>
+                            <View style={{ width: 219, height: 326 }}>
+                                <Camera
+                                    style={{ width: "100%", height: "100%", flex: 1 }}
+                                    type={type}
+                                    ref={(ref) => {
+                                        this.camera = ref;
+                                    }}
+                                ></Camera>
+                            </View>
+                        </View>
+                        <View
+                            style={{ backgroundColor: "#F0F0F3", position: "absolute", bottom: 0, width: "100%", height: "44%" }}
+                        >
+                            <View style={{ display: "flex", alignItems: "center", width: "100%" }}>
+                                <Text style={{ fontSize: 18, margin: 30, marginBottom: 5 }}>Add Document</Text>
+                                <Text style={{ fontSize: 12, color: "#A3ADB2", margin: 30, textAlign: "center" }}>Position your Document in the frame to take a picture</Text>
+
+                            </View>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    // setAddCard(false);
+                                    // setShowCamera(true)
+                                    this.camera.takePictureAsync(options = { base64: true, skipProcessing: true, onPictureSaved: onPictureSaved, });
+                                }}
+                                style={{
+                                    margin: 30,
+                                    marginBottom: 5,
+                                    shadowColor: "#AEAEC0",
+                                    shadowOpacity: 0.25,
+                                    elevation: 5,
+                                    height: 60,
+                                    shadowRadius: 5,
+                                    shadowOffset: { width: 5, height: 5 },
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    backgroundColor: "#F0F0F3",
+                                    borderRadius: 100,
+                                    // width:"85%"
+                                }}
+                            >
+                                <View
+                                    style={{
+                                        shadowColor: "#FFFFFF",
+                                        width: "100%",
+                                        height: 60,
+                                        shadowOpacity: 0.25,
+                                        elevation: 5,
+                                        margin: 10,
+                                        marginBottom: 5,
+                                        marginTop: 5,
+                                        shadowRadius: 5,
+                                        shadowOffset: { width: -5, height: -5 },
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "center",
+                                        padding: 5,
+                                        paddingRight: 20,
+                                        paddingLeft: 20,
+                                        alignItems: "center",
+                                        backgroundColor: "#F0F0F3",
+                                        borderRadius: 100,
+                                    }}
+                                >
+                                    <Text style={{ fontSize: 16, fontWeight: 400 }}>Take Photo</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <InsetShadow
+                                containerStyle={{
+                                    borderRadius: 25,
+                                    height: 60,
+                                    backgroundColor: "#F0F0F3",
+                                    margin: 30,
+                                    marginTop: 5,
+                                }}
+                                bottom={false}
+                                right={false}
+                                shadowColor="#AEAEC0"
+                                shadowOpacity={0.5}
+                                elevation={10}
+                                shadowRadius={15}
+                                shadowOffset={20}
+                                children={
+                                    <InsetShadow
+                                        containerStyle={{
+                                            borderRadius: 25,
+                                            height: "100%",
+                                            width: "100%",
+                                            backgroundColor: "transparent",
+                                            paddingLeft: 20,
+                                        }}
+                                        top={false}
+                                        left={false}
+                                        shadowOffset={15}
+                                        shadowOpacity={1}
+                                        shadowRadius={15}
+                                        elevation={20}
+                                        shadowColor="white"
+                                    >
+                                        <View
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                height: "100%",
+                                                width: "100%",
+                                            }}
+                                        >
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    hideCamera();
+                                                    setModalMargin(19.5);
+                                                }}
+                                                style={{
+                                                    width: "100%",
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <Text
+                                                    style={{
+                                                        fontSize: 16,
+                                                        fontWeight: 400,
+                                                        color: "#2684FF",
+                                                    }}
+                                                >
+                                                    Cancel
+                                                </Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </InsetShadow>
+                                }
+                            ></InsetShadow>
+                        </View>
+                {/* <View
                     style={{
                     padding: 30,
                     paddingTop: 100,
@@ -410,7 +545,7 @@ const Folder=({navigation})=>{
                         Flip
                     </Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 </View>
             )}
             {imagePreview && (
@@ -421,11 +556,138 @@ const Folder=({navigation})=>{
                     backgroundColor: "transparent",
                 }}
                 >
-                <Image
-                    style={{ width: "100%", height: "77%" }}
-                    source={{ uri: tempImg }}
-                />
-                <InsetShadow
+                        <View style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "56%" }}>
+                            <View style={{ width: 219, height: 326 }}>
+                                <Image
+                                    style={{ width: "100%", height: "100%" }}
+                                    source={{ uri: tempImg }}
+                                />
+                            </View>
+                        </View>
+                        <View
+                            style={{ backgroundColor: "#F0F0F3", position: "absolute", bottom: 0, width: "100%", height: "44%" }}
+                        >
+                            <View style={{ display: "flex", alignItems: "center", width: "100%" }}>
+                                <Text style={{ fontSize: 18, margin: 30 }}>Add Document</Text>
+
+                            </View>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    showFolder();
+                                }}
+                                style={{
+                                    margin: 30,
+                                    marginBottom: 5,
+                                    shadowColor: "#AEAEC0",
+                                    shadowOpacity: 0.25,
+                                    elevation: 5,
+                                    height: 60,
+                                    shadowRadius: 5,
+                                    shadowOffset: { width: 5, height: 5 },
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    backgroundColor: "#F0F0F3",
+                                    borderRadius: 100,
+                                    // width:"85%"
+                                }}
+                            >
+                                <View
+                                    style={{
+                                        shadowColor: "#FFFFFF",
+                                        width: "100%",
+                                        height: 60,
+                                        shadowOpacity: 0.25,
+                                        elevation: 5,
+                                        margin: 10,
+                                        marginBottom: 5,
+                                        marginTop: 5,
+                                        shadowRadius: 5,
+                                        shadowOffset: { width: -5, height: -5 },
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "center",
+                                        padding: 5,
+                                        paddingRight: 20,
+                                        paddingLeft: 20,
+                                        alignItems: "center",
+                                        backgroundColor: "#F0F0F3",
+                                        borderRadius: 100,
+                                    }}
+                                >
+                                    <Text style={{ fontSize: 16, fontWeight: 400 }}>Continue</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <InsetShadow
+                                containerStyle={{
+                                    borderRadius: 25,
+                                    height: 60,
+                                    backgroundColor: "#F0F0F3",
+                                    margin: 30,
+                                    marginTop: 5,
+                                }}
+                                bottom={false}
+                                right={false}
+                                shadowColor="#AEAEC0"
+                                shadowOpacity={0.5}
+                                elevation={10}
+                                shadowRadius={15}
+                                shadowOffset={20}
+                                children={
+                                    <InsetShadow
+                                        containerStyle={{
+                                            borderRadius: 25,
+                                            height: "100%",
+                                            width: "100%",
+                                            backgroundColor: "transparent",
+                                            paddingLeft: 20,
+                                        }}
+                                        top={false}
+                                        left={false}
+                                        shadowOffset={15}
+                                        shadowOpacity={1}
+                                        shadowRadius={15}
+                                        elevation={20}
+                                        shadowColor="white"
+                                    >
+                                        <View
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                height: "100%",
+                                                width: "100%",
+                                            }}
+                                        >
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    reCapture();
+                                                }}
+                                                style={{
+                                                    width: "100%",
+                                                    display: "flex",
+                                                    flexDirection: "row",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                }}
+                                            >
+                                                <Text
+                                                    style={{
+                                                        fontSize: 16,
+                                                        fontWeight: 400,
+                                                        color: "#2684FF",
+                                                    }}
+                                                >
+                                                    Cancel
+                                                </Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </InsetShadow>
+                                }
+                            ></InsetShadow>
+                        </View>
+                {/* <InsetShadow
                     containerStyle={{
                     borderRadius: 25,
                     height: 60,
@@ -556,7 +818,7 @@ const Folder=({navigation})=>{
                         </View>
                     </InsetShadow>
                     }
-                ></InsetShadow>
+                ></InsetShadow> */}
                 </View>
             )}
             {newFolder && (
