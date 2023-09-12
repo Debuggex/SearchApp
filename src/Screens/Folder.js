@@ -143,7 +143,7 @@ const Folder=({navigation})=>{
     return(
         <View style={{ flexDirection:'row',padding:30,paddingTop:useHeaderHeight()+30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start',height:"100%",backgroundColor:"#F0F0F3"}}>
             {selectedFolder.images.map((data,index)=>(
-              <Image key={index} style={{height:200,marginBottom:10,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%"}} source={{ uri: data }}/>
+              <Image key={index} resizeMode="stretch" style={{height:200,marginBottom:10,display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"center",width:"48%"}} source={{ uri: data }}/>
             ))}
 
             <Modal isVisible={isModal} style={{ flex: 1, margin: modalMargin }} backdropOpacity={0.4}>
@@ -366,15 +366,15 @@ const Folder=({navigation})=>{
             {showCameraView && (
                 <View style={{ width: "100%", height: "100%" }}>
                         <View style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "56%" }}>
-                            <View style={{ width: 219, height: 326 }}>
+                            {/* <View style={{ width: 219, height: 326 }}> */}
                                 <Camera
-                                    style={{ width: "100%", height: "100%", flex: 1 }}
+                                style={{ width: 219, height: 326 }}
                                     type={type}
                                     ref={(ref) => {
                                         this.camera = ref;
                                     }}
                                 ></Camera>
-                            </View>
+                            {/* </View> */}
                         </View>
                         <View
                             style={{ backgroundColor: "#F0F0F3", position: "absolute", bottom: 0, width: "100%", height: "44%" }}

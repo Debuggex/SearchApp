@@ -410,15 +410,15 @@ const Documents = ({ navigation, route }) => {
           {showCameraView && (
             <View style={{ width: "100%", height: "100%" }}>
               <View style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "56%" }}>
-                <View style={{ width: 219, height: 326 }}>
+                {/* <View style={{ width: 219, height: 326 }}> */}
                     <Camera
-                      style={{ width: "100%", height: "100%", flex: 1 }}
+                      style={{ width:219,height:326 }}
                       type={type}
                       ref={(ref) => {
                         this.camera = ref;
                       }}
                     ></Camera>
-                </View>
+                {/* </View> */}
               </View>
               <View
                 style={{ backgroundColor: "#F0F0F3", position: "absolute", bottom: 0, width: "100%", height: "44%" }}

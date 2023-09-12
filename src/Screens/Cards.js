@@ -372,15 +372,16 @@ const Cards = ({navigation}) =>{
                 </View>}
                 {showCameraView && <View style={{ width: "100%", height: "100%" }}>
                     <View style={{ display: "flex", alignItems: "center",justifyContent:"center",width:"100%",height:"56%" }}>
-                        <View style={{width:300,height:180}}>
+                        {/* <View style={{height:180}}> */}
                             <Camera
-                                style={{ width: "100%",height:"100%", flex: 1 }}
+                                responsiveOrientationWhenOrientationLocked={false}
+                                style={{ width:304,height:181 }}
                                 type={type}
                                 ref={(ref) => {
                                     this.camera = ref;
                                 }}
-                            ></Camera>
-                        </View>
+                            />
+                        {/* </View> */}
                     </View>
                     <View
                         style={{ backgroundColor: "#F0F0F3", position: "absolute", bottom: 0, width: "100%",height:"44%" }}
@@ -756,23 +757,7 @@ const Cards = ({navigation}) =>{
             <ScrollView contentContainerStyle={{padding: 30, paddingTop: useHeaderHeight() + 40, justifyContent: 'space-between', alignItems: 'flex-start' }}>
             
             {cards.map((data,index)=>(
-                // <TouchableOpacity onPress={()=>goEditCard(index)} key={index} style={{ padding: 20, backgroundColor: data.cardColor, borderRadius: 20, display: "flex", flexDirection: "row",width:"100%",marginBottom:20 }}>
-                //     <View style={{ width: "48%" }}>
-                //         <Text style={{ fontSize: 16, marginBottom: 10, color: data.cardColor == "#FFFFFF" ?"#34393A":"#FFFFFF" }}>{data.title1}</Text>
-                //         <Text style={{ fontSize: 12, marginBottom: 10, color: data.cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }}>{data.input1}</Text>
-                //         <Text style={{ fontSize: 16, marginBottom: 10, color: data.cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }}>{data.title2}</Text>
-                //         <Text style={{ fontSize: 12, marginBottom: 10, color: data.cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }}>{data.input2}</Text>
-                //         <Text style={{ fontSize: 16, marginBottom: 10, color: data.cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }}>{data.title3}</Text>
-                //         <Text style={{ fontSize: 12, marginBottom: 10, color: data.cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }}>{data.input3}</Text>
-
-                //     </View>
-                //     <View style={{ display: "flex", justifyContent: "center", width: "48%" }}>
-                //         <Text style={{ fontSize: 16, marginBottom: 10, color: data.cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }}>{data.title4}</Text>
-                //         <Text style={{ fontSize: 12, marginBottom: 10, color: data.cardColor == "#FFFFFF" ? "#34393A" : "#FFFFFF" }}>{data.input4}</Text>
-                //     </View>
-
-                // </TouchableOpacity>
-                <Image key={index} style={{ height: 490, marginBottom: 10, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", width: "100%",borderRadius:20 }} source={{ uri: data }} />
+                <Image key={index} resizeMode="stretch" style={{ height: 440, marginBottom: 10, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", width: "100%",borderRadius:20 }} source={{ uri: data }} />
             ))}
             
             </ScrollView>
