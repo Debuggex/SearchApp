@@ -431,7 +431,7 @@ const Folder=({navigation})=>{
                         <View style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "56%" }}>
                             {/* <View style={{ width: 219, height: 326 }}> */}
                                 <Camera
-                                style={{ width: 219, height: 326 }}
+                                style={{ width: "100%", height: "100%" }}
                                     type={type}
                                     ref={(ref) => {
                                         this.camera = ref;
