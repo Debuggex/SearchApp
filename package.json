@@ -20,6 +20,7 @@
     "expo-camera": "~13.4.2",
     "expo-document-picker": "~11.5.4",
     "expo-file-system": "~15.4.3",
+    "expo-image-manipulator": "~11.3.0",
     "expo-linear-gradient": "^12.3.0",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
@@ -29,6 +30,7 @@
     "react-native-barcode-mask": "^1.2.4",
     "react-native-inset-shadow": "^1.0.3",
     "react-native-linear-gradient": "^2.8.2",
+    "react-native-loading-spinner-overlay": "^3.0.1",
     "react-native-modal": "^13.0.1",
     "react-native-neomorph-shadows": "^1.1.2",
     "react-native-popup-menu": "^0.16.1",
@@ -36,8 +38,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-svg": "^13.13.0",
-    "react-native-web": "~0.19.6",
-    "expo-image-manipulator": "~11.3.0"
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

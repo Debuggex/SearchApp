@@ -20,6 +20,10 @@ import {
   import * as FileSystem from 'expo-file-system';
   import * as DocumentPicker from 'expo-document-picker';
 import { useHeaderHeight } from "@react-navigation/elements";
+import Spinner from "react-native-loading-spinner-overlay";
+import BarcodeMask from "react-native-barcode-mask";
+import * as ImageManipulator from 'expo-image-manipulator';
+
 
 const Folder=({navigation})=>{
     const {isModal,
@@ -42,7 +46,8 @@ const Folder=({navigation})=>{
     const [newFolder, setNewFolder] = useState(false);
     const [folderName, setFolderName] = useState("");
     const [modalMargin, setModalMargin] = useState(19.5);
-
+    const [loader,setLoader] = useState(false);
+  
     const { height } = Dimensions.get("window");
 
   useEffect(() => {
@@ -61,6 +66,7 @@ const Folder=({navigation})=>{
     let base64 = "data:image/png;base64,"+photo.base64.toString();
     setTempImg(base64);
     setImagePreview(true);
+    setLoader(false)
   };
 
   
@@ -140,6 +146,57 @@ const Folder=({navigation})=>{
     setTempImg("");
   };
 
+  const takePicture = async () =>{
+    if(this.camera){
+        // this.camera.takePictureAsync(options = { base64: true, skipProcessing: true});
+        const screenWidth = Dimensions.get("window").width;
+        const screenHeight = Dimensions.get("window").height*0.56;
+        
+        const maskWidth = 219/screenWidth;
+        const maskHeight = 326/screenHeight;
+
+        const options = {
+            quality: 0,
+            skipProcessing: true, // Set to true to skip processing the image
+            fixOrientation: true,
+            forceUpOrientation: true,
+            base64: true, // Capture in base64 format
+            exif: false,
+          };
+          const data = await this.camera.takePictureAsync(options);
+          setLoader(true);
+              
+          const maskX = (data.width - (data.width*maskWidth))/2;
+            const maskY = (data.height - (data.height* maskHeight))/2;
+       
+            setShowCamera(false);
+            const compressedImageData = await ImageManipulator.manipulateAsync(
+              data.uri,
+              [],
+              { format: 'jpeg', compress: 0.5 } // Adjust the compression level as needed
+            );
+            const croppedImageData = await ImageManipulator.manipulateAsync(
+            compressedImageData.uri,
+            [
+              {
+                crop: {
+                  originX: maskX,
+                  originY: maskY,
+                  width: compressedImageData.width*maskWidth,
+                  height:compressedImageData.height*maskHeight
+                },
+              }
+            ],
+            { format: ImageManipulator.SaveFormat.JPEG,
+            base64:true } // You can specify the desired format here
+          );
+
+        onPictureSaved(croppedImageData);
+          
+    }
+    
+}
+
     return(
         <View style={{ flexDirection:'row',padding:30,paddingTop:useHeaderHeight()+30,justifyContent:'space-between',flexWrap:'wrap',alignItems:'flex-start',height:"100%",backgroundColor:"#F0F0F3"}}>
             {selectedFolder.images.map((data,index)=>(
@@ -147,6 +204,12 @@ const Folder=({navigation})=>{
             ))}
 
             <Modal isVisible={isModal} style={{ flex: 1, margin: modalMargin }} backdropOpacity={0.4}>
+            <Spinner
+                visible={loader}
+                textContent="Processing Image"
+                textStyle={{fontSize:16,fontWeight:600}}
+                overlayColor="rgba(0,0,0,0.75)"
+                />
             {modalButton && (
                 <View
                 style={{ backgroundColor: "#F0F0F3", borderRadius: 20, position:"absolute",bottom:0 }}
@@ -373,7 +436,7 @@ const Folder=({navigation})=>{
                                     ref={(ref) => {
                                         this.camera = ref;
                                     }}
-                                ></Camera>
+                                ><BarcodeMask width={219} height={326} showAnimatedLine={false}/></Camera>
                             {/* </View> */}
                         </View>
                         <View

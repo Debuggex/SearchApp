@@ -36,7 +36,7 @@ const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Cards">
+      <Stack.Navigator initialRouteName="Signup">
         <Stack.Screen
           name="Signup"
           component={Signup}
@@ -841,7 +841,7 @@ const Navigation = () => {
                     alignItems: "center",
                   }}
                 >
-                  <View
+                  <BlurView
                     style={{
                       display: "flex",
                       padding: 30,
@@ -885,7 +885,7 @@ const Navigation = () => {
                         SvgIcon={Plus}
                       />
                     
-                  </View>
+                  </BlurView>
                   {showSearch && (
                     <View
                       style={{

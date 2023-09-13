@@ -23,6 +23,9 @@ import * as DocumentPicker from 'expo-document-picker';
 import { Menu, MenuOption, MenuOptions, MenuProvider, MenuTrigger } from "react-native-popup-menu";
 import { Entypo } from "@expo/vector-icons";
 import { useHeaderHeight } from "@react-navigation/elements";
+import Spinner from "react-native-loading-spinner-overlay";
+import BarcodeMask from "react-native-barcode-mask";
+import * as ImageManipulator from 'expo-image-manipulator';
 
 const Documents = ({ navigation, route }) => {
   const {
@@ -44,7 +47,7 @@ const Documents = ({ navigation, route }) => {
   const [imagePreview, setImagePreview] = useState(false);
   const [newFolder, setNewFolder] = useState(false);
   const [folderName, setFolderName] = useState("");
-
+  const [loader,setLoader] = useState(false);
   const [modalMargin, setModalMargin] = useState(19.5);
   const { height } = Dimensions.get("window");
 
@@ -66,7 +69,7 @@ const Documents = ({ navigation, route }) => {
     // console.log("uri-64 => ",base64Img);
     setTempImg(base64);
     setImagePreview(true);
-    
+    setLoader(false)
   };
 
   
@@ -178,6 +181,57 @@ const Documents = ({ navigation, route }) => {
 
   }
 
+  const takePicture = async () =>{
+    if(this.camera){
+        // this.camera.takePictureAsync(options = { base64: true, skipProcessing: true});
+        const screenWidth = Dimensions.get("window").width;
+        const screenHeight = Dimensions.get("window").height*0.56;
+        
+        const maskWidth = 219/screenWidth;
+        const maskHeight = 326/screenHeight;
+
+        const options = {
+            quality: 0,
+            skipProcessing: true, // Set to true to skip processing the image
+            fixOrientation: true,
+            forceUpOrientation: true,
+            base64: true, // Capture in base64 format
+            exif: false,
+          };
+          const data = await this.camera.takePictureAsync(options);
+          setLoader(true);
+              
+          const maskX = (data.width - (data.width*maskWidth))/2;
+            const maskY = (data.height - (data.height* maskHeight))/2;
+       
+            setShowCamera(false);
+            const compressedImageData = await ImageManipulator.manipulateAsync(
+              data.uri,
+              [],
+              { format: 'jpeg', compress: 0.5 } // Adjust the compression level as needed
+            );
+            const croppedImageData = await ImageManipulator.manipulateAsync(
+            compressedImageData.uri,
+            [
+              {
+                crop: {
+                  originX: maskX,
+                  originY: maskY,
+                  width: compressedImageData.width*maskWidth,
+                  height:compressedImageData.height*maskHeight
+                },
+              }
+            ],
+            { format: ImageManipulator.SaveFormat.JPEG,
+            base64:true } // You can specify the desired format here
+          );
+
+        onPictureSaved(croppedImageData);
+          
+    }
+    
+}
+
   const headerHeight = useHeaderHeight()
 
     return (
@@ -191,6 +245,12 @@ const Documents = ({ navigation, route }) => {
       >
         <Modal isVisible={isModal} style={{ flex: 1, margin: modalMargin }} backdropOpacity={0.4} animationIn="slideInUp"
           animationOut="slideOutDown">
+            <Spinner
+                visible={loader}
+                textContent="Processing Image"
+                textStyle={{fontSize:16,fontWeight:600}}
+                overlayColor="rgba(0,0,0,0.75)"
+                />
           {modalButton && (
             <View
               style={{ backgroundColor: "#F0F0F3", borderRadius: 20, position:"absolute",bottom: 0,width:"100%" }}
@@ -412,12 +472,12 @@ const Documents = ({ navigation, route }) => {
               <View style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "56%" }}>
                 {/* <View style={{ width: 219, height: 326 }}> */}
                     <Camera
-                      style={{ width:219,height:326 }}
+                      style={{ width:"100%",height:"100%" }}
                       type={type}
                       ref={(ref) => {
                         this.camera = ref;
                       }}
-                    ></Camera>
+                    ><BarcodeMask width={219} height={326} showAnimatedLine={false}/></Camera>
                 {/* </View> */}
               </View>
               <View
@@ -432,7 +492,7 @@ const Documents = ({ navigation, route }) => {
                   onPress={() => {
                     // setAddCard(false);
                     // setShowCamera(true)
-                    this.camera.takePictureAsync(options = { base64: true, skipProcessing: true, onPictureSaved: onPictureSaved, });
+                    takePicture();
                   }}
                   style={{
                     margin: 30,

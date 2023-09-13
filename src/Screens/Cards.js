@@ -14,6 +14,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import BarcodeMask from "react-native-barcode-mask";
 
 import * as ImageManipulator from 'expo-image-manipulator';
+import Spinner from "react-native-loading-spinner-overlay";
 
 const Cards = ({navigation}) =>{
     const { cards, setCards, editCardIndex, setEditCardIndex, modalButton, setModalButtons } = useContext(context);
@@ -25,6 +26,7 @@ const Cards = ({navigation}) =>{
     const [cardText, setCardText] = useState("");
     const [modalMargin,setModalMargin] = useState(19.5);
     const {width} = Dimensions.get("window")
+    const [loader,setLoader] = useState(false);
 
     useEffect(()=>{
         requestPermission((response) => {
@@ -34,7 +36,7 @@ const Cards = ({navigation}) =>{
     },[])
     
     const onPictureSaved = (photo) => {
-        // setShowCamera(false);
+        setShowCamera(false);
         let base64 = "data:image/png;base64," + photo.base64.toString();
         // const base64Img = await FileSystem.readAsStringAsync(photo.uri, { encoding: FileSystem?.EncodingType?.Base64 });
         // console.log("uri-64 => ",base64Img);
@@ -43,7 +45,7 @@ const Cards = ({navigation}) =>{
         setCards(arr);
         setModalMargin(19.5);
         setShowCamera(false);
-
+        setLoader(false)
     };
 
     const flipCamera = () => {
@@ -67,46 +69,50 @@ const Cards = ({navigation}) =>{
         if(this.camera){
             // this.camera.takePictureAsync(options = { base64: true, skipProcessing: true});
             const screenWidth = Dimensions.get("window").width;
-            const screenHeight = Dimensions.get("window").height;
+            const screenHeight = Dimensions.get("window").height*0.56;
             
-            const maskWidth = 304;
-            const maskHeight = 181;
+            const maskWidth = 304/screenWidth;
+            const maskHeight = 181/screenHeight;
 
             const options = {
-                quality: 1,
                 skipProcessing: true, // Set to true to skip processing the image
                 fixOrientation: true,
                 forceUpOrientation: true,
                 base64: true, // Capture in base64 format
                 exif: false,
               };
-
               const data = await this.camera.takePictureAsync(options);
-              const maskX = (screenWidth - maskWidth) / 2;
-              const maskY = (screenHeight - maskHeight) / 2;
-              const croppedImageData = await ImageManipulator.manipulateAsync(
-                data.uri,
+              setLoader(true);
+              
+              const maskX = (data.width - (data.width*maskWidth))/2;
+                const maskY = (data.height - (data.height* maskHeight))/2;
+                const compressedImageData = await ImageManipulator.manipulateAsync(
+                    data.uri,
+                    [],
+                    { format: 'jpeg', compress: 0.5 } // Adjust the compression level as needed
+                  );
+                setShowCamera(false);
+                const croppedImageData = await ImageManipulator.manipulateAsync(
+                compressedImageData.uri,
                 [
                   {
                     crop: {
                       originX: maskX,
                       originY: maskY,
-                      width: maskWidth,
-                      height: maskHeight,
+                      width: compressedImageData.width*maskWidth,
+                      height:compressedImageData.height*maskHeight
                     },
                   },
+                  {
+                    rotate:90
+                  }
                 ],
-                { format: ImageManipulator.SaveFormat.PNG,
+                { format: ImageManipulator.SaveFormat.JPEG,
                 base64:true } // You can specify the desired format here
               );
-      
-              // croppedImageData.uri contains the cropped image
-              console.log('Cropped Image URI:', croppedImageData.uri);
-      
-              // croppedImageData.base64 contains the cropped image in base64 format
-              console.log('Cropped Image Base64:', croppedImageData.base64);
 
-              onPictureSaved(croppedImageData);
+            onPictureSaved(croppedImageData);
+              
         }
         
     }
@@ -118,6 +124,12 @@ const Cards = ({navigation}) =>{
             height: "100%",
         }}>
             <Modal isVisible={modalButton || addCard || showCameraView} style={{margin:modalMargin}}>
+                <Spinner 
+                visible={loader}
+                textContent="Processing Image"
+                textStyle={{fontSize:16,fontWeight:600}}
+                overlayColor="rgba(0,0,0,0.75)"
+                />
                 {modalButton && <View
                     style={{ backgroundColor: "#F0F0F3", borderRadius: 20, position: "absolute", bottom: 0, width: "100%" }}
                 >
@@ -810,7 +822,7 @@ const Cards = ({navigation}) =>{
             <ScrollView contentContainerStyle={{padding: 30, paddingTop: useHeaderHeight() + 40, justifyContent: 'space-between', alignItems: 'flex-start' }}>
             
             {cards.map((data,index)=>(
-                <Image key={index} resizeMode="stretch" style={{ height: 440, marginBottom: 10, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", width: "100%",borderRadius:20 }} source={{ uri: data }} />
+                <Image key={index} resizeMode="center" style={{ height: 440, marginBottom: 10, display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", width: "100%",borderRadius:20 }} source={{ uri: data }} />
             ))}
             
             </ScrollView>
