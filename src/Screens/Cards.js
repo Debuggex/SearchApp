@@ -13,7 +13,7 @@ import { Image } from "react-native";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import BarcodeMask from "react-native-barcode-mask";
 
-
+import * as ImageManipulator from 'expo-image-manipulator';
 
 const Cards = ({navigation}) =>{
     const { cards, setCards, editCardIndex, setEditCardIndex, modalButton, setModalButtons } = useContext(context);
@@ -33,8 +33,8 @@ const Cards = ({navigation}) =>{
 
     },[])
     
-    const onPictureSaved = async (photo) => {
-        setShowCamera(false);
+    const onPictureSaved = (photo) => {
+        // setShowCamera(false);
         let base64 = "data:image/png;base64," + photo.base64.toString();
         // const base64Img = await FileSystem.readAsStringAsync(photo.uri, { encoding: FileSystem?.EncodingType?.Base64 });
         // console.log("uri-64 => ",base64Img);
@@ -61,6 +61,54 @@ const Cards = ({navigation}) =>{
     const goEditCard=(index)=>{
         setEditCardIndex(index);
         navigation.navigate("AddCard");
+    }
+
+    const takePicture = async () =>{
+        if(this.camera){
+            // this.camera.takePictureAsync(options = { base64: true, skipProcessing: true});
+            const screenWidth = Dimensions.get("window").width;
+            const screenHeight = Dimensions.get("window").height;
+            
+            const maskWidth = 304;
+            const maskHeight = 181;
+
+            const options = {
+                quality: 1,
+                skipProcessing: true, // Set to true to skip processing the image
+                fixOrientation: true,
+                forceUpOrientation: true,
+                base64: true, // Capture in base64 format
+                exif: false,
+              };
+
+              const data = await this.camera.takePictureAsync(options);
+              const maskX = (screenWidth - maskWidth) / 2;
+              const maskY = (screenHeight - maskHeight) / 2;
+              const croppedImageData = await ImageManipulator.manipulateAsync(
+                data.uri,
+                [
+                  {
+                    crop: {
+                      originX: maskX,
+                      originY: maskY,
+                      width: maskWidth,
+                      height: maskHeight,
+                    },
+                  },
+                ],
+                { format: ImageManipulator.SaveFormat.PNG,
+                base64:true } // You can specify the desired format here
+              );
+      
+              // croppedImageData.uri contains the cropped image
+              console.log('Cropped Image URI:', croppedImageData.uri);
+      
+              // croppedImageData.base64 contains the cropped image in base64 format
+              console.log('Cropped Image Base64:', croppedImageData.base64);
+
+              onPictureSaved(croppedImageData);
+        }
+        
     }
     return(
         <SafeAreaView style={{
@@ -398,7 +446,9 @@ const Cards = ({navigation}) =>{
                             onPress={() => {
                                 // setAddCard(false);
                                 // setShowCamera(true)
-                                this.camera.takePictureAsync(options = { base64: true, skipProcessing: true, onPictureSaved: onPictureSaved, });
+                                // this.camera.takePictureAsync(options = { base64: true, skipProcessing: true, onPictureSaved: onPictureSaved, });
+                                
+                                takePicture();
                             }}
                             style={{
                                 margin: 30,
