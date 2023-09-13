@@ -10,7 +10,8 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import { Camera, CameraType } from "expo-camera";
 import InsetShadow from "react-native-inset-shadow";
 import { Image } from "react-native";
-
+import { BarCodeScanner } from 'expo-barcode-scanner';
+import BarcodeMask from "react-native-barcode-mask";
 
 
 
@@ -375,12 +376,14 @@ const Cards = ({navigation}) =>{
                         {/* <View style={{height:180}}> */}
                             <Camera
                                 responsiveOrientationWhenOrientationLocked={false}
-                                style={{ width:304,height:181 }}
+                                style={{ width:"100%",height:"100%" }}
                                 type={type}
                                 ref={(ref) => {
                                     this.camera = ref;
                                 }}
-                            />
+                            >
+                                <BarcodeMask width={304} height={181} showAnimatedLine={false}/>
+                            </Camera>
                         {/* </View> */}
                     </View>
                     <View
