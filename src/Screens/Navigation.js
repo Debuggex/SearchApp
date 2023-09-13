@@ -432,7 +432,7 @@ const Navigation = () => {
 
               return (
                 <SafeAreaView>
-                  <View
+                  <BlurView
                     style={{
                       display: "flex",
                       padding: 30,
@@ -539,7 +539,7 @@ const Navigation = () => {
                         </Text>
                       </View>
                     </TouchableOpacity>
-                  </View>
+                  </BlurView>
                 </SafeAreaView>
               );
             },
