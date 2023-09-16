@@ -30,6 +30,8 @@ import { SafeAreaView } from "react-native";
 import { BlurView } from "expo-blur";
 import Cards from "./Cards";
 import AddCard from "./AddCard";
+import Medications from "./Medications";
+import AddMedications from "./AddMedications";
 
 const Stack = createNativeStackNavigator();
 
@@ -1042,6 +1044,234 @@ const Navigation = () => {
             },
           }}
         ></Stack.Screen>
+
+
+        <Stack.Screen
+          name="Medications"
+          component={Medications}
+          options={{
+            headerTransparent:true,
+            header: ({ navigation }) => {
+              const {  setNotesAction, searctText, setSearchText } =
+                useContext(context);
+              const [showSearch, setShowSearch] = useState(false);
+              return (
+                <SafeAreaView
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <BlurView
+                    style={{
+                      display: "flex",
+                      padding: 30,
+                      // paddingTop: 25,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      alignItems: "center",
+                      //   paddingTop: 80,
+                      backgroundColor: "#F0F0F3",
+                    }}
+                  >
+                    <View style={{ width: "25%" }}>
+                      <InsetButton
+                        props={{
+                          pressed: () => {
+                            navigation.navigate("Home");
+                          },
+
+                          width: 8,
+                          height: 8,
+                        }}
+                        SvgIcon={Back}
+                      />
+                    </View>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 400,
+                        textAlign: "center",
+                      }}
+                    >
+                      Medications
+                    </Text>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        width: "25%",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <InsetButton
+                        props={{
+                          pressed: () => {
+                            setNotesAction("NEW");
+                            navigation.navigate("AddMedications");
+                          },
+                        }}
+                        SvgIcon={Plus}
+                      />
+                      <InsetButton
+                        props={{
+                          pressed: () => {
+                            setShowSearch(!showSearch);
+                            setSearchText("");
+                          },
+                        }}
+                        SvgIcon={Search}
+                      />
+                    </View>
+                  </BlurView>
+                  {showSearch && (
+                    <View
+                      style={{
+                        width: "100%",
+                        padding: 30,
+                        paddingLeft: 60,
+                        paddingRight: 60,
+                        backgroundColor: "#F0F0F3",
+                      }}
+                    >
+                      <SearchInput
+                        value={searctText}
+                        setValue={setSearchText}
+                        placeholder="Search"
+                      />
+                    </View>
+                  )}
+                </SafeAreaView>
+              );
+            },
+          }}
+        ></Stack.Screen>
+
+        <Stack.Screen
+          name="AddMedications"
+          component={AddMedications}
+          options={{
+            headerStyle: { backgroundColor: "#F0F0F3" },
+            header: ({ navigation }) => {
+              const {medicates,setMedicates,medicateId,setMedicateId,name,SetName,dosage,setDosage,frequency,setFrequency,Mnotes,setMnotes } = useContext(context);
+              return (
+                <SafeAreaView>
+                  <BlurView
+                    style={{
+                      display: "flex",
+                      padding: 30,
+                      // paddingTop: 25,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      alignItems: "center",
+                      // paddingTop: 80,
+                      backgroundColor: "#F0F0F3",
+                    }}>
+
+
+                    <View style={{ width: "26%" }}>
+                      <InsetButton
+                        props={{
+                          pressed: () => {
+                            navigation.navigate("Medications");
+                            setMedicateId(-1);
+                          },
+
+                          width: 8,
+                          height: 8,
+                        }}
+                        SvgIcon={Back}
+                      />
+                    </View>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: 400,
+                        textAlign: "center",
+                      }}
+                    >
+                      Medications
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => {
+                        let obj = {
+                          name:name,
+                          dosage:dosage,
+                          frequency:frequency,
+                          notes:Mnotes
+                        }
+                        let arr = medicates;
+                        if(medicateId==-1){
+                          console.log("pushing");
+                          obj.id = arr.length;
+                          setMedicates([...medicates,obj])
+                         
+                        }else{
+                          obj.id = medicateId;
+                          arr[medicateId] = obj;
+                          setMedicates(arr); 
+                        }
+                        
+                          navigation.navigate("Medications");
+                            setMedicateId(-1);
+                            // console.log(medicates)
+                      }}
+                      style={{
+                        shadowColor: "#AEAEC0",
+                        shadowOpacity: 0.25,
+                        elevation: 5,
+                        shadowRadius: 5,
+                        shadowOffset: { width: 5, height: 5 },
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "#F0F0F3",
+                        borderRadius: 100,
+                        width: "26%",
+                      }}
+                    >
+                      <View
+                        style={{
+                          shadowColor: "#FFFFFF",
+                          width: "100%",
+                          shadowOpacity: 0.25,
+                          elevation: 5,
+                          shadowRadius: 5,
+                          shadowOffset: { width: -5, height: -5 },
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          padding: 5,
+                          paddingRight: 20,
+                          paddingLeft: 20,
+                          alignItems: "center",
+                          backgroundColor: "#F0F0F3",
+                          borderRadius: 100,
+                        }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: 16,
+                            fontWeight: 400,
+                            color: "#2684FF",
+                          }}
+                        >
+                          Save
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  </BlurView>
+                </SafeAreaView>
+              );
+            },
+          }}
+        ></Stack.Screen>
+
 
       </Stack.Navigator>
     </NavigationContainer>

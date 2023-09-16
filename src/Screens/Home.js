@@ -1343,7 +1343,7 @@ const Home=({navigation})=>{
           >
             <HomeCard
               props={{
-                pressed: ()=>{console.log("Capsule")},
+                pressed: ()=>{navigation.navigate("Medications")},
               }}
               SvgIcon={Capsule}
             />
