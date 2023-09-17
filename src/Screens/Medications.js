@@ -40,33 +40,32 @@ const Medications = ({navigation})=>{
         return isHeading;
     });
 
-    return(
-        <SafeAreaView style={{backgroundColor:"#F0F0F3",padding: 30, paddingTop: useHeaderHeight() + 40, justifyContent: 'space-between',height:"100%" }}>
-            {medicates.length==0 && 
-            <View style={{backgroundColor:"#F0F0F3",display:'flex',alignItems:'center',justifyContent:"center",height:"100%"}}>
-                <Text style={{fontSize:18,fontWeight:400,marginBottom:20}}>Medications</Text>
-                <Text style={{color:"#A3ADB2",fontWeight:500,fontSize:14,marginBottom:40}}>Add Your Medications here</Text>
-                <TouchableOpacity onPress={()=>{navigation.navigate('AddMedications')}} style={{shadowColor:"#AEAEC0",shadowOpacity:0.25,elevation:5,shadowRadius:5,shadowOffset:{width:5,height:5},display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                                <View style={{shadowColor:"#FFFFFF",shadowOpacity:0.25,elevation:5,margin:10,marginBottom:5,marginTop:5,shadowRadius:5,shadowOffset:{width:-5,height:-5},display:"flex",flexDirection:"row",justifyContent:"center",padding:5,paddingRight:20,paddingLeft:20,alignItems:"center",backgroundColor:"#F0F0F3",borderRadius:100}}>
-                                    <Text style={{fontSize:16,fontWeight:400,color:"#2684FF"}}>Add</Text>
-                                </View>
+    if(medicates.length == 0){
+        return(
+            <View style={{ backgroundColor: "#F0F0F3", display: 'flex', alignItems: 'center', justifyContent: "center", height: "100%" }}>
+                <Text style={{ fontSize: 18, fontWeight: 400, marginBottom: 20 }}>Medications</Text>
+                <Text style={{ color: "#A3ADB2", fontWeight: 500, fontSize: 14, marginBottom: 40 }}>Add Your Medications here</Text>
+                <TouchableOpacity onPress={() => { navigation.navigate('AddMedications') }} style={{ shadowColor: "#AEAEC0", shadowOpacity: 0.25, elevation: 5, shadowRadius: 5, shadowOffset: { width: 5, height: 5 }, display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#F0F0F3", borderRadius: 100 }}>
+                    <View style={{ shadowColor: "#FFFFFF", shadowOpacity: 0.25, elevation: 5, margin: 10, marginBottom: 5, marginTop: 5, shadowRadius: 5, shadowOffset: { width: -5, height: -5 }, display: "flex", flexDirection: "row", justifyContent: "center", padding: 5, paddingRight: 20, paddingLeft: 20, alignItems: "center", backgroundColor: "#F0F0F3", borderRadius: 100 }}>
+                        <Text style={{ fontSize: 16, fontWeight: 400, color: "#2684FF" }}>Add</Text>
+                    </View>
                 </TouchableOpacity>
-                
+
             </View>
-            }
-            {medicates.length!=0 && 
-            <FlatList style={{ backgroundColor: "#F0F0F3" }}
-            data={filteredMedicate}
-               renderItem={({item,index})=>{
-                   return(
-                       <SingleNote props={{heading:item.name,key:index,pressed:()=>{updateMedicate(item.id)}}}/>
-                   )
-               }}
-           />
-           }
-        </SafeAreaView>
-        
-    )
+        )
+    }else{
+        return(
+            <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30, display: 'flex', marginTop: headerHeight - (headerHeight * 0.5) }}
+                data={filteredMedicate}
+                renderItem={({ item, index }) => {
+                    return (
+                        <SingleNote props={{ heading: item.name, key: index, pressed: () => { updateMedicate(item.id) } }} />
+                    )
+                }}
+            />
+        )
+    }
+
 }
 
 export default Medications;

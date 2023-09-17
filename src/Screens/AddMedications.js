@@ -78,6 +78,7 @@ const AddMedications = ()=>{
                     }}
                   />
                   <View style={{ padding: 30 }}>
+                   
                     <TouchableOpacity
                       style={{
                         shadowColor: "#AEAEC0",
@@ -94,59 +95,8 @@ const AddMedications = ()=>{
                         marginBottom: 20,
                       }}
                       onPress={() => {
-                        navigation.navigate("Signup");
-                        resetSettings();
-                      }}
-                    >
-                      <View
-                        style={{
-                          shadowColor: "#FFFFFF",
-                          shadowOpacity: 0.5,
-                          elevation: 5,
-                          shadowRadius: 5,
-                          shadowOffset: { width: -5, height: -5 },
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          width: "100%",
-                          backgroundColor: "#F0F0F3",
-                          borderRadius: 20,
-                          padding: 13,
-                        }}
-                      >
-                        <View style={{ display: "flex", flexDirection: "row",alignItems:"center",justifyContent:"center" }}>
-                          <View
-                            style={{
-                              marginRight: 12,
-                            }}
-                          >
-                            <Attach />
-                          </View>
-                          <Text style={{ fontWeight: 600, fontSize: 16 }}>
-                            Attach Document
-                          </Text>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={{
-                        shadowColor: "#AEAEC0",
-                        shadowOpacity: 0.25,
-                        elevation: 5,
-                        shadowRadius: 5,
-                        shadowOffset: { width: 5, height: 5 },
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "100%",
-                        backgroundColor: "#FFF",
-                        borderRadius: 20,
-                        marginBottom: 20,
-                      }}
-                      onPress={() => {
-                        navigation.navigate("Signup");
-                        resetSettings();
+                        // navigation.navigate("Signup");
+                        // resetSettings();
                       }}
                     >
                       <View

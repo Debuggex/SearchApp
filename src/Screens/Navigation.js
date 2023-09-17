@@ -1195,7 +1195,7 @@ const Navigation = () => {
                         textAlign: "center",
                       }}
                     >
-                      Medications
+                      {medicateId == -1?'Medicate':name}
                     </Text>
                     <TouchableOpacity
                       onPress={() => {
