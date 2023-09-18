@@ -47,7 +47,7 @@ const AddMedications = ()=>{
                   </View>
                   <EditInputField
                     props={{
-                      label: "Name",
+                      label: "Medication",
                       placeholder: "Enter Name",
                       value:name,
                       setValue:SetName

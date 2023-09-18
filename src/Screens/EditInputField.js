@@ -8,7 +8,7 @@ const EditInputField=({props})=>{
 
     return(
     <ScrollView id={props.id} contentContainerStyle={{backgroundColor:"#F0F0F3",width:"100%",padding:30,paddingBottom:5,paddingTop:5}}>
-        <InsetShadow containerStyle={{borderRadius:20,height:50,backgroundColor:"#F0F0F3"}}
+        <InsetShadow containerStyle={{borderRadius:20,backgroundColor:"#F0F0F3"}}
         bottom={false}
         right={false}
         shadowColor="#AEAEC0"

@@ -55,7 +55,8 @@ const Medications = ({navigation})=>{
         )
     }else{
         return(
-            <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30, display: 'flex', marginTop: headerHeight - (headerHeight * 0.5) }}
+            <SafeAreaView style={{height:"100%"}}>
+            <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30, display: 'flex',marginTop:headerHeight }}
                 data={filteredMedicate}
                 renderItem={({ item, index }) => {
                     return (
@@ -63,6 +64,7 @@ const Medications = ({navigation})=>{
                     )
                 }}
             />
+            </SafeAreaView>
         )
     }
 
