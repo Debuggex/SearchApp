@@ -23,8 +23,40 @@ export const ContextProvider = ({children,navigation})=>{
     const [modalButton, setModalButtons] = useState(false);
     const [medicates,setMedicates] = useState([]);
     const [medicateId,setMedicateId] = useState(-1);
-
-
+    const [datas,setDatas] = useState([
+        {   id:1,
+            label:"First Name",
+            placeholder:"Enter First Name",
+            value:''
+        },
+        {
+            id:2,label:"Last Name",
+            placeholder:"Enter Last Name",
+            value:''
+        },
+        {
+            id:3,label:"Number",
+            placeholder:"Enter Number",
+            value:''
+        },
+        {id:4,label:"Birthday",
+            placeholder:"Enter Birthday",
+            value:''
+        },
+        {id:5,label:"Height",
+            placeholder:"Enter Height",
+            value:''
+        },
+        {id:6,label:"Weight",
+            placeholder:"Enter Weight",
+            value:''
+        },
+        {id:7,label:"Blood Type",
+            placeholder:"Enter Blood Type",
+            value:''
+        }
+    ]);
+    const [conditions,setConditions] = useState([{id:0,value:''},{id:1,value:''}]);
     const [name,SetName] = useState('');
     const [dosage,setDosage] = useState('');
     const [frequency,setFrequency] = useState('');
@@ -72,7 +104,7 @@ export const ContextProvider = ({children,navigation})=>{
 
     return(
         <ContextCreator.Provider value={{ 
-            notes, setNotes, setNote, note, searctText, setSearchText, showModal, isModal, documents, setDocuments, isDocument, setIsDocuments, selectedFolder, setSelectedFolder, notesAction, setNotesAction, noteHeading, setNoteHeading, noteText, setNoteText, noteIndex, setNoteIndex, isData, setIsData, searchDocument, setSearchDocument, isHealthModal, setIsHealthModal, emailList, setEmailList, settings, setSettings, cards, setCards, title1, setTitle1, title2, setTitle2, title3, setTitle3, title4, setTitle4, input1, setInput1, input2, setInput2, input3, setInput3, input4, setInput4, cardColor, setCardColor, editCardIndex, setEditCardIndex, modalButton, setModalButtons,medicates,setMedicates,medicateId,setMedicateId,name,SetName,dosage,setDosage,frequency,setFrequency,Mnotes,setMnotes }}>
+            notes, setNotes, setNote, note, searctText, setSearchText, showModal, isModal, documents, setDocuments, isDocument, setIsDocuments, selectedFolder, setSelectedFolder, notesAction, setNotesAction, noteHeading, setNoteHeading, noteText, setNoteText, noteIndex, setNoteIndex, isData, setIsData, searchDocument, setSearchDocument, isHealthModal, setIsHealthModal, emailList, setEmailList, settings, setSettings, cards, setCards, title1, setTitle1, title2, setTitle2, title3, setTitle3, title4, setTitle4, input1, setInput1, input2, setInput2, input3, setInput3, input4, setInput4, cardColor, setCardColor, editCardIndex, setEditCardIndex, modalButton, setModalButtons,medicates,setMedicates,medicateId,setMedicateId,name,SetName,dosage,setDosage,frequency,setFrequency,Mnotes,setMnotes,datas,setDatas,conditions,setConditions }}>
             {children}
         </ContextCreator.Provider>
     )

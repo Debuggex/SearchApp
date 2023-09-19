@@ -29,7 +29,7 @@ const EditInputField=({props})=>{
                 >
                     <View style={{ display:'flex',flexDirection:'row', alignItems: 'center',height:"100%"}}>
                                 <Text style={{fontSize:16,fontWeight:400,width:"50%"}}>{props.label}</Text>
-                                <EditInput placeholder={props.placeholder} value={props.value} setValue={props.setValue}/>
+                                <EditInput id={props.id} placeholder={props.placeholder} value={props.value} setValue={props.setValue}/>
                     </View>
                 </InsetShadow>
             </View>
