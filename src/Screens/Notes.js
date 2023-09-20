@@ -52,8 +52,8 @@ const Notes = ({navigation,route}) =>{
 
     if(isData){
         return(
-            <SafeAreaView style={{height:"100%"}}>
-                <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30, display: 'flex',marginTop:headerHeight }}
+            <SafeAreaView style={{height:"100%",backgroundColor: "#F0F0F3",display: 'flex', }}>
+                <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30, marginTop:headerHeight*0.6,}}
                  data={filteredNotes}
                     renderItem={({item,index})=>{
                         return(
