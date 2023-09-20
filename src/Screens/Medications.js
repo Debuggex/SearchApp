@@ -94,9 +94,6 @@ const Medications = ({navigation})=>{
                     coverScreen={true}
                     isVisible={showDelete}
                 >
-                    {/* <b>{medicates[deleteIndex].name}</b> */}
-                    <View style={{display:"flex",flexDirection:"row",justifyContent:"center"}}></View>
-                    <Text>Are you sure you want to delete  ?</Text>
                     <View
                         style={{
                             width: "100%",
