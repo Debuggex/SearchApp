@@ -10,6 +10,7 @@ import SingleNote from './SingleNote';
 import { Entypo } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import InsetShadow from 'react-native-inset-shadow';
+import { Menu, MenuOption, MenuOptions, MenuProvider, MenuTrigger } from 'react-native-popup-menu';
 
 
 
@@ -235,12 +236,25 @@ const Medications = ({navigation})=>{
                 data={filteredMedicate}
                 renderItem={({ item, index }) => {
                     return (
-                        item!=null && (<View style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+                        item!=null && (<View style={{width:"100%",display:"flex",flexDirection:"row",justifyContent:"space-between",position:"relative"}}>
                             <SingleNote props={{ heading: item.name, key: index, pressed: () => { updateMedicate(item.id) } }} />
-                            <Entypo style={{width:"10%",paddingTop:10,paddingBottom:10}} name="trash" size={20} color="red" onPress={()=>{
+                                <MenuProvider style={{marginTop:15,marginBottom:15}}>
+                                    <Menu>
+                                        <MenuTrigger customStyles={{ triggerWrapper: { display: "flex", alignItems: "flex-end" } }}>
+                                            <Entypo name="dots-three-vertical" size={20} color="black" />
+                                        </MenuTrigger>
+                                        <MenuOptions optionsContainerStyle={{ marginTop: 5 }}>
+                                        <MenuOption text="Delete" onSelect={() => {
+                                            setDeleteIndex(item.id);
+                                            setShowDelete(true); }} />
+                                        </MenuOptions>
+                                    </Menu>
+                                </MenuProvider>
+                            
+                            {/* <Entypo style={{width:"10%",paddingTop:10,paddingBottom:10}} name="trash" size={20} color="red" onPress={()=>{
                                 setDeleteIndex(item.id);
                                 setShowDelete(true);
-                                }}/>
+                                }}/> */}
                         </View>)
                     )
                 }}
