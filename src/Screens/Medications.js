@@ -112,7 +112,7 @@ const Medications = ({navigation})=>{
                         {deleteIndex!=-1 && 
                         
                             <View style={{display:"flex",flexDirection:"row",justifyContent:"center",marginBottom:5}}>
-                                 <Text>Are you sure you want to delete <b>{medicates[deleteIndex].name}</b> ?</Text>
+                                 <Text>Are you sure you want to delete ?</Text>
                             </View>
                             }
                         <TouchableOpacity
