@@ -95,17 +95,17 @@ const Medications = ({navigation})=>{
                     coverScreen={true}
                     isVisible={showDelete}
                 >
-                    <View
+                    <SafeAreaView
                         style={{
                             width: "100%",
                             height: "30%",
                             padding: 30,
                             backgroundColor: "#F0F0F3",
                             borderRadius:20,
-                            position: "absolute",
-                            margin:"auto",
-                            bottom: 0,
-                            top:0
+                            // position: "absolute",
+                            // top:0,
+                            // bottom: 0,
+                            // margin: "auto",
                         }}
                     >
 
@@ -229,7 +229,7 @@ const Medications = ({navigation})=>{
                                 </InsetShadow>
                             }
                         ></InsetShadow>
-                    </View>
+                    </SafeAreaView>
                 </Modal>
 
             <FlatList style={{ backgroundColor: "#F0F0F3", padding: 30,marginTop:headerHeight*0.6 }}
